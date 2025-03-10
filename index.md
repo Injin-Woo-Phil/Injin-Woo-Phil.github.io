@@ -32,10 +32,14 @@ Ontology, Metaontology, Scientific Understanding, Pyrrhonian Skepticism, Buddhis
 
 # Teaching
 ## Teaching Assistant
-- Linguistic Analysis (언어논리입문) Spring 2024 – Spring 2025.
-- Academic Writing (학술적 글쓰기) Spring 2024 - Spring 2025.
-- Logical Thinking (논리적 사고) Fall 2024 - Spring 2025.
-- Data Analysis and Situational Judgement (자료해석과 상황판단) Spring 2024.
+- Linguistic Analysis (언어논리입문)
+	- Spring 2024 – Spring 2025.
+- Academic Writing (학술적 글쓰기)
+	- Spring 2024 - Spring 2025.
+- Logical Thinking (논리적 사고)
+	- Fall 2024 - Spring 2025.
+- Data Analysis and Situational Judgement (자료해석과 상황판단)
+	- Spring 2024.
 
 # Education
 
