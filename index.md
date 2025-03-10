@@ -1,7 +1,6 @@
 ---
 layout: default
 ---
-# [Research](another-page.html)
 # About Me
 
 I received a B.A. in Philosophy and Korean Literature in Classical Chinese. I’m most interested in ontology and meta-ontology, especially ontological nominalism and ontological deflationism, as well as in inferentialism on meaning. I’m also interested in Skepticism and Buddhism. Outside philosophy, I enjoy reading and memorizing 18th-century Korean literature and Song dynasty literature. Also love to listen to 80s jazz music, heavy metal, and Korean traditional music. I play Guitar/Piri(a Korean traditional instrument) if there is time left. 
@@ -22,32 +21,28 @@ Ontology, Metaontology, Scientific Understanding, Pyrrhonian Skepticism, Buddhis
 
 
 # (Upcoming) Presentations
-- *Augemented Intellect: AI as extended cognition in Scientific Understanding*
+- *Augemented Intellect: AI as Extended Cognition in Scientific Understanding*
 	- **2025 Seoul Workshop in Philosophy of Machine Learning**, Feb 2025, (Seoul National University, South Korea)
 - *Frenemies in the Same Boat: A Critical Assessment of Explanatory Voluntarism and Its Implications for the DRK view of Scientific Understanding*
 	- **APPSA-LMPST Taiwan 2025**, June 2025 (National Yang Ming Chiao Tung University, Taiwan)
 ## Comments
-- on _Social and Applied Hinge Epistemology_ (Annalisa Coliva)
+- On _Social and Applied Hinge Epistemology_ (Annalisa Coliva)
 	- **AI Epistemology Seminar**, Feb 2025 (Yonsei University, South Korea)
 
 # Teaching
 ## Teaching Assistant
-- Linguistic Analysis (언어논리입문) 2024 Spring - 2025 Spring
-- Academic Writing (학술적 글쓰기) 2024 Spring - 2025 Spring
-- Logical Thinking (논리적 사고) 2024 Fall - 2025 Spring
-- Data Analysis and Situational Judgement (자료해석과 상황판단) 2024 Spring
+- Linguistic Analysis (언어논리입문) Spring 2024 – Spring 2025.
+- Academic Writing (학술적 글쓰기) Spring 2024 - Spring 2025.
+- Logical Thinking (논리적 사고) Fall 2024 - Spring 2025.
+- Data Analysis and Situational Judgement (자료해석과 상황판단) Spring 2024.
 
 # Education
 
 B.A. Philosophy
-SungKyunKwan University, South Korea 2024
+SungKyunKwan University, South Korea, 2024.
 
 B.A. Korean Literature in Classical Chinese
-SungKyunKwan University, South Korea 2024
-
-
-## Scholarships
-- Simsan Scholarship 2024
+SungKyunKwan University, South Korea, 2024.
 
 <dl>
 <dt>Name</dt>
