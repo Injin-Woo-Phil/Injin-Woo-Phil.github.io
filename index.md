@@ -9,7 +9,3 @@ layout: default
 <dt>Birthplace</dt>
 <dd>Taebaek, Korea</dd>
 </dl>
-
-```
-The final element.
-```
