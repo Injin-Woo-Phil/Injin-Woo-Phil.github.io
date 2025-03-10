@@ -1,5 +1,5 @@
 ---
 layout: default
 ---
-# [CV](another-page.html)
-# [Research](research.html)
+# [Research](another-page.html)
+# [About Me]
