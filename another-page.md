@@ -14,6 +14,4 @@ AI and Epistemology Workshop, Feb 2025 (Yonsei University, Seoul)
 Seoul Workshop on Philosophy of Machine Learning, Feb 2025 (Seoul National University, Seoul)
 [Abstract]() [Slides]()
 
-_yay_
-
 [back](./)
