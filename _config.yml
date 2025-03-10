@@ -1,6 +1,13 @@
 title: Injin Woo
 logo: /assets/img/logo.png
-description: 蓋將自其變者而觀之﹐而天地曾不能一瞬﹔自其不變者而觀之﹐ 則物于我皆無盡也。 | When viewed from a changing perspective, the universe can hardly be the same even within a blink of an eye, But when looked at from an unchanging perspective, everything conserves itself, and so do we. Therefore, what’s in them to be admired?
+description: |
+  蓋將自其變者而觀之﹐而天地曾不能一瞬﹔
+  自其不變者而觀之﹐則物于我皆無盡也。  
+
+  When viewed from a changing perspective, the universe can hardly be the same even within a blink of an eye,  
+  But when looked at from an unchanging perspective, everything conserves itself, and so do we.  
+  Therefore, what’s in them to be admired?
+
 show_downloads: false
 google_analytics:
 theme: jekyll-theme-minimal
