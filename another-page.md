@@ -7,7 +7,6 @@ layout: default
 None...
 
 # Talk
-## Epistemology
 - Comment on "Social and Applied Hinge Epistemology" (Annalisa Coliva)
   - AI and Epistemology Workshop, Feb 2025 (Yonsei University, Seoul)
  
