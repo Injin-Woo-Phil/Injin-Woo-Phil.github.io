@@ -25,6 +25,7 @@ Ontology, Metaontology, Scientific Understanding, Pyrrhonian Skepticism, Buddhis
 	- **2025 Seoul Workshop in Philosophy of Machine Learning**, Feb 2025, (Seoul National University, South Korea)
 - *Frenemies in the Same Boat: A Critical Assessment of Explanatory Voluntarism and Its Implications for the DRK view of Scientific Understanding*
 	- **APPSA-LMPST Taiwan 2025**, June 2025 (National Yang Ming Chiao Tung University, Taiwan)
+
 ## Comments
 - On _Social and Applied Hinge Epistemology_ (Annalisa Coliva)
 	- **AI Epistemology Seminar**, Feb 2025 (Yonsei University, South Korea)
