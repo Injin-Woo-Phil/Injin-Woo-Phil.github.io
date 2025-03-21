@@ -15,7 +15,7 @@ Ontology, Metaontology, Scientific Understanding, Pyrrhonian Skepticism, Buddhis
 
 
 ## Work in Progress
-- Thesis on **Physicalism in Social Ontology**.
+- Thesis on **Materialism in Social Ontology**.
 - A paper on **Scientific Understanding**.
 - A paper on **Stance Voluntarism applied to the History of Philosophy**.
 
