@@ -11,7 +11,8 @@ you can contact me at jaegoi53@gmail.com
 Ontology, Metaontology, Scientific Understanding, Pyrrhonian Skepticism, Buddhism, Confucianism.
 
 # Publications
-- Coming Soon.
+- (2025.04) "경험론과 합리론의 대립을 넘어서: 경험적 자세의 철학사적 의의" 근대철학, 25.
+	- Beyond the Opposition of Empiricism and Rationalism: The Historical Significance of the Empirical Stance 	
 
 
 ## Work in Progress
