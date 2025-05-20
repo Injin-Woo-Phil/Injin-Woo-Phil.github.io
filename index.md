@@ -28,7 +28,7 @@ Ontology, Metaontology, Scientific Understanding, Pyrrhonian Skepticism, Buddhis
 	- **[APPSA-LMPST Taiwan 2025](https://appsa2025taiwan.mystrikingly.com)**, June 2025 (National Yang Ming Chiao Tung University, Taiwan)
 	- **[KSPS 2025 annual Conference](https://philsci.or.kr/2025년-정기학술대회-발표자-모집/)**, July 2025 (Seoul National University, South Korea)
 - *‘절름발이’는 왜 부도덕한 표현인가?* (Why is the term 'lame' considered morally wrong?) [Abstract](https://drive.google.com/file/d/1dX7Nza41hA_Hw7LGazOa4wHFyzlH8HRl/view?usp=sharing) (in Korean)
-	- **[2025년 숙명인문학연구소 제12회 정기학술대회 <신체적 소수자와의 공감과 공존> ](http://www.srih.kr/bbs/board.php?tbl=bbs41)**, June 2025,(Sookmyung Women's University, South Korea)
+	- **[2025년 숙명인문학연구소 제12회 정기학술대회](http://www.srih.kr/bbs/board.php?tbl=bbs41) <신체적 소수자와의 공감과 공존>**, June 2025,(Sookmyung Women's University, South Korea)
 ## Comments
 - On _Social and Applied Hinge Epistemology_ (Annalisa Coliva)
 	- **AI Epistemology Seminar**, Feb 2025 (Yonsei University, South Korea)
