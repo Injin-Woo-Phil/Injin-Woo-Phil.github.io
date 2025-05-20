@@ -22,7 +22,7 @@ Ontology, Metaontology, Scientific Understanding, Pyrrhonian Skepticism, Buddhis
 
 
 # (Upcoming) Presentations
-- *Augemented Intellect: AI as Extended Cognition in Scientific Understanding* [Abstract](https://drive.google.com/file/d/1Vru5FGh3DHx4KqBMCOX6K1_e1LhPamBz/view?usp=sharing)
+- *Augemented Intellect: AI as Extended Cognition in Scientific Understanding* \([Abstract](https://drive.google.com/file/d/1Vru5FGh3DHx4KqBMCOX6K1_e1LhPamBz/view?usp=sharing)\)
 	- **[2025 Seoul Workshop in Philosophy of Machine Learning](https://25swpml.wordpress.com)**, Feb 2025, (Seoul National University, South Korea)
 - *Frenemies in the Same Boat: A Critical Assessment of Explanatory Voluntarism and Its Implications for the DRK view of Scientific Understanding* [Abstract](https://drive.google.com/file/d/1iG0_6UtSLpMvS_fOW4S5rD6et64_VZ8f/view?usp=sharing)
 	- **[APPSA-LMPST Taiwan 2025](https://appsa2025taiwan.mystrikingly.com)**, June 2025 (National Yang Ming Chiao Tung University, Taiwan)
