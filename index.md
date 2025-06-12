@@ -32,7 +32,7 @@ Ontology, Metaontology, Scientific Understanding, Pyrrhonian Skepticism, Buddhis
 - **[KSPS 2025 annual Conference](https://philsci.or.kr/2025년-정기학술대회-발표자-모집/)**, July 2025 (Seoul National University, South Korea)
 
 #### *‘절름발이’는 왜 부도덕한 표현인가?* (Why is the term 'lame' considered morally wrong?) 
-\([draft](https://drive.google.com/file/d/1qJeQ4wWOqdCCriGKF7bDXo9xVQosW3Bb/view?usp=share_link\) \([Slides](https://drive.google.com/file/d/1Sf-6O9wPUCapOMbxQ3FZLhoprSj2sA-z/view?usp=share_link)\)(in Korean)
+\([draft](https://drive.google.com/file/d/1qJeQ4wWOqdCCriGKF7bDXo9xVQosW3Bb/view?usp=share_link)\) \([Slides](https://drive.google.com/file/d/1Sf-6O9wPUCapOMbxQ3FZLhoprSj2sA-z/view?usp=share_link)\)(in Korean)
 - **[2025년 숙명인문학연구소 제12회 정기학술대회](http://www.srih.kr/bbs/board.php?tbl=bbs41)** **\<신체적 소수자와의 공감과 공존\>**, June 2025,(Sookmyung Women's University, South Korea)
 
 ## Comments
