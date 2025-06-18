@@ -27,13 +27,14 @@ Ontology, Metaontology, Scientific Understanding, Pyrrhonian Skepticism, Buddhis
 - **[2025 Seoul Workshop in Philosophy of Machine Learning](https://25swpml.wordpress.com)**, Feb 2025, (Seoul National University, South Korea)
 
 #### *Frenemies in the Same Boat: A Critical Assessment of Explanatory Voluntarism and Its Implications for the DRK view of Scientific Understanding* 
-\([Abstract](https://drive.google.com/file/d/1iG0_6UtSLpMvS_fOW4S5rD6et64_VZ8f/view?usp=sharing)\) \([Slides](https://drive.google.com/file/d/1f0afCWAqRFd9JRJK3GVgD7VHhQsYikt5/view?usp=sharing)\)
+\([Abstract](https://drive.google.com/file/d/1iG0_6UtSLpMvS_fOW4S5rD6et64_VZ8f/view?usp=sharing)\) \([Slides](https://docs.google.com/presentation/d/1ynC4bq07aJlArPrR1hsim3AGDsgs8H8e/edit?usp=sharing&ouid=116119994418570343632&rtpof=true&sd=true)\)\([Handout](https://drive.google.com/file/d/1tgPwwAAd05AtxyYZe3gAyICwnKNXh3gU/view?usp=sharing)\)
 - **[APPSA-LMPST Taiwan 2025](https://appsa2025taiwan.mystrikingly.com)**, June 2025 (National Yang Ming Chiao Tung University, Taiwan)
 - **[KSPS 2025 annual Conference](https://philsci.or.kr/2025년-정기학술대회-발표자-모집/)**, July 2025 (Seoul National University, South Korea)
 
 #### *‘절름발이’는 왜 부도덕한 표현인가?* (Why is the term 'lame' considered morally wrong?) 
 \([draft](https://drive.google.com/file/d/1qJeQ4wWOqdCCriGKF7bDXo9xVQosW3Bb/view?usp=share_link)\) \([Slides](https://drive.google.com/file/d/1Sf-6O9wPUCapOMbxQ3FZLhoprSj2sA-z/view?usp=share_link)\)(in Korean)
-- **[2025년 숙명인문학연구소 제12회 정기학술대회](http://www.srih.kr/bbs/board.php?tbl=bbs41)** **\<신체적 소수자와의 공감과 공존\>**, June 2025,(Sookmyung Women's University, South Korea)
+- **[2025년 숙명인문학연구소 제12회 정기학술대회](http://www.srih.kr/bbs/board.php?tbl=bbs41)** **\<신체적 소수자와의 공감과 공존\>(Sookmyung Research Institute of Humanities 12th Conference, 
+\<Empathy and coexistence with physical minorities\>)**, June 2025,(Sookmyung Women's University, South Korea)
 
 ## Comments
 - On _Social and Applied Hinge Epistemology_ (Annalisa Coliva)
