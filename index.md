@@ -51,6 +51,12 @@ Ontology, Metaontology, Scientific Understanding, Pyrrhonian Skepticism, Buddhis
 - Data Analysis and Situational Judgement (자료해석과 상황판단)
 	- Spring 2024.
 
+ ## 
+
+ # Professional Service
+- 2025–	Institute for Philosophy and Liberal Arts Education, Sungkyunkwan University, Administrative Assistant (철학과 인문교육 연구소, 간사)	
+- 2025–	The Academy of Mobility Humanities, Konkuk University, Research Assistant (모빌리티인문학 연구원, 연구보조원)
+
 # Education
 
 B.A. Philosophy
@@ -58,6 +64,11 @@ SungKyunKwan University, South Korea, 2024.
 
 B.A. Korean Literature in Classical Chinese
 SungKyunKwan University, South Korea, 2024.
+
+# Grants & Awards
+- 2024 - 2025: TA Scholarship
+- 2024:	Simsan Scholarship 
+- 2025: Winner, 2025 Humanities Paper Competition for Emerging Scholars, Sookmyung Institute of Humanities
 
 <dl>
 <dt>Name</dt>
