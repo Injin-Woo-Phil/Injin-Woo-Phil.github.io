@@ -68,7 +68,7 @@ SungKyunKwan University, South Korea, 2024.
 # Grants & Awards
 - 2024 - 2025: TA Scholarship
 - 2024:	Simsan Scholarship 
-- 2025: Winner, 2025 Humanities Paper Competition for Emerging Scholars, Sookmyung Institute of Humanities
+- 2025: Winner, 2025 Academic Paper Competition for Emerging Scholars, Sookmyung Institute of Humanities
 
 <dl>
 <dt>Name</dt>
