@@ -51,9 +51,9 @@ Ontology, Metaontology, Scientific Understanding, Pyrrhonian Skepticism, Buddhis
 - Data Analysis and Situational Judgement (자료해석과 상황판단)
 	- Spring 2024.
 
- ## 
+## .
 
- # Professional Service
+# Professional Service
 - 2025–	Institute for Philosophy and Liberal Arts Education, Sungkyunkwan University, Administrative Assistant (철학과 인문교육 연구소, 간사)	
 - 2025–	The Academy of Mobility Humanities, Konkuk University, Research Assistant (모빌리티인문학 연구원, 연구보조원)
 
