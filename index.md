@@ -79,3 +79,5 @@ SungKyunKwan University, South Korea, 2024.
 <dt>Birthplace</dt>
 <dd>Taebaek, Korea</dd>
 </dl>
+
+[slides](https://drive.google.com/file/d/1VRZ13jC-4MClUcy56zlwyy9FAKGcVGgn/view?usp=sharing)
