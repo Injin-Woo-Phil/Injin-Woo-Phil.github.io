@@ -51,7 +51,10 @@ Ontology, Metaontology, Scientific Understanding, Pyrrhonian Skepticism, Buddhis
 - Data Analysis and Situational Judgement (자료해석과 상황판단)
 	- Spring 2024.
 
-## .
+## Designed Lecture
+- 성균관대 AICOSS & 송파구청 채움교실 (잠신고등학교): AI의 철학적 이해
+	- Handout [1](https://drive.google.com/file/d/1-0ZubVxqVdv0UlPtWBKNuBXge3j4MkEZ/view?usp=drivesdk)
+
 
 # Professional Service
 - 2025–	Institute for Philosophy and Liberal Arts Education, Sungkyunkwan University, Administrative Assistant (철학과 인문교육 연구소, 간사)	
