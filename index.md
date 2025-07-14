@@ -53,7 +53,7 @@ Ontology, Metaontology, Scientific Understanding, Pyrrhonian Skepticism, Buddhis
 
 ## Short Course Instructor
 - 성균관대 AICOSS & 송파구청 채움교실 (잠신고등학교): AI의 철학적 이해 (5 days)
-	- Handout [1](https://drive.google.com/file/d/1-0ZubVxqVdv0UlPtWBKNuBXge3j4MkEZ/view?usp=drivesdk) [2](https://drive.google.com/file/d/19R4JG4RQ4oLkGvDzzyQN3ejnukhkMxDz/view?usp=sharing) [3](https://drive.google.com/file/d/1nKEGIW2xonDG-FnAg8RZKTOgS44xjsT6/view?usp=sharing)
+	- Handout [1](https://drive.google.com/file/d/1-0ZubVxqVdv0UlPtWBKNuBXge3j4MkEZ/view?usp=drivesdk) [2](https://drive.google.com/file/d/19R4JG4RQ4oLkGvDzzyQN3ejnukhkMxDz/view?usp=sharing) [3](https://drive.google.com/file/d/1nKEGIW2xonDG-FnAg8RZKTOgS44xjsT6/view?usp=sharing) [4](https://drive.google.com/file/d/1Ic0a9VgzuVXo_drUtupkohzGYLsa7Smk/view?usp=sharing)
 
 
 # Professional Service
