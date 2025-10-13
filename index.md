@@ -36,7 +36,7 @@ Ontology, Metaontology, Scientific Understanding, Pyrrhonian Skepticism, Buddhis
 \([draft](https://drive.google.com/file/d/1r705D42EDAfv6ttxX9B6qoSm49suYt_F/view?usp=share_link)\) \([Slides](https://drive.google.com/file/d/1Sf-6O9wPUCapOMbxQ3FZLhoprSj2sA-z/view?usp=share_link)\)(in Korean)
 - **[2025년 숙명인문학연구소 제12회 정기학술대회](http://www.srih.kr/bbs/board.php?tbl=bbs41)** **\<신체적 소수자와의 공감과 공존\>(Sookmyung Research Institute of Humanities 12th Conference, 
 \<Empathy and coexistence with physical minorities\>)**, June 2025,(Sookmyung Women's University, South Korea)
-- **[The 21st KSAP Grad Division Workshop](https://sites.google.com/view/ksap-grad-division/biannual-workshop/past-workshops?authuser=0#h.p_RrJtpHCw5k5v), Aug 2025, (Seoul National University, South Korea)
+- **[The 21st KSAP Grad Division Workshop](https://sites.google.com/view/ksap-grad-division/biannual-workshop/past-workshops?authuser=0#h.p_RrJtpHCw5k5v)**, Aug 2025, (Seoul National University, South Korea)
 
 ## Comments
 - On _Social and Applied Hinge Epistemology_ (Annalisa Coliva)
