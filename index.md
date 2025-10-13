@@ -59,6 +59,7 @@ Ontology, Metaontology, Scientific Understanding, Pyrrhonian Skepticism, Buddhis
 # Professional Service
 - 2025–	Institute for Philosophy and Liberal Arts Education, Sungkyunkwan University, Administrative Assistant (철학과 인문교육 연구소, 간사)	
 - 2025–	The Academy of Mobility Humanities, Konkuk University, Research Assistant (모빌리티인문학 연구원, 연구보조원)
+- 2025- Korean Association for Logic,Administrative Assistant (한국논리학회, 총무간사)
 
 # Education
 
