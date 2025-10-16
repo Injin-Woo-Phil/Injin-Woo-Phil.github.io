@@ -2,3 +2,29 @@
 ---
 
 @import "jekyll-theme-minimal";
+
+/* ===== Custom Navigation Bar ===== */
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.5em;
+  justify-content: flex-end; /* 오른쪽 정렬 원하면 */
+}
+
+nav li {
+  display: inline;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+}
+
+nav a:hover {
+  color: #007acc;
+  text-decoration: underline;
+}
