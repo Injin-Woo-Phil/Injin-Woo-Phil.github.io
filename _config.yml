@@ -15,9 +15,6 @@ navigation:
     url: /research
   - title: Blog
     url: /blog
-  - title: Contact
-    url: /contact
-
 
 show_downloads: false
 google_analytics:
