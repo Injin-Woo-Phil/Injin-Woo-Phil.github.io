@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+# Under construction
 # About Me
 
 I received a B.A. in Philosophy and Korean Literature in Classical Chinese. I’m most interested in ontology and meta-ontology, especially ontological nominalism and ontological deflationism, as well as in inferentialism on meaning. I’m also interested in Skepticism and Buddhism. Outside philosophy, I enjoy reading and memorizing 18th-century Korean literature and Song dynasty literature. Also love to listen to 80s jazz music, heavy metal, and Korean traditional music. I play Guitar/Piri(a Korean traditional instrument) if there is time left. 
@@ -27,7 +28,7 @@ Ontology, Metaontology, Scientific Understanding, Pyrrhonian Skepticism, Buddhis
 - **[Philosophical Interchange between Sungkyunkwan and Nagoya University](https://sites.google.com/site/masashikasaki2/philosophical-interchange-between-sungkyunkwan-and-nagoya-university?authuser=0)**, Nov 2025, (Nagoya University, Japan)
 
 #### *Augemented Intellect: AI as Extended Cognition in Scientific Understanding* 
-\([Abstract](https://drive.google.com/file/d/1Vru5FGh3DHx4KqBMCOX6K1_e1LhPamBz/view?usp=sharing)\)
+\([Abstract](https://drive.google.com/file/d/1Vru5FGh3DHx4KqBMCOX6K1_e1LhPamBz/view?usp=sharing)\) \([Slides](https://drive.google.com/file/d/1zxrIf9vkFrArsoYzTcXMN7bzUylZXmYA/view?usp=sharing)\)
 - **[2025 Seoul Workshop in Philosophy of Machine Learning](https://25swpml.wordpress.com)**, Feb 2025, (Seoul National University, South Korea)
 - **[2025 Global Mobility Humanities Conference](https://www.mobilityhumanities.net/conference-programme)**, Dec 2025, (Konkuk University, South Korea)
 
