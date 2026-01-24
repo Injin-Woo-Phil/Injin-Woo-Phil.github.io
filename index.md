@@ -1,7 +1,8 @@
 ---
 layout: default
 ---
-# Under construction
+# 제2회 B급 철학회: <데스노트>의 철학
+- 여자친구로 삼아주세요: 렘, 미사, 라이토와 사랑의 철학 \([슬라이드](https://drive.google.com/file/d/11tkizd8M6moXbCzHaBzNq-BjxFxutRh6/view?usp=share_link)\)
 # About Me
 
 I received a B.A. in Philosophy and Korean Literature in Classical Chinese. I’m most interested in ontology and meta-ontology, especially ontological nominalism and ontological deflationism, as well as in inferentialism on meaning. I’m also interested in Skepticism and Buddhism. Outside philosophy, I enjoy reading and memorizing 18th-century Korean literature and Song dynasty literature. Also love to listen to 80s jazz music, heavy metal, and Korean traditional music. I play Guitar/Piri(a Korean traditional instrument) if there is time left. 
