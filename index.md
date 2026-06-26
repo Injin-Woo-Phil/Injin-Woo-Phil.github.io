@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-[slide](https://drive.google.com/file/d/1tyFLCUrCoY3vJoRq4RiY_3bTGrh9SoHL/view?usp=sharing)
+[slide]([https://drive.google.com/file/d/1tyFLCUrCoY3vJoRq4RiY_3bTGrh9SoHL/view?usp=sharing](https://docs.google.com/presentation/d/1Mu-l6MJFwEaDKy8AwS-iKqWgkUMwYigq/edit?usp=sharing&ouid=116119994418570343632&rtpof=true&sd=true))
 [요약문](https://drive.google.com/file/d/1ht7SX4seO_7Boa0_ub3eFk6ooIBN6AEg/view?usp=sharing)
 # About Me
 
