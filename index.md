@@ -1,9 +1,9 @@
 ---
 layout: default
 ---
-[slide](https://drive.google.com/file/d/1EPEB8pLqBhphnWZIVUNM-Ym5hjR0_FD0/view?usp=sharing)
+[slide](https://drive.google.com/file/d/1tyFLCUrCoY3vJoRq4RiY_3bTGrh9SoHL/view?usp=sharing)
+[요약문](https://drive.google.com/file/d/1ht7SX4seO_7Boa0_ub3eFk6ooIBN6AEg/view?usp=sharing)
 # About Me
-[slide](https://drive.google.com/file/d/1EPEB8pLqBhphnWZIVUNM-Ym5hjR0_FD0/view?usp=sharing)
 
 I received a B.A. in Philosophy and Korean Literature in Classical Chinese. I’m most interested in ontology and meta-ontology, especially ontological nominalism and ontological deflationism, as well as in inferentialism on meaning. I’m also interested in Skepticism and Buddhism. Outside philosophy, I enjoy reading and memorizing 18th-century Korean literature and Song dynasty literature. Also love to listen to 80s jazz music, heavy metal, and Korean traditional music. I play Guitar/Piri(a Korean traditional instrument) if there is time left. 
 
