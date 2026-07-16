@@ -12,7 +12,7 @@ layout: default
 
 ## 학술 발표
 
-#### 너희 모든 좀비들
+#### All you zombies
 - **수선철학회 Reboot** 2026년 7월, (성균관대학교)
 - [2026년 과학철학회 정기 학술대회](https://philsci.or.kr/2026conference/), 2026년 7월, (국립과천과학관)
 - AI, EPISTEMIC METHODS, LANGUAGE & LOGIC, 2026년 7월, (연세대학교) ***flash talk***
