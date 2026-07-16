@@ -6,18 +6,19 @@ layout: default
 
 ## 다가오는 일정
 
-#### 환원적 유물론 하에서 사회 집단의 지시체에 관하여
+#### 환원적 물질주의 하에서 사회적 집단의 지시체에 관하여
 - "철학과인문교육" 연구소 제25회 논문발표회, 2026년 8월, (성균관대학교)
 
+#### 
 
 ## 학술 발표
 
 #### All you zombies
 - **수선철학회 Reboot** 2026년 7월, (성균관대학교)
-- [2026년 과학철학회 정기 학술대회](https://philsci.or.kr/2026conference/), 2026년 7월, (국립과천과학관)
-- AI, EPISTEMIC METHODS, LANGUAGE & LOGIC, 2026년 7월, (연세대학교) ***flash talk***
+- **[2026년 과학철학회 정기 학술대회](https://philsci.or.kr/2026conference/)**, 2026년 7월, (국립과천과학관)
+- **AI, EPISTEMIC METHODS, LANGUAGE & LOGIC**, 2026년 7월, (연세대학교) ***flash talk***
 
-#### *환원적 유물론 하에서 사회 집단의 지시체에 관하여*
+#### *환원적 물질주의 하에서 사회적 집단의 지시체에 관하여*
 - **[성균관대-나고야대 철학교류회](https://sites.google.com/site/masashikasaki2/イベント/philosophical-interchange-between-sungkyunkwan-and-nagoya-university?authuser=0)**, 2025년 11월, (일본 나고야대학교)
 
 #### *Augemented Intellect: AI as Extended Cognition in Scientific Understanding*
