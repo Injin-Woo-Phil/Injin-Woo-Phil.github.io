@@ -25,10 +25,24 @@
     {% include head-custom.html %}
   </head>
   <body>
-    <div class="wrapper">
-      <header class="sidebar">
-        <p class="site-title"><a href="{{ nav_prefix | append: "/" | relative_url }}">{{ site.title | default: site.github.repository_name }}</a></p>
-        <p class="site-title-hanja" lang="zh-Hant">禹仁眞</p>
+    <div class="page">
+      <header class="masthead">
+        <div class="masthead-top">
+          <div class="masthead-id">
+            <p class="site-title"><a href="{{ nav_prefix | append: "/" | relative_url }}">{{ site.title | default: site.github.repository_name }}</a></p>
+            <span class="name-seal" lang="zh-Hant" aria-hidden="true">禹仁眞</span>
+          </div>
+          <a class="lang-toggle" id="lang-toggle" href="{{ alt_url | relative_url }}"
+             aria-label="{% if page_lang == 'ko' %}Switch to English{% else %}한국어로 전환{% endif %}">
+            <svg class="taegeuk" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true">
+              <circle cx="32" cy="32" r="28.5" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.4"/>
+              <path d="M32 3.5 a28.5 28.5 0 0 1 0 57 a14.25 14.25 0 0 1 0 -28.5 a14.25 14.25 0 0 0 0 -28.5 z" fill="var(--ink)"/>
+              <circle cx="32" cy="17.75" r="3.9" fill="var(--paper)"/>
+              <circle cx="32" cy="46.25" r="3.9" fill="var(--ink)"/>
+            </svg>
+            <span class="lang-label">{% if page_lang == 'ko' %}English{% else %}한국어{% endif %}</span>
+          </a>
+        </div>
         <nav aria-label="{% if page_lang == 'ko' %}주 메뉴{% else %}Main menu{% endif %}">
           <ul>
             {% for item in site.navigation %}
@@ -43,18 +57,6 @@
         </nav>
       </header>
       <main class="content">
-        <div class="content-top">
-          <a class="lang-toggle" id="lang-toggle" href="{{ alt_url | relative_url }}"
-             aria-label="{% if page_lang == 'ko' %}Switch to English{% else %}한국어로 전환{% endif %}">
-            <svg class="taegeuk" viewBox="0 0 64 64" width="38" height="38" aria-hidden="true">
-              <circle cx="32" cy="32" r="28.5" fill="var(--background)" stroke="var(--text-primary)" stroke-width="1.6"/>
-              <path d="M32 3.5 a28.5 28.5 0 0 1 0 57 a14.25 14.25 0 0 1 0 -28.5 a14.25 14.25 0 0 0 0 -28.5 z" fill="var(--text-primary)"/>
-              <circle cx="32" cy="17.75" r="4.1" fill="var(--accent)"/>
-              <circle cx="32" cy="46.25" r="4.1" fill="var(--background)"/>
-            </svg>
-            <span class="lang-label">{% if page_lang == 'ko' %}한국어{% else %}English{% endif %}</span>
-          </a>
-        </div>
 
       {{ content }}
 
@@ -76,7 +78,7 @@
         var navigated = false;
         var go = function () { if (!navigated) { navigated = true; window.location.href = toggle.href; } };
         toggle.querySelector('.taegeuk').addEventListener('animationend', go, { once: true });
-        setTimeout(go, 650); /* safety: navigate even if animationend never fires */
+        setTimeout(go, 700); /* safety: navigate even if animationend never fires */
       });
     })();
     </script>
