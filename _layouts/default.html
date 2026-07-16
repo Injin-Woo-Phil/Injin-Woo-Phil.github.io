@@ -1,60 +1,84 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
+{% assign clean_url = page.url | replace: "index.html", "" | replace: ".html", "" %}
+{% if clean_url == "/ko" or clean_url contains "/ko/" %}
+  {% assign page_lang = "ko" %}
+  {% assign nav_prefix = "/ko" %}
+  {% assign alt_url = clean_url | remove_first: "/ko" %}
+  {% if alt_url == "" %}{% assign alt_url = "/" %}{% endif %}
+{% else %}
+  {% assign page_lang = "en" %}
+  {% assign nav_prefix = "" %}
+  {% assign alt_url = "/ko" | append: clean_url %}
+{% endif %}
+{% if page.alt_url %}{% assign alt_url = page.alt_url %}{% endif %}
+<html lang="{% if page_lang == 'ko' %}ko{% else %}en-US{% endif %}">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 {% seo %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;900&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
-    <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <![endif]-->
     {% include head-custom.html %}
   </head>
   <body>
     <div class="wrapper">
-      <header>
-        <h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
-  <nav>
-    <ul>
-      {% for item in site.navigation %}
-        <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
-      {% endfor %}
-    </ul>
-  </nav>
-        
-        {% if site.logo %}
-          <img src="{{site.logo | relative_url}}" alt="Logo" />
-        {% endif %}
-
-        <p>{{ site.description | markdownify | default: site.github.project_tagline }}</p>
-
-        {% if site.github.is_project_page %}
-        <p class="view"><a href="{{ site.github.repository_url }}">View the Project on GitHub <small>{{ site.github.repository_nwo }}</small></a></p>
-        {% endif %}
-
-        <!--{% if site.github.is_user_page %}
-        <p class="view"><a href="{{ site.github.owner_url }}">View My GitHub Profile</a></p>
-        {% endif %}-->
-
-        {% if site.show_downloads %}
-        <ul class="downloads">
-          <li><a href="{{ site.github.zip_url }}">Download <strong>ZIP File</strong></a></li>
-          <li><a href="{{ site.github.tar_url }}">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="{{ site.github.repository_url }}">View On <strong>GitHub</strong></a></li>
-        </ul>
-        {% endif %}
+      <header class="sidebar">
+        <p class="site-title"><a href="{{ nav_prefix | append: "/" | relative_url }}">{{ site.title | default: site.github.repository_name }}</a></p>
+        <p class="site-title-hanja" lang="zh-Hant">禹仁眞</p>
+        <nav aria-label="{% if page_lang == 'ko' %}주 메뉴{% else %}Main menu{% endif %}">
+          <ul>
+            {% for item in site.navigation %}
+              {% if item.url == "/" %}
+                {% assign target = nav_prefix | append: "/" %}
+              {% else %}
+                {% assign target = nav_prefix | append: item.url %}
+              {% endif %}
+              <li><a href="{{ target | relative_url }}"{% if clean_url == target %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </nav>
       </header>
-      <section>
+      <main class="content">
+        <div class="content-top">
+          <a class="lang-toggle" id="lang-toggle" href="{{ alt_url | relative_url }}"
+             aria-label="{% if page_lang == 'ko' %}Switch to English{% else %}한국어로 전환{% endif %}">
+            <svg class="taegeuk" viewBox="0 0 64 64" width="38" height="38" aria-hidden="true">
+              <circle cx="32" cy="32" r="28.5" fill="var(--background)" stroke="var(--text-primary)" stroke-width="1.6"/>
+              <path d="M32 3.5 a28.5 28.5 0 0 1 0 57 a14.25 14.25 0 0 1 0 -28.5 a14.25 14.25 0 0 0 0 -28.5 z" fill="var(--text-primary)"/>
+              <circle cx="32" cy="17.75" r="4.1" fill="var(--accent)"/>
+              <circle cx="32" cy="46.25" r="4.1" fill="var(--background)"/>
+            </svg>
+            <span class="lang-label">{% if page_lang == 'ko' %}한국어{% else %}English{% endif %}</span>
+          </a>
+        </div>
 
       {{ content }}
 
-      </section>
-      <footer>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+        <footer class="site-footer">
+          <p>&copy; Injin Woo &middot; Hosted on GitHub Pages</p>
+        </footer>
+      </main>
     </div>
-    <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+    <script>
+    (function () {
+      var toggle = document.getElementById('lang-toggle');
+      if (!toggle) return;
+      toggle.addEventListener('click', function (e) {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        e.preventDefault();
+        if (toggle.classList.contains('is-spinning')) return;
+        toggle.classList.add('is-spinning');
+        var navigated = false;
+        var go = function () { if (!navigated) { navigated = true; window.location.href = toggle.href; } };
+        toggle.querySelector('.taegeuk').addEventListener('animationend', go, { once: true });
+        setTimeout(go, 650); /* safety: navigate even if animationend never fires */
+      });
+    })();
+    </script>
   </body>
 </html>
