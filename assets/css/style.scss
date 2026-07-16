@@ -238,7 +238,7 @@ hr {
 .content li { margin-bottom: .45em; }
 .content li > ul, .content li > ol { margin: .45em 0 0; }
 
-.content blockquote {
+.content blockquote:not(.quote-vertical) {
   margin: 0 0 1.2em;
   padding: 0 0 0 20px;
   border-left: 1px solid var(--rule);
