@@ -10,9 +10,8 @@ layout: default
 - "철학과인문교육" 연구소 제25회 논문발표회, 2026년 8월, (성균관대학교)
 
 #### Infrastructural Violence in State-Run Dating Apps
-- Global Mobility Humanities Conference, 2026년 10월, (건국대학교)
+- [Global Mobility Humanities Conference](https://www.mobilityhumanities.net), 2026년 10월, (건국대학교)
 
-#### 
 
 ## 학술 발표
 
