@@ -119,9 +119,6 @@ kbd {
 }
 
 header {
-  width:270px;
-  float:left;
-  position:fixed;
   -webkit-font-smoothing:subpixel-antialiased;
 }
 
@@ -186,8 +183,6 @@ strong {
 }
 
 section {
-  width:500px;
-  float:right;
   padding-bottom:50px;
 }
 
@@ -203,29 +198,10 @@ hr {
 }
 
 footer {
-  width:270px;
-  float:left;
-  position:fixed;
-  bottom:50px;
   -webkit-font-smoothing:subpixel-antialiased;
 }
 
 @media print, screen and (max-width: 960px) {
-
-  div.wrapper {
-    width:auto;
-    margin:0;
-  }
-
-  header, section, footer {
-    float:none;
-    position:static;
-    width:auto;
-  }
-
-  header {
-    padding-right:320px;
-  }
 
   section {
     border:1px solid #e5e5e5;
@@ -236,12 +212,6 @@ footer {
 
   header a small {
     display:inline;
-  }
-
-  header ul {
-    position:absolute;
-    right:50px;
-    top:52px;
   }
 }
 

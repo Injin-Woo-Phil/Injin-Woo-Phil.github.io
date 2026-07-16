@@ -2,7 +2,10 @@
 layout: default
 ---
 
-한국어 | [English](/about)
+<div class="lang-switch" role="group" aria-label="언어 선택">
+  <a href="/ko/about" class="is-active" aria-current="page">한국어</a>
+  <a href="/about">English</a>
+</div>
 
 # 소개
 

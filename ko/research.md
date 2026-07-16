@@ -2,7 +2,12 @@
 layout: default
 ---
 
-한국어 | [English](/research)
+<div class="lang-switch" role="group" aria-label="언어 선택">
+  <a href="/ko/research" class="is-active" aria-current="page">한국어</a>
+  <a href="/research">English</a>
+</div>
+
+[슬라이드](https://drive.google.com/file/d/1olkadxfQNhUm3Mn8IGdoBxRHJ0A9mAdI/view?usp=sharing)
 
 # 논문
 - (2025.04) ["경험론과 합리론의 대립을 넘어서: 경험적 자세의 철학사적 의의"](http://journal.kstudy.com/service-journal/view.asp?PdfOK=True&clientName=서양근대철학회&sortType=0&langType=KOR&clientKey=2398&curPage=1&pageScale=10&searchType=1&totCate=&totText=&pubKey=31185&pubYear=2025&pubVN=25@0&detailKEYN=4168320) 근대철학, 25.
