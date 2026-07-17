@@ -32,7 +32,7 @@ SungKyunKwan University, South Korea, 2026.
 
 ## Teaching Assistant
 - Logical Thinking (논리적 사고)
-	- Fall 2024 – 
+	- Fall 2024 – present.
 - Linguistic Analysis (언어논리입문)
 	- Spring 2024 – Spring 2025.
 - Academic Writing (학술적 글쓰기)
