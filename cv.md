@@ -4,6 +4,8 @@ layout: default
 
 # Curriculum Vitae
 
+[Download PDF](/assets/cv.pdf)
+
 ## Education
 - B.A. in Philosophy, Sungkyunkwan University, South Korea, 2024.
 - B.A. in Korean Literature in Classical Chinese, Sungkyunkwan University, South Korea, 2024.

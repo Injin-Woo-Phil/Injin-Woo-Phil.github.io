@@ -1,116 +1,72 @@
-# The Minimal theme
+# injin-woo-phil.github.io
 
-[![.github/workflows/ci.yaml](https://github.com/pages-themes/minimal/actions/workflows/ci.yaml/badge.svg)](https://github.com/pages-themes/minimal/actions/workflows/ci.yaml) [![Gem Version](https://badge.fury.io/rb/jekyll-theme-minimal.svg)](https://badge.fury.io/rb/jekyll-theme-minimal)
+Injin Woo's personal academic site — a Jekyll site hosted on GitHub Pages.
+Bilingual (English at the root, Korean under `/ko/`) with a custom
+"ink on paper / rubbing" theme.
 
-*Minimal is a Jekyll theme for GitHub Pages. You can [preview the theme to see what it looks like](http://pages-themes.github.io/minimal), or even [use it today](#usage).*
+## How it's built & deployed
 
-![Thumbnail of Minimal](thumbnail.png)
+- Static site built by **GitHub Pages** (classic build) on every push to
+  `master`. There is no separate deploy workflow — just push and Pages
+  rebuilds.
+- Local preview needs a modern Ruby (the repo's default Ruby 2.6 is too old
+  for current Jekyll). Edits are normally verified on the live site after
+  pushing.
 
-## Usage
+## Layout of the repo
 
-To use the Minimal theme:
+| Path | What it is |
+|------|-----------|
+| `index.md`, `about.md`, `research.md`, `presentation.md`, `blog.md`, `cv.md` | English pages |
+| `ko/*.md` | Korean counterparts (same file names under `ko/`) |
+| `_layouts/default.html` | The only layout: masthead, nav, language toggle, footer |
+| `assets/css/style.scss` | All styling (palette tokens, light/dark, typography) |
+| `assets/img/thumbnail.png` | Portrait used on the home page |
+| `_config.yml` | Site title, description (front page quote), and the nav menu |
+| `.github/workflows/cv-pdf.yml` | Builds the downloadable CV PDFs (see below) |
 
-1. Add the following to your site's `_config.yml`:
+## Editing content
 
-    ```yml
-    remote_theme: pages-themes/minimal@v0.2.0
-    plugins:
-    - jekyll-remote-theme # add this line to the plugins list if you already have one
-    ```
+**Korean is the source of truth.** Edit the `ko/*.md` page, then bring the
+English page in line. (The Claude Code command `/sync-en` helps with this;
+otherwise mirror the change by hand.) Keep the two language versions
+structurally parallel — same sections in the same order.
 
-2. Optionally, if you'd like to preview your site on your computer, add the following to your site's `Gemfile`:
+Do not translate: the classical-Chinese quote on the home page, URLs,
+proper nouns, dates, or English titles the author already wrote in English.
 
-    ```ruby
-    gem "github-pages", group: :jekyll_plugins
-    ```
+## Navigation menu
 
-## Customizing
+Defined in `_config.yml` under `navigation`. Each item has an English
+`title` and a Korean `title_ko`; the layout shows the right one based on the
+page's language. To add a page to the menu, add an entry there **and** create
+both the English and Korean Markdown files.
 
-### Configuration variables
+## Language toggle
 
-Minimal will respect the following variables, if set in your site's `_config.yml`:
+The yin-yang (taegeuk) button in `_layouts/default.html` links each page to
+its counterpart (`/about` ⇄ `/ko/about`, etc.). The mapping is computed from
+the URL in Liquid — no per-page configuration needed. It is a plain `<a>`
+link first; the spin is a JS enhancement that respects
+`prefers-reduced-motion`.
 
-```yml
-title: [The title of your site]
-description: [A short description of your site's purpose]
-```
+## Theme / colours
 
-Additionally, you may choose to set the following optional variables:
+`assets/css/style.scss` defines CSS custom properties for the palette
+(`--paper`, `--ink`, `--rule`, `--seal`) with a `prefers-color-scheme: dark`
+override. Hierarchy comes from typography, not colour; the seal (인주) colour
+is reserved for the name-seal and the current menu item.
 
-```yml
-show_downloads: ["true" or "false" (unquoted) to indicate whether to provide a download URL]
-google_analytics: [Your Google Analytics tracking ID]
-```
+## CV PDF (auto-generated)
 
-### Stylesheet
+`cv.md` and `ko/cv.md` each link to a downloadable PDF at the top
+(`/assets/cv.pdf`, `/assets/cv-ko.pdf`). Those PDFs are **generated
+automatically**: whenever `cv.md` or `ko/cv.md` changes on `master`, the
+workflow `.github/workflows/cv-pdf.yml` runs pandoc + XeLaTeX to rebuild them
+(with an "Updated: YYYY-MM-DD" date) and commits them back to `assets/`.
 
-If you'd like to add your own custom styles:
+- The commit is path-filtered and tagged `[skip ci]`, so it does not loop.
+- To rebuild manually: GitHub → Actions → **Build CV PDF** → *Run workflow*.
+- The first run creates the PDFs; until then the download links 404.
 
-1. Create a file called `/assets/css/style.scss` in your site
-2. Add the following content to the top of the file, exactly as shown:
-    ```scss
-    ---
-    ---
-
-    @import "{{ site.theme }}";
-    ```
-3. Add any custom CSS (or Sass, including imports) you'd like immediately after the `@import` line
-
-*Note: If you'd like to change the theme's Sass variables, you must set new values before the `@import` line in your stylesheet.*
-
-### Layouts
-
-If you'd like to change the theme's HTML layout:
-
-1. For some changes such as a custom `favicon`, you can add custom files in your local `_includes` folder. The files [provided with the theme](https://github.com/pages-themes/minimal/tree/master/_includes) provide a starting point and are included by the [original layout template](https://github.com/pages-themes/minimal/blob/master/_layouts/default.html).
-2. For more extensive changes, [copy the original template](https://github.com/pages-themes/minimal/blob/master/_layouts/default.html) from the theme's repository<br />(*Pro-tip: click "raw" to make copying easier*)
-3. Create a file called `/_layouts/default.html` in your site
-4. Paste the default layout content copied in the first step
-5. Customize the layout as you'd like
-
-### Customizing Google Analytics code
-
-Google has released several iterations to their Google Analytics code over the years since this theme was first created. If you would like to take advantage of the latest code, paste it into `_includes/head-custom-google-analytics.html` in your Jekyll site.
-
-### Overriding GitHub-generated URLs
-
-Templates often rely on URLs supplied by GitHub such as links to your repository or links to download your project. If you'd like to override one or more default URLs:
-
-1. Look at [the template source](https://github.com/pages-themes/minimal/blob/master/_layouts/default.html) to determine the name of the variable. It will be in the form of `{{ site.github.zip_url }}`.
-2. Specify the URL that you'd like the template to use in your site's `_config.yml`. For example, if the variable was `site.github.url`, you'd add the following:
-    ```yml
-    github:
-      zip_url: http://example.com/download.zip
-      another_url: another value
-    ```
-3. When your site is built, Jekyll will use the URL you specified, rather than the default one provided by GitHub.
-
-*Note: You must remove the `site.` prefix, and each variable name (after the `github.`) should be indent with two space below `github:`.*
-
-For more information, see [the Jekyll variables documentation](https://jekyllrb.com/docs/variables/).
-
-## Roadmap
-
-See the [open issues](https://github.com/pages-themes/minimal/issues) for a list of proposed features (and known issues).
-
-## Project philosophy
-
-The Minimal theme is intended to make it quick and easy for GitHub Pages users to create their first (or 100th) website. The theme should meet the vast majority of users' needs out of the box, erring on the side of simplicity rather than flexibility, and provide users the opportunity to opt-in to additional complexity if they have specific needs or wish to further customize their experience (such as adding custom CSS or modifying the default layout). It should also look great, but that goes without saying.
-
-## Contributing
-
-Interested in contributing to Minimal? We'd love your help. Minimal is an open source project, built one contribution at a time by users like you. See [the CONTRIBUTING file](docs/CONTRIBUTING.md) for instructions on how to contribute.
-
-### Previewing the theme locally
-
-If you'd like to preview the theme locally (for example, in the process of proposing a change):
-
-1. Clone down the theme's repository (`git clone https://github.com/pages-themes/minimal`)
-2. `cd` into the theme's directory
-3. Run `script/bootstrap` to install the necessary dependencies
-4. Run `bundle exec jekyll serve` to start the preview server
-5. Visit [`localhost:4000`](http://localhost:4000) in your browser to preview the theme
-
-### Running tests
-
-The theme contains a minimal test suite, to ensure a site with the theme would build successfully. To run the tests, simply run `script/cibuild`. You'll need to run `script/bootstrap` once before the test script will work.
+Approach adapted from <https://github.com/junian/markdown-resume>.

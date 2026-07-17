@@ -51,7 +51,7 @@
               {% else %}
                 {% assign target = nav_prefix | append: item.url %}
               {% endif %}
-              <li><a href="{{ target | relative_url }}"{% if clean_url == target %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+              <li><a href="{{ target | relative_url }}"{% if clean_url == target %} aria-current="page"{% endif %}>{% if page_lang == "ko" %}{{ item.title_ko | default: item.title }}{% else %}{{ item.title }}{% endif %}</a></li>
             {% endfor %}
           </ul>
         </nav>

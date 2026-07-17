@@ -6,16 +6,22 @@ description: |
 
 navigation:
   - title: Home
+    title_ko: 홈
     url: /
   - title: About
+    title_ko: 소개
     url: /about
   - title: Research
+    title_ko: 연구
     url: /research
   - title: Presentation
+    title_ko: 발표
     url: /presentation
   - title: Blog
+    title_ko: 블로그
     url: /blog
   - title: CV
+    title_ko: 이력서
     url: /cv
 
 show_downloads: false
