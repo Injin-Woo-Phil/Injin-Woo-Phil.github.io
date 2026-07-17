@@ -2,6 +2,8 @@
 layout: default
 ---
 
+<!-- The downloadable PDF is regenerated from this file by .github/workflows/cv-pdf.yml on every change. Edit content here. -->
+
 # 이력서
 
 [PDF 다운로드](/assets/cv-ko.pdf)

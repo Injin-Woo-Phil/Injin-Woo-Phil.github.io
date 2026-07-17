@@ -2,6 +2,8 @@
 layout: default
 ---
 
+<!-- The downloadable PDF is regenerated from this file by .github/workflows/cv-pdf.yml on every change. Edit content here. -->
+
 # Curriculum Vitae
 
 [Download PDF](/assets/cv.pdf)
