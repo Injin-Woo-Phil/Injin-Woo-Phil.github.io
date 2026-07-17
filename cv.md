@@ -7,6 +7,7 @@ layout: default
 ## Education
 - B.A. in Philosophy, Sungkyunkwan University, South Korea, 2024.
 - B.A. in Korean Literature in Classical Chinese, Sungkyunkwan University, South Korea, 2024.
+- M.A. in Philosophy, Sungkyunkwan University, South Korea, 2026.
 
 ## Publications
 - (2025.04) "경험론과 합리론의 대립을 넘어서: 경험적 자세의 철학사적 의의" (Beyond the Opposition of Empiricism and Rationalism: The Historical Significance of the Empirical Stance), *근대철학 (Modern Philosophy)*, 25.

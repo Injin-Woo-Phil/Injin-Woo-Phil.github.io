@@ -4,9 +4,21 @@ layout: default
 
 # Presentation
 
-[Slides](https://drive.google.com/file/d/1olkadxfQNhUm3Mn8IGdoBxRHJ0A9mAdI/view?usp=sharing)
+## Upcoming
+
+#### On the Reference of Social Groups under Reductive Materialism
+- 25th Colloquium of the Institute for Philosophy and Liberal Arts Education, Aug 2026, (Sungkyunkwan University)
+
+#### Infrastructural Violence in State-Run Dating Apps
+- [Global Mobility Humanities Conference](https://www.mobilityhumanities.net), Oct 2026, (Konkuk University)
+
 
 ## Talks
+
+#### All you zombies
+- **Suseon Philosophy Society Reboot** July 2026, (Sungkyunkwan University)
+- **[2026 KSPS Annual Conference](https://philsci.or.kr/2026conference/)**, July 2026, (Gwacheon National Science Museum)
+- **AI, EPISTEMIC METHODS, LANGUAGE & LOGIC**, July 2026, (Yonsei University) ***flash talk***
 
 #### *On the Reference of Social Groups under Reductive Materialism*
 - **[Philosophical Interchange between Sungkyunkwan and Nagoya University](https://sites.google.com/site/masashikasaki2/イベント/philosophical-interchange-between-sungkyunkwan-and-nagoya-university?authuser=0)**, Nov 2025, (Nagoya University, Japan)

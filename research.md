@@ -9,6 +9,12 @@ layout: default
 	- Beyond the Opposition of Empiricism and Rationalism: The Historical Significance of the Empirical Stance
 
 ## Work in Progress
-- Thesis on **Materialism in Social Ontology**.
+- A paper on **Materialism in Social Ontology**.
+- A paper on **AI and Inferentialism**.
 - A paper on **Scientific Understanding**.
 - A paper on **Stance Voluntarism applied to the History of Philosophy**.
+
+## Thesis
+- M.A. thesis (2026.06): Coincidence and the Reference of Social Group Terms
+	- Advisor: [Seongsoo Park](https://sites.google.com/site/seongsooparkphilosophy/)
+	- Committee: [Byeongdeok Lee](https://professor.skku.edu/researcher/professorList.do?mode=view&perId=LZStrOwEwbAQg7gCgggBhAJQBoFcBMAbARgRgEsAzAZzgBU4BeaoA%20&jojikCode1=3162&categoryId=U), [Jeonggyu Lee](https://jeonggyulee.weebly.com)
