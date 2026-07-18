@@ -1,18 +1,26 @@
 ---
 layout: default
 ---
-<p class="entry-venue">{{ page.venue }}{% if page.issue %} · {{ page.issue }}{% endif %} · {{ page.date | date: "%Y.%m" }}</p>
-
-<h1>{{ page.title_en | default: page.title }}</h1>
-{% if page.title_en and page.title %}<p class="entry-title-alt" lang="ko">{{ page.title }}</p>{% endif %}
-
-{% if page.role %}<p class="entry-role">{{ page.role }}</p>{% endif %}
-
-{% if page.note_en or page.note_ko -%}
-  {% if page.note_en %}<div class="entry-note" lang="en">{{ page.note_en | markdownify }}</div>{% endif %}
-  {% if page.note_ko %}<div class="entry-note" lang="ko">{{ page.note_ko | markdownify }}</div>{% endif %}
+{% assign clean_url = page.url | replace: ".html", "" -%}
+{% if clean_url contains "/ko/" -%}
+  {%- assign d = site.blog | where: "blogref", page.ref | first -%}
+  {%- assign heading = d.title -%}
+  {%- assign role = d.role -%}
+  {%- assign note = d.note_ko -%}
+  {%- assign more = "원문 읽기 →" -%}
 {%- else -%}
-  {{ content }}
+  {%- assign d = page -%}
+  {%- assign heading = page.title_en | default: page.title -%}
+  {%- assign role = page.role_en | default: page.role -%}
+  {%- assign note = page.note_en | default: page.content -%}
+  {%- assign more = "Read the original →" -%}
 {%- endif %}
+<p class="entry-venue">{{ d.venue }}{% if d.issue %} · {{ d.issue }}{% endif %} · {{ d.date | date: "%Y.%m" }}</p>
 
-<p class="entry-link"><a href="{{ page.source_url }}" rel="external">원문 읽기 →</a></p>
+<h1>{{ heading }}</h1>
+
+{% if role %}<p class="entry-role">{{ role }}</p>{% endif %}
+
+<div class="entry-note">{{ note | markdownify }}</div>
+
+<p class="entry-link"><a href="{{ d.source_url }}" rel="external">{{ more }}</a></p>

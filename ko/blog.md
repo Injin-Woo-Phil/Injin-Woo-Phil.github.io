@@ -10,7 +10,7 @@ layout: default
 {% assign entries = site.blog | sort: "date" | reverse -%}
 {% for e in entries %}
   <li class="entry">
-    <a class="entry-title" href="{{ e.url | relative_url }}">{{ e.title }}</a>
+    <a class="entry-title" href="{{ '/ko' | append: e.url | relative_url }}">{{ e.title }}</a>
     <span class="entry-meta">{{ e.venue }}{% if e.issue %} · {{ e.issue }}{% endif %} · {{ e.date | date: "%Y.%m" }}</span>
   </li>
 {% endfor -%}

@@ -369,24 +369,10 @@ hr {
   opacity: .62;
 }
 
-.entry-title-alt {
-  font-size: 18px;
-  font-weight: 600;
-  margin: -16px 0 0;
-  opacity: .62;
-}
-
 .entry-role {
   font-size: 14px;
-  margin: 8px 0 26px;
+  margin: -16px 0 24px;
   opacity: .66;
-}
-
-/* two-language notes stacked, separated by a hairline */
-.entry-note + .entry-note {
-  margin-top: 28px;
-  padding-top: 24px;
-  border-top: 1px solid var(--rule);
 }
 
 .entry-link {
