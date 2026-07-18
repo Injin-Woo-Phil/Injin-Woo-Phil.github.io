@@ -341,14 +341,16 @@ hr {
   padding-top: 6px;
 }
 
-.entry-title {
+/* scoped under .entry-list so it beats the generic `.content a` underline */
+.entry-list .entry-title {
   font-size: 18px;
   font-weight: 600;
   color: var(--ink);
   text-decoration: none;
 }
-.entry-title:hover {
+.entry-list .entry-title:hover {
   text-decoration: underline;
+  text-decoration-color: var(--ink);
   text-underline-offset: 3px;
 }
 
