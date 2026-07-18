@@ -321,6 +321,65 @@ hr {
 }
 .site-footer p { margin: 0; font-size: 13px; opacity: .56; }
 
+/* ---- blog: index of external writing ---- */
+
+.entry-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 17px 0;
+  border-top: 1px solid var(--rule);
+}
+.entry:first-child {
+  border-top: none;
+  padding-top: 6px;
+}
+
+.entry-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+}
+.entry-title:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.entry-meta {
+  font-size: 12.5px;
+  letter-spacing: .03em;
+  opacity: .62;
+}
+
+/* individual entry page */
+
+.entry-venue {
+  font-size: 12.5px;
+  letter-spacing: .06em;
+  margin: 0 0 10px;
+  opacity: .62;
+}
+
+.entry-role {
+  font-size: 14px;
+  margin: -16px 0 24px;
+  opacity: .66;
+}
+
+.entry-link {
+  margin-top: 30px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+  font-weight: 600;
+}
+
 /* ---- responsive: single column below 900px ---- */
 
 @media (max-width: 900px) {

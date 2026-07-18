@@ -27,3 +27,15 @@ navigation:
 show_downloads: false
 google_analytics:
 theme: jekyll-theme-minimal
+
+collections:
+  blog:
+    output: true
+    permalink: /blog/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: "blog"
+    values:
+      layout: "entry"
