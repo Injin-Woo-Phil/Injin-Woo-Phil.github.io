@@ -3,10 +3,16 @@ layout: default
 ---
 <p class="entry-venue">{{ page.venue }}{% if page.issue %} · {{ page.issue }}{% endif %} · {{ page.date | date: "%Y.%m" }}</p>
 
-<h1>{{ page.title }}</h1>
+<h1>{{ page.title_en | default: page.title }}</h1>
+{% if page.title_en and page.title %}<p class="entry-title-alt" lang="ko">{{ page.title }}</p>{% endif %}
 
 {% if page.role %}<p class="entry-role">{{ page.role }}</p>{% endif %}
 
-{{ content }}
+{% if page.note_en or page.note_ko -%}
+  {% if page.note_en %}<div class="entry-note" lang="en">{{ page.note_en | markdownify }}</div>{% endif %}
+  {% if page.note_ko %}<div class="entry-note" lang="ko">{{ page.note_ko | markdownify }}</div>{% endif %}
+{%- else -%}
+  {{ content }}
+{%- endif %}
 
 <p class="entry-link"><a href="{{ page.source_url }}" rel="external">원문 읽기 →</a></p>

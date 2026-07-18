@@ -4,7 +4,7 @@ layout: default
 
 # Blog
 
-An index of my writing and interviews published in other outlets — a short note from me and a link to each original.
+External contributions and non-academic pieces. Please follow the links.
 
 <ul class="entry-list">
 {% assign entries = site.blog | sort: "date" | reverse -%}

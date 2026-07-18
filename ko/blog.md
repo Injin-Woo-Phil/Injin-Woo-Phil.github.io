@@ -4,7 +4,7 @@ layout: default
 
 # 블로그
 
-다른 매체에 실린 글과 인터뷰의 색인 — 짧은 노트와 원문 링크.
+외부 기고문과 전문적이지 않은 글입니다. 링크를 참고하세요.
 
 <ul class="entry-list">
 {% assign entries = site.blog | sort: "date" | reverse -%}
