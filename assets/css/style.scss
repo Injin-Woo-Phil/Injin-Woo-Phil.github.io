@@ -382,6 +382,32 @@ hr {
   font-weight: 600;
 }
 
+/* ---- desktop: settle the type down ----
+   The 18px base is sized for a phone. On a wide screen the same size
+   in a 616px column gives barely 55 characters a line, so sentences
+   break in the wrong places and the page reads as a poster rather
+   than as a printed page. Below: a slightly smaller size against a
+   slightly wider measure — ~70 characters, the book setting — with
+   the display sizes brought down in step so the hierarchy holds. */
+
+@media (min-width: 901px) {
+  body { font-size: 16.5px; line-height: 1.72; }
+
+  .page { max-width: 736px; }
+
+  .site-title { font-size: 22px; }
+  .masthead nav a { font-size: 14.5px; }
+
+  .content h1 { font-size: 26px; margin-bottom: 22px; }
+  .content h2 { font-size: 16.5px; margin: 46px 0 12px; padding-top: 22px; }
+  .content h3 { font-size: 16.5px; }
+  .content h4 { font-size: 15.5px; }
+
+  /* the wider column opens a gap between the portrait and the hanging
+     quote; give the drawing the extra width so the two sides balance */
+  .portrait { flex: 0 0 300px; }
+}
+
 /* ---- responsive: single column below 900px ---- */
 
 @media (max-width: 900px) {
