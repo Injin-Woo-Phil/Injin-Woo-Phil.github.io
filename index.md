@@ -21,8 +21,5 @@ layout: default
 </div>
 
 <div class="intro">
-  <p>I'm a philosophy student most interested in ontology and meta-ontology,
-  especially ontological nominalism and ontological deflationism, as well as
-  inferentialism on meaning. I'm also interested in Skepticism and Buddhism.</p>
   <p class="contact">Contact — jaegoi53@gmail.com</p>
 </div>
