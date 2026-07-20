@@ -12,10 +12,12 @@
   ItalicFont = *-italic, BoldItalicFont = *-bolditalic,
 ]
 %%CJK%%
+\xeCJKsetup{CJKspace=true}   % keep the spaces Korean uses between words
 
 \setlength{\parindent}{0pt}
 \linespread{1.05}
 \definecolor{rule}{gray}{0.2}
+\definecolor{link}{HTML}{1A5276}
 \newcolumntype{R}{@{}>{\RaggedRight}X@{\hspace{1.2em}}r@{}}
 
 \newcommand{\cvsection}[1]{\par\vspace{3mm}%

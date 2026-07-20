@@ -10,22 +10,26 @@ layout: default
 
 [PDF 다운로드](/assets/cv-ko.pdf)
 
+## 연구 분야
+- **전문 분야** — {{ cv.areas.aos[lang] }}
+- **관심 분야** — {{ cv.areas.aoc[lang] }}
+
 ## 학력
 {% for e in cv.education -%}
 - {{ e.degree[lang] }}, {{ e.school[lang] }}, {{ e.year }}.
 {% endfor %}
 ## 학위논문
-- 석사학위논문 ({{ cv.thesis.date }}): {{ cv.thesis.title[lang] }}. 지도교수: {{ cv.thesis.advisor[lang] }}. 심사위원: {{ cv.thesis.committee[lang] }}.
+- 석사학위논문 ({{ cv.thesis.date }}): {{ cv.thesis.title[lang] }}. 지도교수: [{{ cv.thesis.advisor.name[lang] }}]({{ cv.thesis.advisor.url }}). 심사위원: {% for c in cv.thesis.committee %}[{{ c.name[lang] }}]({{ c.url }}){% unless forloop.last %}, {% endunless %}{% endfor %}.
 
 ## 논문
 {% for p in cv.publications -%}
-- ({{ p.date }}) {{ p.title }}, *{{ p.journal.ko }}*, {{ p.issue }}.
+- ({{ p.date }}) [{{ p.title }}]({{ p.url }}), *{{ p.journal.ko }}*, {{ p.issue }}.
 {% endfor %}
 ## 발표
 {% for t in cv.presentations -%}
-- *{{ t.title[lang] }}* — {% for v in t.venues %}{{ v.place[lang] }}, {{ v.date[lang] }}{% unless forloop.last %}; {% endunless %}{% endfor %}.
+- *{{ t.title[lang] }}* — {% for v in t.venues %}{% if v.url %}[{{ v.place[lang] }}]({{ v.url }}){% else %}{{ v.place[lang] }}{% endif %}, {{ v.country[lang] }}, {{ v.date[lang] }}{% unless forloop.last %}; {% endunless %}{% endfor %}.
 {% endfor %}
-## 강의
+## 교육 경험
 - {{ cv.teaching.ta_header[lang] }}:
 {% for c in cv.teaching.courses %}	- {{ c.name[lang] }}, {{ c.term[lang] }}.
 {% endfor %}- {{ cv.teaching.short_course.header[lang] }} — {{ cv.teaching.short_course.detail[lang] }} ({{ cv.teaching.short_course.duration[lang] }}).
@@ -36,5 +40,7 @@ layout: default
 {% endfor %}
 ## 수상 및 장학
 {% for a in cv.awards -%}
-- {{ a.year }}: {{ a.title[lang] }}{% if a.org %}, {{ a.org[lang] }}{% endif %}.
-{% endfor %}
+{% if a.by %}- {{ a.title[lang] }}, {{ a.by[lang] }}.
+	- *{{ a.note.talk[lang] }}*, {{ a.note.venue[lang] }}
+{% else %}- {{ a.year }}: {{ a.title[lang] }}{% if a.org %}, {{ a.org[lang] }}{% endif %}.
+{% endif %}{% endfor %}

@@ -2,15 +2,20 @@
 # Liquid) and the downloadable PDF (bin/build_cv.rb -> XeLaTeX). Edit here only.
 
 name: { en: "Injin Woo", ko: "우인진" }
-email: "jaegoi53@gmail.com"
+email: "jaegoi@skku.edu"
 website: "injin-woo-phil.github.io"
+orcid: "https://orcid.org/0009-0009-2118-0016"
 affiliation:
   en: "Department of Philosophy, Sungkyunkwan University, Seoul, South Korea"
   ko: "성균관대학교 철학과, 서울, 대한민국"
 
-interests:
-  en: "Social Ontology, Social Philosophy of Language, Scientific Understanding, Pyrrhonism, Silhak (Practical Learning)."
-  ko: "사회존재론, 사회언어철학, 과학적 이해, 피론주의, 실학."
+areas:
+  aos:
+    en: "Philosophy of Language, Philosophy of AI"
+    ko: "언어철학, 인공지능철학"
+  aoc:
+    en: "Social Ontology, Scientific Understanding, History of Philosophy in Korea"
+    ko: "사회존재론, 과학적 이해, 한국철학사"
 
 education:
   - degree: { en: "M.A. in Philosophy", ko: "철학 석사" }
@@ -29,12 +34,19 @@ education:
 thesis:
   date: "2026.06"
   title: { en: "Coincidence and the Reference of Social Group Terms", ko: "사회적 집단의 이름과 공점의 문제" }
-  advisor: { en: "Seongsoo Park", ko: "박성수" }
-  committee: { en: "Byeongdeok Lee, Jeonggyu Lee", ko: "이병덕, 이정규" }
+  advisor:
+    name: { en: "Seongsoo Park", ko: "박성수" }
+    url: "https://sites.google.com/site/seongsooparkphilosophy/"
+  committee:
+    - name: { en: "Byeongdeok Lee", ko: "이병덕" }
+      url: "https://professor.skku.edu/researcher/professorList.do?mode=view&perId=LZStrOwEwbAQg7gCgggBhAJQBoFcBMAbARgRgEsAzAZzgBU4BeaoA&jojikCode1=3162&categoryId=U"
+    - name: { en: "Jeonggyu Lee", ko: "이정규" }
+      url: "https://jeonggyulee.weebly.com"
 
 publications:
   - date: "2025.04"
-    title: '"경험론과 합리론의 대립을 넘어서: 경험적 자세의 철학사적 의의"'
+    title: "“경험론과 합리론의 대립을 넘어서: 경험적 자세의 철학사적 의의”"
+    url: "http://journal.kstudy.com/service-journal/view.asp?PdfOK=True&clientName=서양근대철학회&sortType=0&langType=KOR&clientKey=2398&curPage=1&pageScale=10&searchType=1&totCate=&totText=&pubKey=31185&pubYear=2025&pubVN=25@0&detailKEYN=4168320"
     gloss_en: "Beyond the Opposition of Empiricism and Rationalism: The Historical Significance of the Empirical Stance"
     journal: { en: "Modern Philosophy", ko: "근대철학" }
     issue: "25"
@@ -43,38 +55,59 @@ presentations:
   - title: { en: "All you zombies", ko: "All you zombies" }
     venues:
       - place: { en: "Suseon Philosophy Society Reboot, Sungkyunkwan University", ko: "수선철학회 Reboot, 성균관대학교" }
+        country: { en: "South Korea", ko: "대한민국" }
         date: { en: "July 2026", ko: "2026년 7월" }
       - place: { en: "2026 KSPS Annual Conference, Gwacheon National Science Museum", ko: "2026년 과학철학회 정기 학술대회, 국립과천과학관" }
+        country: { en: "South Korea", ko: "대한민국" }
+        url: "https://philsci.or.kr/2026conference/"
         date: { en: "July 2026", ko: "2026년 7월" }
       - place: { en: "AI, Epistemic Methods, Language & Logic, Yonsei University (flash talk)", ko: "AI, EPISTEMIC METHODS, LANGUAGE & LOGIC, 연세대학교 (flash talk)" }
+        country: { en: "South Korea", ko: "대한민국" }
         date: { en: "July 2026", ko: "2026년 7월" }
   - title: { en: "Infrastructural Violence in State-Run Dating Apps", ko: "Infrastructural Violence in State-Run Dating Apps" }
     venues:
       - place: { en: "Global Mobility Humanities Conference, Konkuk University", ko: "글로벌 모빌리티인문학 컨퍼런스, 건국대학교" }
+        country: { en: "South Korea", ko: "대한민국" }
+        url: "https://www.mobilityhumanities.net"
         date: { en: "Oct 2026", ko: "2026년 10월" }
   - title: { en: "On the Reference of Social Groups under Reductive Materialism", ko: "환원적 물질주의 하에서 사회적 집단의 지시체에 관하여" }
     venues:
       - place: { en: "25th Colloquium of the Institute for Philosophy and Liberal Arts Education, Sungkyunkwan University", ko: "“철학과인문교육” 연구소 제25회 논문발표회, 성균관대학교" }
+        country: { en: "South Korea", ko: "대한민국" }
         date: { en: "Aug 2026", ko: "2026년 8월" }
       - place: { en: "Philosophical Interchange between Sungkyunkwan and Nagoya University, Nagoya University", ko: "성균관대-나고야대 철학교류회, 나고야대학교" }
+        country: { en: "Japan", ko: "일본" }
+        url: "https://sites.google.com/site/masashikasaki2/イベント/philosophical-interchange-between-sungkyunkwan-and-nagoya-university?authuser=0"
         date: { en: "Nov 2025", ko: "2025년 11월" }
   - title: { en: "Augemented Intellect: AI as Extended Cognition in Scientific Understanding", ko: "Augemented Intellect: AI as Extended Cognition in Scientific Understanding" }
     venues:
       - place: { en: "2025 Global Mobility Humanities Conference, Konkuk University", ko: "2025 글로벌 모빌리티인문학 컨퍼런스, 건국대학교" }
+        country: { en: "South Korea", ko: "대한민국" }
+        url: "https://www.mobilityhumanities.net/conference-programme"
         date: { en: "Dec 2025", ko: "2025년 12월" }
       - place: { en: "2025 Seoul Workshop in Philosophy of Machine Learning, Seoul National University", ko: "2025 서울 머신러닝철학 워크숍, 서울대학교" }
+        country: { en: "South Korea", ko: "대한민국" }
+        url: "https://25swpml.wordpress.com"
         date: { en: "Feb 2025", ko: "2025년 2월" }
   - title: { en: "Frenemies in the Same Boat: A Critical Assessment of Explanatory Voluntarism and Its Implications for the DRK View of Scientific Understanding", ko: "Frenemies in the Same Boat: A Critical Assessment of Explanatory Voluntarism and Its Implications for the DRK view of Scientific Understanding" }
     venues:
       - place: { en: "KSPS 2025 Annual Conference, Seoul National University", ko: "2025 한국과학철학회 정기학술대회, 서울대학교" }
+        country: { en: "South Korea", ko: "대한민국" }
+        url: "https://philsci.or.kr/2025년-정기학술대회-발표자-모집/"
         date: { en: "July 2025", ko: "2025년 7월" }
       - place: { en: "APPSA-LMPST Taiwan 2025, National Yang Ming Chiao Tung University", ko: "APPSA-LMPST 대만 2025, 국립양명교통대학교" }
+        country: { en: "Taiwan", ko: "대만" }
+        url: "https://appsa2025taiwan.mystrikingly.com"
         date: { en: "June 2025", ko: "2025년 6월" }
   - title: { en: "‘절름발이’는 왜 부도덕한 표현인가? (Why is the term ‘lame’ considered morally wrong?)", ko: "‘절름발이’는 왜 부도덕한 표현인가?" }
     venues:
       - place: { en: "The 21st KSAP Grad Division Workshop, Seoul National University", ko: "제21회 한국분석철학회 대학원생분과 워크숍, 서울대학교" }
+        country: { en: "South Korea", ko: "대한민국" }
+        url: "https://sites.google.com/view/ksap-grad-division/biannual-workshop/past-workshops?authuser=0"
         date: { en: "Aug 2025", ko: "2025년 8월" }
       - place: { en: "Sookmyung Research Institute of Humanities 12th Conference, Sookmyung Women’s University", ko: "숙명인문학연구소 제12회 정기학술대회, 숙명여자대학교" }
+        country: { en: "South Korea", ko: "대한민국" }
+        url: "http://www.srih.kr/bbs/board.php?tbl=bbs41"
         date: { en: "June 2025", ko: "2025년 6월" }
 
 teaching:
@@ -98,7 +131,7 @@ service:
     role: { en: "Administrative Assistant", ko: "간사" }
     since: "2025 –"
   - org: { en: "The Academy of Mobility Humanities, Konkuk University", ko: "건국대학교 모빌리티인문학 연구원" }
-    role: { en: "Research Assistant", ko: "연구보조원" }
+    role: { en: "HK researcher", ko: "HK 연구원" }
     since: "2025 –"
   - org: { en: "Korean Association for Logic", ko: "한국논리학회" }
     role: { en: "Administrative Assistant", ko: "총무간사" }
@@ -108,6 +141,11 @@ awards:
   - title: { en: "Winner’s Scholarship, 2025 Academic Paper Competition for Emerging Scholars", ko: "2025 신진연구자 학술논문 공모전 수상 장학금" }
     org: { en: "Sookmyung Institute of Humanities", ko: "숙명인문학연구소" }
     year: "2025"
+  - title: { en: "International Conference Travel Grant", ko: "국제 학술대회 출장 지원금" }
+    by: { en: "Sungkyunkwan University", ko: "성균관대학교" }
+    note:
+      talk: { en: "Frenemies in the Same Boat: A Critical Assessment of Explanatory Voluntarism and Its Implications for the DRK view of Scientific Understanding", ko: "Frenemies in the Same Boat: A Critical Assessment of Explanatory Voluntarism and Its Implications for the DRK view of Scientific Understanding" }
+      venue: { en: "APPSA-LMPST 2025. Taipei, Taiwan.", ko: "APPSA-LMPST 2025. 타이베이, 대만." }
   - title: { en: "TA Scholarship", ko: "TA 장학금" }
     year: "2024–2025"
   - title: { en: "Simsan Scholarship", ko: "심산 장학금" }

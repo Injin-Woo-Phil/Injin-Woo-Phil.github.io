@@ -12,15 +12,18 @@ CJK    = ENV['CV_CJK_LINE'] || '\setCJKmainfont{Noto Serif CJK KR}'
 OUTDIR = ARGV[0] || '.'
 
 SECTIONS = {
-  'en' => { interests: 'Research Interests', education: 'Education', thesis: 'Thesis',
-            publications: 'Publications', presentations: 'Presentations', teaching: 'Teaching',
-            service: 'Professional Service', awards: 'Grants \\& Awards' },
-  'ko' => { interests: '연구 관심', education: '학력', thesis: '학위논문',
-            publications: '논문', presentations: '발표', teaching: '강의',
+  'en' => { areas: 'Areas', education: 'Education', thesis: 'Thesis',
+            publications: 'Publications', presentations: 'Presentations',
+            teaching: 'Teaching Experience', service: 'Professional Service',
+            awards: 'Grants \\& Awards' },
+  'ko' => { areas: '연구 분야', education: '학력', thesis: '학위논문',
+            publications: '논문', presentations: '발표', teaching: '교육 경험',
             service: '학술 봉사', awards: '수상 및 장학' },
 }
 
 def esc(s); s.to_s.gsub(/([&%$#_])/) { '\\' + $1 }; end
+def url_esc(u); u.to_s.gsub(/[&%#]/) { |m| '\\' + m }; end
+def wl(u); u ? ' \,\href{' + url_esc(u) + '}{\footnotesize\textcolor{link}{$\nearrow$}}' : ''; end
 def L(h, lang); h.is_a?(Hash) ? h[lang] : h; end
 def e(h, lang); esc(L(h, lang)); end
 def it(s); '\textit{' + s + '}'; end
@@ -40,12 +43,17 @@ def build(lang)
   out << '\begin{center}' << "\n"
   out << '  {\Huge\bfseries ' << e(d['name'], lang) << '}\\\\[1.5mm]' << "\n"
   out << '  {\normalsize \href{mailto:' << d['email'] << '}{' << d['email'] << '} \;\textbar\; '
-  out << '\href{https://' << d['website'] << '}{' << d['website'] << '}}\\\\[1mm]' << "\n"
+  out << '\href{https://' << d['website'] << '}{' << d['website'] << '} \;\textbar\; '
+  out << '\href{' << d['orcid'] << '}{ORCID}}\\\\[1mm]' << "\n"
   out << '  {\small ' << e(d['affiliation'], lang) << '}' << "\n"
   out << '\end{center}' << "\n\\vspace{1mm}\n"
 
-  # interests
-  out << sec(s[:interests]) << e(d['interests'], lang) << "\n"
+  # areas (AoS / AoC)
+  out << sec(s[:areas])
+  aos = lang == 'ko' ? '전문 분야' : 'Areas of Specialisation'
+  aoc = lang == 'ko' ? '관심 분야' : 'Areas of Competence'
+  out << head(aos, '') << line(e(d['areas']['aos'], lang), '')
+  out << head(aoc, '') << line(e(d['areas']['aoc'], lang), '')
 
   # education
   out << sec(s[:education])
@@ -58,17 +66,19 @@ def build(lang)
   # thesis
   th = d['thesis']
   out << sec(s[:thesis])
-  th_head = lang == 'ko' ? '석사학위논문' : 'M.A. Thesis'
-  advisor = lang == 'ko' ? '지도교수' : 'Advisor'
+  th_head   = lang == 'ko' ? '석사학위논문' : 'M.A. Thesis'
+  advisor   = lang == 'ko' ? '지도교수' : 'Advisor'
   committee = lang == 'ko' ? '심사위원' : 'Committee'
+  adv = e(th['advisor']['name'], lang) + wl(th['advisor']['url'])
+  comm = th['committee'].map { |c| e(c['name'], lang) + wl(c['url']) }.join(', ')
   out << head(th_head, esc(th['date']))
   out << line(e(th['title'], lang), '')
-  out << sub("#{advisor}: #{e(th['advisor'], lang)} \\quad #{committee}: #{e(th['committee'], lang)}", '')
+  out << sub("#{advisor}: #{adv} \\quad #{committee}: #{comm}", '')
 
   # publications
   out << sec(s[:publications])
   d['publications'].each do |p|
-    out << head(esc(p['title']), esc(p['date']))
+    out << head(esc(p['title']) + wl(p['url']), esc(p['date']))
     out << line(esc(p['gloss_en']), '') if lang == 'en' && p['gloss_en']
     jr = esc(p['journal']['ko'])
     jr = "#{jr} (#{esc(p['journal']['en'])})" if lang == 'en'
@@ -80,7 +90,12 @@ def build(lang)
   d['presentations'].each_with_index do |t, i|
     out << GAP if i > 0
     out << head(e(t['title'], lang), '')
-    t['venues'].each { |v| out << sub(e(v['place'], lang), e(v['date'], lang)) }
+    t['venues'].each do |v|
+      place = e(v['place'], lang)
+      place += ", #{e(v['country'], lang)}" if v['country']
+      place += wl(v['url']) if v['url']
+      out << sub(place, e(v['date'], lang))
+    end
   end
 
   # teaching
@@ -89,9 +104,9 @@ def build(lang)
   out << head(e(tc['ta_header'], lang), '')
   tc['courses'].each { |c| out << sub(e(c['name'], lang), e(c['term'], lang)) }
   out << GAP
-  sc = tc['short_course']
-  out << head(e(sc['header'], lang), e(sc['duration'], lang))
-  out << line(e(sc['detail'], lang), '')
+  scv = tc['short_course']
+  out << head(e(scv['header'], lang), e(scv['duration'], lang))
+  out << line(e(scv['detail'], lang), '')
 
   # service
   out << sec(s[:service])
@@ -105,8 +120,12 @@ def build(lang)
   out << sec(s[:awards])
   d['awards'].each_with_index do |aw, i|
     out << GAP if i > 0
-    out << head(e(aw['title'], lang), esc(aw['year']))
+    right = aw['by'] ? e(aw['by'], lang) : esc(aw['year'])
+    out << head(e(aw['title'], lang), right)
     out << line(e(aw['org'], lang), '') if aw['org']
+    if aw['note']
+      out << sub("#{it(e(aw['note']['talk'], lang))}, #{e(aw['note']['venue'], lang)}", '')
+    end
   end
 
   (PRE.sub('%%CJK%%', CJK)) + "\n\\begin{document}\n" + out + "\n\\end{document}\n"
