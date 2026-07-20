@@ -1,0 +1,32 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1.7cm]{geometry}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{ragged2e}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\setmainfont{texgyretermes}[
+  Extension = .otf, UprightFont = *-regular, BoldFont = *-bold,
+  ItalicFont = *-italic, BoldItalicFont = *-bolditalic,
+]
+%%CJK%%
+
+\setlength{\parindent}{0pt}
+\linespread{1.05}
+\definecolor{rule}{gray}{0.2}
+\newcolumntype{R}{@{}>{\RaggedRight}X@{\hspace{1.2em}}r@{}}
+
+\newcommand{\cvsection}[1]{\par\vspace{3mm}%
+  {\large\scshape\bfseries #1}\par\vspace{0.6mm}%
+  {\color{rule}\hrule height 0.7pt}\par\vspace{2mm}}
+\newcommand{\cvhead}[2]{\par\noindent
+  \begin{tabularx}{\textwidth}{R}\textbullet~\textbf{#1} & #2\end{tabularx}\par\vspace{0.5mm}}
+\newcommand{\cvline}[2]{\par\noindent
+  \begin{tabularx}{\textwidth}{R}\hspace*{1.4em}\textit{#1} & #2\end{tabularx}\par\vspace{0.5mm}}
+\newcommand{\cvplain}[2]{\par\noindent
+  \begin{tabularx}{\textwidth}{R}\hspace*{1.4em}#1 & #2\end{tabularx}\par\vspace{0.5mm}}
+\newcommand{\cvsub}[2]{\par\noindent
+  \begin{tabularx}{\textwidth}{R}\hspace*{1.4em}$\circ$~#1 & #2\end{tabularx}\par\vspace{0.2mm}}
+\newcommand{\cvgap}{\vspace{1.4mm}}

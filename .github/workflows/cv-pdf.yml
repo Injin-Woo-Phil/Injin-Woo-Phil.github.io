@@ -1,13 +1,14 @@
 name: Build CV PDF
 
-# Rebuild the downloadable CV PDFs whenever the CV markdown changes.
-# Inspired by https://github.com/junian/markdown-resume (pandoc -> PDF).
+# Rebuild the downloadable CV PDFs from the single data source (_data/cv.yml).
+# bin/build_cv.rb renders cv.tex / cv-ko.tex, XeLaTeX compiles them.
 on:
   push:
     branches: [master]
     paths:
-      - cv.md
-      - ko/cv.md
+      - _data/cv.yml
+      - bin/build_cv.rb
+      - bin/cv_preamble.tex
       - .github/workflows/cv-pdf.yml
   workflow_dispatch:
 
@@ -20,40 +21,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install pandoc + XeLaTeX + Noto CJK fonts
+      - name: Install XeLaTeX + fonts
         run: |
           sudo apt-get update
-          # Noto Serif CJK lives in fonts-noto-cjk-extra (the base package is Sans only).
+          # texlive-fonts-recommended provides TeX Gyre Termes;
+          # Noto Serif CJK is in fonts-noto-cjk-extra (base package is Sans only).
           sudo apt-get install -y \
-            pandoc texlive-xetex texlive-lang-cjk texlive-fonts-recommended \
+            texlive-xetex texlive-lang-cjk texlive-fonts-recommended \
             fonts-noto-cjk fonts-noto-cjk-extra
           sudo fc-cache -f
-          echo "Installed CJK serif faces:"; fc-list | grep -i "Noto Serif CJK KR" | head -3
 
-      - name: Build PDFs
+      - name: Generate .tex from _data/cv.yml
+        run: ruby bin/build_cv.rb .
+
+      - name: Compile PDFs
         run: |
           set -e
-          DATE="$(date -u +%Y-%m-%d)"
           mkdir -p assets
-
-          build() {
-            src="$1"; out="$2"; title="$3"
-            # Drop the Jekyll front matter (first --- ... --- block) and the
-            # on-page download link, then render with XeLaTeX for Korean glyphs.
-            awk 'c==2; /^---$/ {c++}' "$src" | grep -v '/assets/cv' > /tmp/body.md
-            pandoc /tmp/body.md -o "$out" \
-              --pdf-engine=xelatex \
-              -V mainfont="Noto Serif CJK KR" \
-              -V CJKmainfont="Noto Serif CJK KR" \
-              -V geometry:margin=2.2cm \
-              -V colorlinks=true \
-              -V title="$title" \
-              -V author="Injin Woo" \
-              -V date="Updated: ${DATE}"
-          }
-
-          build cv.md    assets/cv.pdf    "Curriculum Vitae"
-          build ko/cv.md assets/cv-ko.pdf "이력서"
+          xelatex -interaction=nonstopmode -halt-on-error cv.tex
+          xelatex -interaction=nonstopmode -halt-on-error cv-ko.tex
+          mv cv.pdf assets/cv.pdf
+          mv cv-ko.pdf assets/cv-ko.pdf
 
       - name: Commit PDFs
         run: |

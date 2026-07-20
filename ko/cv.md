@@ -1,46 +1,40 @@
 ---
 layout: default
 ---
-
-<!-- The downloadable PDF is regenerated from this file by .github/workflows/cv-pdf.yml on every change. Edit content here. -->
+{% assign lang = "ko" -%}
+{% assign cv = site.data.cv -%}
+<!-- 내용은 _data/cv.yml 한 곳에서 관리(이 페이지와 PDF 공용).
+     PDF는 .github/workflows/cv-pdf.yml가 그 데이터로 다시 생성. -->
 
 # 이력서
 
 [PDF 다운로드](/assets/cv-ko.pdf)
 
 ## 학력
-- 철학 학사, 성균관대학교, 2024.
-- 한문학 학사, 성균관대학교, 2024.
-- 철학 석사, 성균관대학교, 2026.
-
+{% for e in cv.education -%}
+- {{ e.degree[lang] }}, {{ e.school[lang] }}, {{ e.year }}.
+{% endfor %}
 ## 학위논문
-- 석사학위논문 (2026.06): 사회적 집단의 이름과 공점의 문제. 지도교수: 박성수. 심사위원: 이병덕, 이정규.
+- 석사학위논문 ({{ cv.thesis.date }}): {{ cv.thesis.title[lang] }}. 지도교수: {{ cv.thesis.advisor[lang] }}. 심사위원: {{ cv.thesis.committee[lang] }}.
 
 ## 논문
-- (2025.04) "경험론과 합리론의 대립을 넘어서: 경험적 자세의 철학사적 의의", *근대철학*, 25.
-
+{% for p in cv.publications -%}
+- ({{ p.date }}) {{ p.title }}, *{{ p.journal.ko }}*, {{ p.issue }}.
+{% endfor %}
 ## 발표
-- *All you zombies* — 수선철학회 Reboot, 성균관대학교, 2026년 7월; 2026년 과학철학회 정기 학술대회, 국립과천과학관, 2026년 7월; AI, EPISTEMIC METHODS, LANGUAGE & LOGIC, 연세대학교, 2026년 7월 (flash talk).
-- *Infrastructural Violence in State-Run Dating Apps* — 글로벌 모빌리티인문학 컨퍼런스, 건국대학교, 2026년 10월.
-- *환원적 물질주의 하에서 사회적 집단의 지시체에 관하여* — 성균관대-나고야대 철학교류회, 나고야대학교, 2025년 11월; "철학과인문교육" 연구소 제25회 논문발표회, 성균관대학교, 2026년 8월.
-- *Augemented Intellect: AI as Extended Cognition in Scientific Understanding* — 2025 서울 머신러닝철학 워크숍, 서울대학교, 2025년 2월; 2025 글로벌 모빌리티인문학 컨퍼런스, 건국대학교, 2025년 12월.
-- *Frenemies in the Same Boat: A Critical Assessment of Explanatory Voluntarism and Its Implications for the DRK view of Scientific Understanding* — APPSA-LMPST 대만 2025, 국립양명교통대학교, 2025년 6월; 2025 한국과학철학회 정기학술대회, 서울대학교, 2025년 7월.
-- *'절름발이'는 왜 부도덕한 표현인가?* — 숙명인문학연구소 제12회 정기학술대회, 숙명여자대학교, 2025년 6월; 제21회 한국분석철학회 대학원생분과 워크숍, 서울대학교, 2025년 8월.
-
+{% for t in cv.presentations -%}
+- *{{ t.title[lang] }}* — {% for v in t.venues %}{{ v.place[lang] }}, {{ v.date[lang] }}{% unless forloop.last %}; {% endunless %}{% endfor %}.
+{% endfor %}
 ## 강의
-- 조교, 성균관대학교:
-	- 언어논리입문, 2024년 봄 – 2025년 봄.
-	- 학술적 글쓰기, 2024년 봄 – 2025년 봄.
-	- 논리적 사고, 2024년 가을 – 현재.
-	- 자료해석과 상황판단, 2024년 봄.
-- 단기 강좌 강사 — 성균관대 AICOSS & 송파구청 채움교실 (잠신고등학교): AI의 철학적 이해 (5일간).
+- {{ cv.teaching.ta_header[lang] }}:
+{% for c in cv.teaching.courses %}	- {{ c.name[lang] }}, {{ c.term[lang] }}.
+{% endfor %}- {{ cv.teaching.short_course.header[lang] }} — {{ cv.teaching.short_course.detail[lang] }} ({{ cv.teaching.short_course.duration[lang] }}).
 
 ## 학술 봉사
-- 2025– 성균관대학교 철학과 인문교육 연구소, 간사.
-- 2025– 건국대학교 모빌리티인문학 연구원, 연구보조원.
-- 2025– 한국논리학회, 총무간사.
-
+{% for s in cv.service -%}
+- {{ s.since }} {{ s.org[lang] }}, {{ s.role[lang] }}.
+{% endfor %}
 ## 수상 및 장학
-- 2024–2025: TA 장학금.
-- 2024: 심산 장학금.
-- 2025: 2025 신진연구자 학술논문 공모전 수상 장학금, 숙명인문학연구소.
+{% for a in cv.awards -%}
+- {{ a.year }}: {{ a.title[lang] }}{% if a.org %}, {{ a.org[lang] }}{% endif %}.
+{% endfor %}

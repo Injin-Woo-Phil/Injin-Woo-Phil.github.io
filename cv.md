@@ -1,46 +1,40 @@
 ---
 layout: default
 ---
-
-<!-- The downloadable PDF is regenerated from this file by .github/workflows/cv-pdf.yml on every change. Edit content here. -->
+{% assign lang = "en" -%}
+{% assign cv = site.data.cv -%}
+<!-- Content lives in _data/cv.yml (single source for this page and the PDF).
+     The PDF is rebuilt by .github/workflows/cv-pdf.yml from that data. -->
 
 # Curriculum Vitae
 
 [Download PDF](/assets/cv.pdf)
 
 ## Education
-- B.A. in Philosophy, Sungkyunkwan University, South Korea, 2024.
-- B.A. in Korean Literature in Classical Chinese, Sungkyunkwan University, South Korea, 2024.
-- M.A. in Philosophy, Sungkyunkwan University, South Korea, 2026.
-
+{% for e in cv.education -%}
+- {{ e.degree[lang] }}, {{ e.school[lang] }}, {{ e.location[lang] }}, {{ e.year }}.
+{% endfor %}
 ## Thesis
-- M.A. thesis (2026.06): Coincidence and the Reference of Social Group Terms. Advisor: Seongsoo Park. Committee: Byeongdeok Lee, Jeonggyu Lee.
+- M.A. thesis ({{ cv.thesis.date }}): {{ cv.thesis.title[lang] }}. Advisor: {{ cv.thesis.advisor[lang] }}. Committee: {{ cv.thesis.committee[lang] }}.
 
 ## Publications
-- (2025.04) "경험론과 합리론의 대립을 넘어서: 경험적 자세의 철학사적 의의" (Beyond the Opposition of Empiricism and Rationalism: The Historical Significance of the Empirical Stance), *근대철학 (Modern Philosophy)*, 25.
-
+{% for p in cv.publications -%}
+- ({{ p.date }}) {{ p.title }} ({{ p.gloss_en }}), *{{ p.journal.ko }} ({{ p.journal.en }})*, {{ p.issue }}.
+{% endfor %}
 ## Presentations
-- *All you zombies* — Suseon Philosophy Society Reboot, Sungkyunkwan University, July 2026; 2026 KSPS Annual Conference, Gwacheon National Science Museum, July 2026; AI, Epistemic Methods, Language & Logic, Yonsei University, July 2026 (flash talk).
-- *Infrastructural Violence in State-Run Dating Apps* — Global Mobility Humanities Conference, Konkuk University, Oct 2026.
-- *On the Reference of Social Groups under Reductive Materialism* — Philosophical Interchange between Sungkyunkwan and Nagoya University, Nagoya University, Nov 2025; 25th Colloquium of the Institute for Philosophy and Liberal Arts Education, Sungkyunkwan University, Aug 2026.
-- *Augemented Intellect: AI as Extended Cognition in Scientific Understanding* — 2025 Seoul Workshop in Philosophy of Machine Learning, Seoul National University, Feb 2025; 2025 Global Mobility Humanities Conference, Konkuk University, Dec 2025.
-- *Frenemies in the Same Boat: A Critical Assessment of Explanatory Voluntarism and Its Implications for the DRK view of Scientific Understanding* — APPSA-LMPST Taiwan 2025, National Yang Ming Chiao Tung University, June 2025; KSPS 2025 Annual Conference, Seoul National University, July 2025.
-- *'절름발이'는 왜 부도덕한 표현인가?* (Why is the term 'lame' considered morally wrong?) — Sookmyung Research Institute of Humanities 12th Conference, Sookmyung Women's University, June 2025; The 21st KSAP Grad Division Workshop, Seoul National University, Aug 2025.
-
+{% for t in cv.presentations -%}
+- *{{ t.title[lang] }}* — {% for v in t.venues %}{{ v.place[lang] }}, {{ v.date[lang] }}{% unless forloop.last %}; {% endunless %}{% endfor %}.
+{% endfor %}
 ## Teaching
-- Teaching Assistant, Sungkyunkwan University:
-	- Linguistic Analysis (언어논리입문), Spring 2024 – Spring 2025.
-	- Academic Writing (학술적 글쓰기), Spring 2024 – Spring 2025.
-	- Logical Thinking (논리적 사고), Fall 2024 – present.
-	- Data Analysis and Situational Judgement (자료해석과 상황판단), Spring 2024.
-- Short Course Instructor — 성균관대 AICOSS & 송파구청 채움교실 (잠신고등학교): AI의 철학적 이해 (5 days).
+- {{ cv.teaching.ta_header[lang] }}:
+{% for c in cv.teaching.courses %}	- {{ c.name[lang] }}, {{ c.term[lang] }}.
+{% endfor %}- {{ cv.teaching.short_course.header[lang] }} — {{ cv.teaching.short_course.detail[lang] }} ({{ cv.teaching.short_course.duration[lang] }}).
 
 ## Professional Service
-- 2025– Institute for Philosophy and Liberal Arts Education, Sungkyunkwan University, Administrative Assistant.
-- 2025– The Academy of Mobility Humanities, Konkuk University, Research Assistant.
-- 2025– Korean Association for Logic, Administrative Assistant.
-
+{% for s in cv.service -%}
+- {{ s.since }} {{ s.org[lang] }}, {{ s.role[lang] }}.
+{% endfor %}
 ## Grants & Awards
-- 2024–2025: TA Scholarship.
-- 2024: Simsan Scholarship.
-- 2025: Winner's Scholarship, 2025 Academic Paper Competition for Emerging Scholars, Sookmyung Institute of Humanities.
+{% for a in cv.awards -%}
+- {{ a.year }}: {{ a.title[lang] }}{% if a.org %}, {{ a.org[lang] }}{% endif %}.
+{% endfor %}
