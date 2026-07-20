@@ -391,7 +391,13 @@ hr {
    the display sizes brought down in step so the hierarchy holds. */
 
 @media (min-width: 901px) {
-  body { font-size: 16.5px; line-height: 1.72; }
+  body { font-size: 16.5px; line-height: 1.62; }
+
+  /* Hangul fills its em box — no lowercase, no ascenders or
+     descenders to open the line up — so the setting that reads
+     tight-but-comfortable in Latin reads cramped in Korean. The
+     Korean pages keep the looser leading. */
+  html[lang="ko"] body { line-height: 1.72; }
 
   .page { max-width: 736px; }
 
