@@ -10,13 +10,11 @@ You can contact me at jaegoi53@gmail.com
 
 # Interests
 
-Social Ontology, Social Philosophy of Language, Scientific Understanding, Pyrrhonism, Silhak (Practical Learning).
+Social Ontology, Social Philosophy of Language, Scientific Understanding, Pyrrhonism, Silhak.
 
 # Education
 
 B.A. Philosophy
-SungKyunKwan University, South Korea, 2024.
-
 B.A. Korean Literature in Classical Chinese
 SungKyunKwan University, South Korea, 2024.
 
@@ -24,29 +22,10 @@ M.A. Philosophy
 SungKyunKwan University, South Korea, 2026.
 
 # Professional Service
-- 2025– Institute for Philosophy and Liberal Arts Education, Sungkyunkwan University, Administrative Assistant (철학과 인문교육 연구소, 간사)
-- 2025– The Academy of Mobility Humanities, Konkuk University, Research Assistant (모빌리티인문학 연구원, 연구보조원)
-- 2025– Korean Association for Logic, Administrative Assistant (한국논리학회, 총무간사)
+- 2025– Institute for Philosophy and Liberal Arts Education, Sungkyunkwan University, Research Assistant
+- 2025– The Academy of Mobility Humanities, Konkuk University, HK Researcher
+- 2025– Korean Association for Logic, Administrative Assistant
 
-# Teaching
-
-## Teaching Assistant
-- Logical Thinking (논리적 사고)
-	- Fall 2024 – present.
-- Linguistic Analysis (언어논리입문)
-	- Spring 2024 – Spring 2025.
-- Academic Writing (학술적 글쓰기)
-	- Spring 2024 – Spring 2025.
-- Data Analysis and Situational Judgement (자료해석과 상황판단)
-	- Spring 2024.
-
-## Short Course Instructor
-- 성균관대 AICOSS & 송파구청 채움교실 (잠신고등학교): AI의 철학적 이해 (5 days)
-
-# Grants & Awards
-- 2024–2025: TA Scholarship
-- 2024: Simsan Scholarship
-- 2025: Winner's Scholarship, 2025 Academic Paper Competition for Emerging Scholars, Sookmyung Institute of Humanities
 
 <dl>
 <dt>Name</dt>
