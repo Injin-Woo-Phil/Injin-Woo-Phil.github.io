@@ -21,7 +21,7 @@ Bilingual (English at the root, Korean under `/ko/`) with a custom
 | `ko/*.md` | Korean counterparts (same file names under `ko/`) |
 | `_layouts/default.html` | The only layout: masthead, nav, language toggle, footer |
 | `assets/css/style.scss` | All styling (palette tokens, light/dark, typography) |
-| `assets/img/thumbnail.png` | Portrait used on the home page |
+| `assets/img/thumbnail.jpg` | Portrait used on the home page |
 | `_config.yml` | Site title, description (front page quote), and the nav menu |
 | `.github/workflows/cv-pdf.yml` | Builds the downloadable CV PDFs (see below) |
 

@@ -23,7 +23,7 @@ layout: default
 #### *환원적 물질주의 하에서 사회적 집단의 지시체에 관하여*
 - **[성균관대-나고야대 철학교류회](https://sites.google.com/site/masashikasaki2/イベント/philosophical-interchange-between-sungkyunkwan-and-nagoya-university?authuser=0)**, 2025년 11월, (일본 나고야대학교)
 
-#### *Augemented Intellect: AI as Extended Cognition in Scientific Understanding*
+#### *Augmented Intellect: AI as Extended Cognition in Scientific Understanding*
 \([초록](https://drive.google.com/file/d/1Vru5FGh3DHx4KqBMCOX6K1_e1LhPamBz/view?usp=sharing)\)
 - **[2025 서울 머신러닝철학 워크숍](https://25swpml.wordpress.com)**, 2025년 2월, (서울대학교)
 - **[2025 글로벌 모빌리티인문학 컨퍼런스](https://www.mobilityhumanities.net/conference-programme)**, 2025년 12월, (건국대학교)

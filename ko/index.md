@@ -4,7 +4,7 @@ layout: default
 
 <div class="hero">
   <figure class="portrait">
-    <img src="/assets/img/thumbnail.png" alt="우인진 — 펜 스케치 초상">
+    <img src="/assets/img/thumbnail.jpg" alt="우인진 — 펜 스케치 초상">
   </figure>
   <figure class="quote">
     <blockquote class="quote-vertical" lang="zh-Hant">

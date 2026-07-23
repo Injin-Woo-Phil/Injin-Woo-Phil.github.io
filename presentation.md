@@ -23,7 +23,7 @@ layout: default
 #### *On the Reference of Social Groups under Reductive Materialism*
 - **[Philosophical Interchange between Sungkyunkwan and Nagoya University](https://sites.google.com/site/masashikasaki2/イベント/philosophical-interchange-between-sungkyunkwan-and-nagoya-university?authuser=0)**, Nov 2025, (Nagoya University, Japan)
 
-#### *Augemented Intellect: AI as Extended Cognition in Scientific Understanding*
+#### *Augmented Intellect: AI as Extended Cognition in Scientific Understanding*
 \([Abstract](https://drive.google.com/file/d/1Vru5FGh3DHx4KqBMCOX6K1_e1LhPamBz/view?usp=sharing)\)
 - **[2025 Seoul Workshop in Philosophy of Machine Learning](https://25swpml.wordpress.com)**, Feb 2025, (Seoul National University, South Korea)
 - **[2025 Global Mobility Humanities Conference](https://www.mobilityhumanities.net/conference-programme)**, Dec 2025, (Konkuk University, South Korea)

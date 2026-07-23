@@ -4,7 +4,7 @@ layout: default
 
 <div class="hero">
   <figure class="portrait">
-    <img src="/assets/img/thumbnail.png" alt="Injin Woo — pen sketch portrait">
+    <img src="/assets/img/thumbnail.jpg" alt="Injin Woo — pen sketch portrait">
   </figure>
   <figure class="quote">
     <blockquote class="quote-vertical" lang="zh-Hant">
