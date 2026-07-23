@@ -382,6 +382,51 @@ hr {
   font-weight: 600;
 }
 
+/* ---- presentation: collapsible past talks ----
+   Each talk title in the Talks section becomes a quiet toggle;
+   the venue list sits folded beneath it until asked for. */
+
+.talk-toggle {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 9px;
+}
+.talk-toggle:hover,
+.talk-toggle:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.talk-caret {
+  flex: none;
+  width: 0;
+  height: 0;
+  border-left: 5px solid currentColor;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  opacity: .5;
+  transform: translateY(-1px);
+  transition: transform .18s ease;
+}
+.talk-toggle[aria-expanded="true"] .talk-caret {
+  transform: translateY(-1px) rotate(90deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .talk-caret { transition: none; }
+}
+
+.talk-body { padding: 6px 0 2px 14px; }
+.talk-body > :last-child { margin-bottom: 0; }
+
 /* ---- desktop: settle the type down ----
    The 18px base is sized for a phone. On a wide screen the same size
    in a 616px column gives barely 55 characters a line, so sentences
