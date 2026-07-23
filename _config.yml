@@ -39,3 +39,6 @@ defaults:
       type: "blog"
     values:
       layout: "entry"
+
+exclude:
+  - 관리가이드.md
