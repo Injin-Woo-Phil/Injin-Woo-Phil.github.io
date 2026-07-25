@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>비고전 논리 타블로 & 자연연역 자동 증명기 (Priest 2008 & Garson 2013)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/tools/tableau/assets/index-M5VVX52D.js"></script>
+  <link rel="stylesheet" crossorigin href="/tools/tableau/assets/index-Dse3nD7n.css">
+</head>
+<body>
+  <header>
+    <div class="logo-group">
+      <div class="logo-icon">∀</div>
+      <div>
+        <h1>비고전 논리 타블로 & 자연연역 증명기</h1>
+        <div class="subtitle">Non-Classical Logic Tableau & Fitch Natural Deduction (Priest 2008 & Garson 2013 Dual System)</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 왼쪽 조작 패널 -->
+    <section class="control-sidebar">
+      <div class="glass-panel">
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label for="textbook-select">교과서 / 표기 체계 선택 (Textbook Standard)</label>
+          <select id="textbook-select">
+            <option value="garson" selected>Garson (2013) Modal Logic for Philosophers</option>
+            <option value="priest">Priest (2008) An Introduction to Non-Classical Logic</option>
+            <option value="olp">Open Logic Project (OLP) Standard</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="logic-select">논리 체계 선택 (Priest & Garson Dual Label)</label>
+          <select id="logic-select">
+            <optgroup label="명제 & 다치 논리 (Priest Ch. 1, 6–8 / Garson Ch. 13)">
+              <option value="classical">고전 명제 논리 [Priest Classical / Garson Classical]</option>
+              <option value="fde">1차 귀결 논리 [Priest FDE / Garson Belnap-Dunn 4-Valued]</option>
+              <option value="k3">클리니 3치 논리 [Priest K3 / Garson Kleene Paracomplete]</option>
+              <option value="lp">패러독스 논리 [Priest LP / Garson Paraconsistent LP]</option>
+              <option value="l3">우카시에비치 3치 논리 [Priest Ł3 / Garson Łukasiewicz]</option>
+              <option value="rm3">3치 관련성 논리 [Priest RM3 / Garson Relevant RM3]</option>
+              <option value="g3">괴델 3치 논리 [Priest G3 / Garson Gödel G3]</option>
+              <option value="ipc">직관주의 논리 [Priest IPC / Garson Intuitionistic]</option>
+            </optgroup>
+            <optgroup label="양상 논리 족보 (Priest Ch. 2–3 / Garson Ch. 1–3, 12)">
+              <option value="modal-k">기본 양상 논리 K [Priest K / Garson K]</option>
+              <option value="modal-t" selected>반사적 양상 논리 T [Priest T / Garson T (M): □A -> A]</option>
+              <option value="modal-b">대칭적 양상 논리 B [Priest B / Garson B: A -> □◇A]</option>
+              <option value="modal-s4">추이적 양상 논리 S4 [Priest S4 / Garson S4: □A -> □□A]</option>
+              <option value="modal-s5">동치 양상 논리 S5 [Priest S5 / Garson S5 Universal]</option>
+              <option value="modal-s0.5">비정규 양상 논리 S0.5 [Priest S0.5 / Garson CIPA / N]</option>
+            </optgroup>
+            <optgroup label="조건문 & 관련성 논리 (Priest Ch. 5, 10 / Garson Ch. 11)">
+              <option value="cond-c">기본 조건문 논리 C [Priest Conditional C / Stalnaker-Lewis]</option>
+              <option value="cond-c4">구체 조건문 논리 C4 [Priest Conditional C4 / Concentric Spheres]</option>
+              <option value="rel-r">관련성 논리 R [Priest Relevant R / Anderson-Belnap R]</option>
+              <option value="rel-e">관련성 논리 E [Priest Relevant E / Entailment Logic E]</option>
+            </optgroup>
+          </select>
+          <div id="logic-info-box" class="logic-info-card"></div>
+        </div>
+
+        <div class="form-group" style="margin-top: 1.2rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <label for="formula-input" style="margin-bottom: 0;">전제 및 결론 수식 입력</label>
+            <div class="input-tools">
+              <button id="clear-input-btn" class="icon-tool-btn" title="입력창 지우기">🧹 지우기</button>
+              <button id="copy-input-btn" class="icon-tool-btn" title="수식 복사">📋 복사</button>
+              <button id="random-preset-btn" class="icon-tool-btn highlight" title="무작위 예제 뽑기">🎲 랜덤 예제</button>
+            </div>
+          </div>
+          <input type="text" id="formula-input" value="Box(A -> B) -> (Box A -> Box B)" placeholder="예: Box A -> A" autocomplete="off" spellcheck="false" />
+          <div id="keypad-mount"></div>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+          <button id="prove-btn" class="btn-primary" style="flex: 1;">증명 생성 (Tableau & Fitch)</button>
+          <button id="compare-btn" class="btn-primary" style="background: rgba(30, 41, 59, 0.8); border: 1px solid var(--card-border); color: #a5b4fc;">전체 논리 비교</button>
+        </div>
+      </div>
+
+      <div class="glass-panel">
+        <label style="margin-bottom: 0.75rem; display: block;">Priest & Garson 교재 주요 예제 프리셋</label>
+        <div id="presets-mount"></div>
+      </div>
+    </section>
+
+    <!-- 오른쪽 증명 트리 및 반례 작업 영역 -->
+    <section class="workspace-panel">
+      <!-- 증명 결과 및 탭 제어 -->
+      <div class="glass-panel">
+        <div class="results-header">
+          <div class="tab-buttons">
+            <button id="tab-svg" class="tab-btn active">🎨 SVG 타블로 트리</button>
+            <button id="tab-fitch" class="tab-btn">⚡ 자연연역 (Fitch)</button>
+            <button id="tab-sphere" class="tab-btn">🪐 Sphere Model (구체 의미론)</button>
+            <button id="tab-ascii" class="tab-btn">📝 ASCII 텍스트 트리</button>
+            <button id="tab-latex" class="tab-btn">📄 LaTeX 코드 (Tableau & Fitch)</button>
+            <button id="tab-trace" class="tab-btn">📜 단계별 확장 추적</button>
+          </div>
+          <div id="status-badge" class="status-badge valid">✓ 타당함 (VALID)</div>
+        </div>
+
+        <!-- SVG 그래픽 뷰 & 줌/다운로드 툴바 -->
+        <div id="tab-svg-wrapper" class="tab-content active" style="margin-top: 1rem;">
+          <div class="svg-toolbar">
+            <div class="zoom-controls">
+              <button id="zoom-in-btn" class="tool-btn" title="확대">➕ 확대</button>
+              <button id="zoom-out-btn" class="tool-btn" title="축소">➖ 축소</button>
+              <button id="zoom-reset-btn" class="tool-btn" title="크기 맞춤">↺ 초기화</button>
+            </div>
+            <button id="download-svg-btn" class="tool-btn highlight" title="SVG 이미지 다운로드">📷 SVG 이미지 저장</button>
+          </div>
+          <div id="tree-container" class="tree-view-container">
+            <!-- SVG Proof Tree rendered here -->
+          </div>
+        </div>
+
+        <!-- 자연연역 (Fitch Style) 뷰 -->
+        <div id="fitch-container-mount" class="tab-content" style="margin-top: 1rem; display: none;">
+          <!-- Fitch Natural Deduction rendered here -->
+        </div>
+
+        <!-- Sphere Model (구체 의미론) 뷰 -->
+        <div id="sphere-container" class="tab-content" style="margin-top: 1rem; display: none;">
+          <!-- Sphere Model SVG rendered here -->
+        </div>
+
+        <!-- ASCII 텍스트 트리 뷰 -->
+        <div id="ascii-container" class="tab-content" style="margin-top: 1rem; display: none;">
+          <div style="display: flex; justify-content: flex-end; margin-bottom: 0.5rem;">
+            <button id="copy-ascii-btn" class="copy-btn">📋 ASCII 트리 복사</button>
+          </div>
+          <pre id="ascii-pre" class="code-view"></pre>
+        </div>
+
+        <!-- LaTeX 코드 뷰 -->
+        <div id="latex-container" class="tab-content" style="margin-top: 1rem; display: none;">
+          <div style="display: flex; justify-content: flex-end; margin-bottom: 0.5rem;">
+            <button id="copy-latex-btn" class="copy-btn">📋 LaTeX 코드 복사</button>
+          </div>
+          <pre id="latex-pre" class="code-view"></pre>
+        </div>
+
+        <!-- 단계별 확장 추적 뷰 -->
+        <div id="trace-container" class="tab-content" style="margin-top: 1rem; display: none;">
+          <!-- Trace rendered here -->
+        </div>
+      </div>
+
+      <!-- 반례 모델 출력 구역 -->
+      <div id="countermodel-container" style="display: none;">
+        <!-- Countermodel rendered here -->
+      </div>
+
+      <!-- 전체 논리 비교 매트릭스 구역 -->
+      <div id="matrix-container" style="display: none;">
+        <!-- Matrix rendered here -->
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
