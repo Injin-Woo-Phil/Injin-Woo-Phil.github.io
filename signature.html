@@ -4,57 +4,83 @@
 <meta charset="utf-8">
 <title>Email signature — Injin Woo</title>
 <style>
-  body { margin: 40px; font-family: -apple-system, sans-serif; background: #fafafa; }
-  .wrap { background: #fff; padding: 24px; border: 1px solid #e0e0e0; max-width: 760px; }
-  .hint { max-width: 760px; margin-bottom: 16px; color: #555; font-size: 13px; line-height: 1.6; }
+  body { margin: 40px; font-family: -apple-system, sans-serif; background: #fafafa; color: #222; }
+  .wrap { background: #fff; padding: 24px; border: 1px solid #e0e0e0; max-width: 780px; }
+  .hint { max-width: 780px; margin: 0 0 16px; color: #555; font-size: 13px; line-height: 1.6; }
+  h2 { font-size: 15px; margin: 40px 0 6px; }
+  h2:first-of-type { margin-top: 0; }
+  pre { margin: 0; font-family: Menlo, Consolas, monospace; font-size: 12px; line-height: 1.5; white-space: pre-wrap; }
 </style>
 </head>
 <body>
 
-<p class="hint">아래 상자 안의 내용을 <b>전체 선택 → 복사</b> 한 뒤 서명 칸에 붙여넣으세요. 이미지는 이 사이트에서 불러오므로 별도 업로드가 필요 없습니다.<br>
+<h2>1. 서식 서명 (HTML)</h2>
+<p class="hint">상자 안쪽을 <b>전체 선택 → 복사</b> 한 뒤 서명 칸에 붙여넣으세요. 로고는 이 사이트에서 불러오므로 별도 업로드가 필요 없습니다.<br>
 Gmail: 설정 → 전체 설정 → 서명. &nbsp; Apple Mail: 메일 → 설정 → 서명 → 계정 선택 후 <b>+</b> → 오른쪽 편집 칸에 붙여넣기 (<b>&quot;기본 메시지 폰트 항상 사용&quot; 체크 해제</b> 필수).</p>
 
 <div class="wrap">
 <!-- ===== signature starts ===== -->
 <table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;color:#222;font-size:13px;line-height:1.5;">
   <tr>
-    <td colspan="3" style="padding-bottom:8px;">
-      <span style="font-size:16px;font-weight:bold;color:#111;">Injin Woo</span>
-      <span style="font-size:13px;color:#666;">&nbsp;우인진</span>
+    <td valign="top" style="padding:2px 16px 0 0;">
+      <img src="https://injin-woo-phil.github.io/assets/img/sig/skku.png" alt="Sungkyunkwan University" width="44" height="44" style="display:block;border:0;">
     </td>
-  </tr>
-
-  <tr>
-    <td style="padding:3px 10px 3px 0;" valign="middle"><img src="https://injin-woo-phil.github.io/assets/img/sig/skku.png" alt="SKKU" width="22" height="22" style="display:block;border:0;"></td>
-    <td style="padding:3px 14px 3px 0;color:#111;white-space:nowrap;" valign="middle">Ph.D. Student</td>
-    <td style="padding:3px 0;color:#555;" valign="middle">Department of Philosophy, Sungkyunkwan University</td>
-  </tr>
-  <tr>
-    <td style="padding:3px 10px 3px 0;" valign="middle"><img src="https://injin-woo-phil.github.io/assets/img/sig/skku.png" alt="SKKU" width="22" height="22" style="display:block;border:0;"></td>
-    <td style="padding:3px 14px 3px 0;color:#111;white-space:nowrap;" valign="middle">Research Assistant</td>
-    <td style="padding:3px 0;color:#555;" valign="middle">Institute for Philosophy and Humanities Education, Sungkyunkwan University</td>
-  </tr>
-  <tr>
-    <td style="padding:3px 10px 3px 0;" valign="middle"><img src="https://injin-woo-phil.github.io/assets/img/sig/kal.png" alt="KAL" width="22" height="22" style="display:block;border:0;"></td>
-    <td style="padding:3px 14px 3px 0;color:#111;white-space:nowrap;" valign="middle">Administrative Assistant</td>
-    <td style="padding:3px 0;color:#555;" valign="middle">Korean Association for Logic</td>
-  </tr>
-  <tr>
-    <td style="padding:3px 10px 3px 0;" valign="middle"><img src="https://injin-woo-phil.github.io/assets/img/sig/konkuk.png" alt="Konkuk" width="22" height="22" style="display:block;border:0;"></td>
-    <td style="padding:3px 14px 3px 0;color:#111;white-space:nowrap;" valign="middle">HK Researcher</td>
-    <td style="padding:3px 0;color:#555;" valign="middle">Academy of Mobility Humanities, Konkuk University</td>
-  </tr>
-
-  <tr>
-    <td colspan="3" style="border-top:1px solid #cccccc;padding-top:10px;margin-top:6px;font-size:12px;color:#555;line-height:1.6;">
-      Toegye Hall of Humanities, Sungkyunkwan University, 25-2 Seonggyungwan-ro, Jongno-gu, Seoul 03063, Republic of Korea<br>
-      Email: <a href="mailto:jaegoi@skku.edu" style="color:#1155cc;text-decoration:none;">jaegoi@skku.edu</a><br>
-      Website: <a href="https://injin-woo-phil.github.io" style="color:#1155cc;text-decoration:none;">https://injin-woo-phil.github.io</a><br>
-      Departmental website: <a href="https://skb.skku.edu/eng_philosophy/graduate_students.do" style="color:#1155cc;text-decoration:none;">https://skb.skku.edu/eng_philosophy/graduate_students.do</a>
+    <td valign="top">
+      <table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;color:#222;font-size:13px;line-height:1.5;">
+        <tr>
+          <td colspan="2" style="padding-bottom:6px;">
+            <span style="font-size:16px;font-weight:bold;color:#111;">Injin Woo</span>
+            <span style="font-size:13px;color:#666;">&nbsp;우인진</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:1px 14px 1px 0;color:#111;white-space:nowrap;" valign="top">Ph.D. Student</td>
+          <td style="padding:1px 0;color:#555;" valign="top">Department of Philosophy, Sungkyunkwan University</td>
+        </tr>
+        <tr>
+          <td style="padding:1px 14px 1px 0;color:#111;white-space:nowrap;" valign="top">Research Assistant</td>
+          <td style="padding:1px 0;color:#555;" valign="top">Institute for Philosophy and Humanities Education, Sungkyunkwan University</td>
+        </tr>
+        <tr>
+          <td style="padding:1px 14px 1px 0;color:#111;white-space:nowrap;" valign="top">Secretary</td>
+          <td style="padding:1px 0;color:#555;" valign="top">Korean Association for Logic</td>
+        </tr>
+        <tr>
+          <td style="padding:1px 14px 1px 0;color:#111;white-space:nowrap;" valign="top">HK Researcher</td>
+          <td style="padding:1px 0;color:#555;" valign="top">Academy of Mobility Humanities, Konkuk University</td>
+        </tr>
+        <tr>
+          <td colspan="2" style="border-top:1px solid #cccccc;padding-top:9px;font-size:12px;color:#555;line-height:1.6;">
+            Toegye Hall of Humanities, Sungkyunkwan University, 25-2 Seonggyungwan-ro, Jongno-gu, Seoul 03063, Republic of Korea<br>
+            Email: <a href="mailto:jaegoi@skku.edu" style="color:#1155cc;text-decoration:none;">jaegoi@skku.edu</a><br>
+            Website: <a href="https://injin-woo-phil.github.io" style="color:#1155cc;text-decoration:none;">https://injin-woo-phil.github.io</a>
+            &nbsp;·&nbsp; <a href="https://skb.skku.edu/eng_philosophy/graduate_students.do" style="color:#1155cc;text-decoration:none;">Department</a><br>
+            ORCID: <a href="https://orcid.org/0009-0009-2118-0016" style="color:#1155cc;text-decoration:none;">0009-0009-2118-0016</a>
+            &nbsp;·&nbsp; PhilPeople: <a href="https://philpeople.org/profiles/injin-woo" style="color:#1155cc;text-decoration:none;">philpeople.org/profiles/injin-woo</a>
+          </td>
+        </tr>
+      </table>
     </td>
   </tr>
 </table>
 <!-- ===== signature ends ===== -->
+</div>
+
+<h2>2. 평문 서명 (plain text)</h2>
+<p class="hint">평문 메일, 메일링 리스트, 학회 공용 계정에서 쓰는 버전. 아래 상자를 그대로 복사하세요. 첫 줄의 <code>--&nbsp;</code>(하이픈 둘 + 공백)는 RFC 3676 표준 서명 구분자라, 대부분의 메일 클라이언트가 이 아래를 서명으로 인식해 답장에서 자동으로 접어 줍니다. <b>끝의 공백 한 칸을 지우지 마세요.</b></p>
+
+<div class="wrap">
+<pre>-- 
+Injin Woo (우인진)
+Ph.D. Student, Department of Philosophy, Sungkyunkwan University
+Research Assistant, Institute for Philosophy and Humanities Education, Sungkyunkwan University
+Secretary, Korean Association for Logic
+HK Researcher, Academy of Mobility Humanities, Konkuk University
+
+Toegye Hall of Humanities, Sungkyunkwan University
+25-2 Seonggyungwan-ro, Jongno-gu, Seoul 03063, Republic of Korea
+jaegoi@skku.edu | https://injin-woo-phil.github.io
+ORCID 0009-0009-2118-0016 | https://philpeople.org/profiles/injin-woo</pre>
 </div>
 
 </body>
