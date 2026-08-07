@@ -7,6 +7,7 @@ layout: default
 ## Upcoming
 
 #### On the Reference of Social Groups under Reductive Materialism
+\([Slides](/assets/slides-social-groups-2026.pdf)\)
 - 25th Colloquium of the Institute for Philosophy and Liberal Arts Education, Aug 2026, (Sungkyunkwan University)
 
 #### Infrastructural Violence in State-Run Dating Apps
