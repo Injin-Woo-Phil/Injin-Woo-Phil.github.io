@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>논리 타블로 & 자연연역 자동 증명기</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;900&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&family=Noto+Sans+KR:wght@400;500;700;900&family=Fira+Code:wght@450;600&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/tools/tableau/assets/index-CEtKBqAM.js"></script>
+  <link rel="stylesheet" crossorigin href="/tools/tableau/assets/index-D_px0UGQ.css">
+</head>
+<body>
+  <header>
+    <div class="site-masthead-top">
+      <a class="site-home-link" href="/">
+        <span class="site-title-mark" id="i18n-site-home">Injin Woo</span>
+        <span class="name-seal">禹仁眞</span>
+      </a>
+      <div class="masthead-right-tools">
+        <button id="lang-toggle-btn" class="lang-toggle-btn">[ KO | EN ]</button>
+        <a class="site-back" href="/" id="i18n-site-back">← 홈으로</a>
+      </div>
+    </div>
+    <div class="logo-group">
+      <div class="logo-icon">∀</div>
+      <div>
+        <h1 id="i18n-site-title">논리 타블로 & 자연연역 증명기</h1>
+        <div class="subtitle" id="i18n-site-subtitle">Logic Tableau & Fitch Natural Deduction (Priest · Garson · OLP)</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 왼쪽 조작 패널 -->
+    <section class="control-sidebar">
+      <div class="glass-panel">
+        <div class="form-group">
+          <label for="logic-select" id="i18n-logic-label">논리 체계 선택</label>
+          <select id="logic-select">
+            <option value="classical" selected>고전 명제 논리 (Classical Propositional Logic)</option>
+            <option value="modal-k">기본 양상 논리 K (Basic Modal Logic K)</option>
+          </select>
+          <div id="frame-conditions" style="display: none; margin-top: 0.6rem; border: 1px solid var(--rule); padding: 0.6rem 0.8rem;">
+            <div style="font-size: 0.78rem; font-weight: 700; margin-bottom: 0.35rem;">접근성 관계 조건 (Priest §3.2.3)</div>
+            <label style="display:block; font-size:0.85rem;"><input type="checkbox" id="frame-rho"> ρ 반사성 — T: □A→A</label>
+            <label style="display:block; font-size:0.85rem;"><input type="checkbox" id="frame-sigma"> σ 대칭성 — B: A→□◇A</label>
+            <label style="display:block; font-size:0.85rem;"><input type="checkbox" id="frame-tau"> τ 추이성 — 4: □A→□□A</label>
+            <label style="display:block; font-size:0.85rem;"><input type="checkbox" id="frame-eta"> η 연장성 — D: □A→◇A</label>
+            <label style="display:block; font-size:0.85rem;"><input type="checkbox" id="frame-upsilon"> υ 보편성 — S5</label>
+            <div id="frame-name" style="margin-top: 0.45rem; font-family: var(--font-code); font-weight: 700;"></div>
+          </div>
+          <div id="logic-info-box" class="logic-info-card"></div>
+        </div>
+
+        <div class="form-group" style="margin-top: 1.2rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <label for="formula-input" style="margin-bottom: 0;" id="i18n-formula-label">전제 및 결론 수식 입력</label>
+            <div class="input-tools">
+              <button id="clear-input-btn" class="icon-tool-btn" title="입력창 지우기">[ 지우기 ]</button>
+              <button id="copy-input-btn" class="icon-tool-btn" title="수식 복사">[ 복사 ]</button>
+              <button id="random-preset-btn" class="icon-tool-btn highlight" title="무작위 예제 뽑기">[ 무작위 예제 ]</button>
+            </div>
+          </div>
+          <!-- #9: Placeholder added, default value cleared -->
+          <div class="term-input-row">
+            <span class="term-prompt" aria-hidden="true">⊢</span>
+            <input type="text" id="formula-input" value="" placeholder="논증을 입력하면 타당성을 즉시 판정합니다 (예: A -> B, A |- B)" autocomplete="off" spellcheck="false" />
+          </div>
+          <div id="keypad-mount"></div>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+          <button id="prove-btn" class="btn-primary" style="flex: 1;">증명 생성 (Tableau & Fitch)</button>
+          <button id="compare-btn" class="tool-btn" title="같은 논증을 K·D·T·B·S4·S5에서 동시 판정">[ 체계 비교 ]</button>
+        </div>
+      </div>
+
+      <div class="glass-panel">
+        <label style="margin-bottom: 0.75rem; display: block;" id="i18n-presets-header">예제 프리셋</label>
+        <div id="presets-mount"></div>
+      </div>
+    </section>
+
+    <!-- 오른쪽 증명 트리 및 반례 작업 영역 -->
+    <section class="workspace-panel">
+      <!-- 증명 결과 및 탭 제어 (#6 Header Hierarchy Promoted) -->
+      <div class="glass-panel">
+        <div class="results-header">
+          <div class="result-status-hero">
+            <div id="status-badge" class="status-badge empty">대기 중 (Ready)</div>
+          </div>
+          <div class="tab-buttons">
+            <button id="tab-svg" class="tab-btn active" aria-selected="true">타블로 트리</button>
+            <button id="tab-fitch" class="tab-btn">자연연역 (Fitch)</button>
+            <button id="tab-ascii" class="tab-btn">ASCII 트리</button>
+            <button id="tab-latex" class="tab-btn">LaTeX</button>
+            <button id="tab-trace" class="tab-btn">단계 추적</button>
+            <button id="tab-rules" class="tab-btn">규칙 참조</button>
+          </div>
+        </div>
+
+        <!-- SVG 그래픽 뷰 & 줌/다운로드 툴바 -->
+        <div id="tab-svg-wrapper" class="tab-content active" style="margin-top: 1rem;">
+          <div class="svg-toolbar">
+            <div class="zoom-controls">
+              <button id="zoom-in-btn" class="tool-btn" title="확대">[ ＋ 확대 ]</button>
+              <button id="zoom-out-btn" class="tool-btn" title="축소">[ － 축소 ]</button>
+              <button id="zoom-reset-btn" class="tool-btn" title="크기 맞춤">[ ↺ 초기화 ]</button>
+            </div>
+            <div class="playback-controls" style="display: flex; align-items: center; gap: 0.4rem;">
+              <button id="pb-prev-btn" class="tool-btn" title="이전 단계">[ ◀ ]</button>
+              <span id="pb-step-label" style="font-size: 0.85rem; min-width: 4.5rem; text-align: center;">– / –</span>
+              <button id="pb-next-btn" class="tool-btn" title="다음 단계">[ ▶ ]</button>
+              <button id="pb-all-btn" class="tool-btn" title="전체 표시">[ 전체 ]</button>
+              <button id="notation-toggle-btn" class="tool-btn" title="타블로 보기 전환: 세계 박스형 ⇄ Priest 선형">[ 보기: 박스형 ]</button>
+              <button id="practice-toggle-btn" class="tool-btn highlight" title="다음 규칙 맞히기 연습">[ 연습 모드 ]</button>
+            </div>
+            <button id="download-svg-btn" class="tool-btn highlight" title="SVG 이미지 다운로드">[ SVG 저장 ]</button>
+          </div>
+          <div id="practice-panel" class="glass-panel" style="display: none; margin-bottom: 0.75rem;"></div>
+          <div id="tree-container" class="tree-view-container">
+            <!-- Initial Empty State or SVG Proof Tree rendered here -->
+          </div>
+        </div>
+
+        <!-- 자연연역 (Fitch Style) 뷰 -->
+        <div id="fitch-container-mount" class="tab-content" style="margin-top: 1rem; display: none;">
+          <!-- Fitch Natural Deduction rendered here -->
+        </div>
+
+        <!-- ASCII 텍스트 트리 뷰 -->
+        <div id="ascii-container" class="tab-content" style="margin-top: 1rem; display: none;">
+          <div style="display: flex; justify-content: flex-end; margin-bottom: 0.5rem;">
+            <button id="copy-ascii-btn" class="copy-btn">[ ASCII 복사 ]</button>
+          </div>
+          <pre id="ascii-pre" class="code-view"></pre>
+        </div>
+
+        <!-- LaTeX 코드 뷰 -->
+        <div id="latex-container" class="tab-content" style="margin-top: 1rem; display: none;">
+          <div style="display: flex; justify-content: flex-end; margin-bottom: 0.5rem;">
+            <button id="copy-latex-btn" class="copy-btn">[ LaTeX 복사 ]</button>
+          </div>
+          <pre id="latex-pre" class="code-view"></pre>
+        </div>
+
+        <!-- 단계별 확장 추적 뷰 -->
+        <div id="trace-container" class="tab-content" style="margin-top: 1rem; display: none;">
+          <!-- Trace rendered here -->
+        </div>
+
+        <!-- 규칙 참조 뷰 -->
+        <div id="rules-container" class="tab-content" style="margin-top: 1rem; display: none;">
+          <!-- Rule reference rendered here -->
+        </div>
+      </div>
+
+      <!-- 체계 비교 매트릭스 -->
+      <div id="matrix-container" style="display: none;"></div>
+
+      <!-- 반례 모델 출력 구역 -->
+      <div id="countermodel-container" style="display: none;">
+        <!-- Countermodel rendered here -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; Injin Woo · <a href="/">injin-woo-phil.github.io</a> · Hosted on GitHub Pages</p>
+  </footer>
+
+</body>
+</html>
