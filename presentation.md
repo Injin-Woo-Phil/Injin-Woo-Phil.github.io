@@ -6,17 +6,17 @@ layout: default
 
 ## Upcoming
 
-#### Simonelli on Assertibility of pure LLMs <span class="entry-links">[Draft](/assets/paper-sws-en.pdf) · [Handout](/assets/handout-sws-en.pdf) · [초고](/assets/paper-sws-ko.pdf) · [핸드아웃](/assets/handout-sws-ko.pdf)</span>
+#### Simonelli on Assertibility of pure LLMs <span class="entry-links">[Handout](/assets/handout-sws-en.pdf) · [핸드아웃](/assets/handout-sws-ko.pdf)</span>
 - **Writing Sample Workshop**, Aug 2026, (Yonsei University)
 - **2nd Philosophical Interchange between Sungkyunkwan and Nagoya University**, Oct 2026, (Nagoya University)
 
-#### Infrastructural Violence in State-Run Dating Apps <span class="entry-links">[Abstract](/assets/abstract-dating-apps.pdf) · [Draft](/assets/draft-dating-apps.pdf)</span>
+#### Infrastructural Violence in State-Run Dating Apps <span class="entry-links">[Abstract](/assets/abstract-dating-apps.pdf)</span>
 - [Global Mobility Humanities Conference](https://www.mobilityhumanities.net), Oct 2026, (Konkuk University)
 
 
 ## Talks
 
-#### *Simonelli on Assertibility of pure LLMs* <span class="entry-links">[Draft](/assets/paper-sws-en.pdf) · [Handout](/assets/handout-sws-en.pdf)</span>
+#### *Simonelli on Assertibility of pure LLMs* <span class="entry-links">[Handout](/assets/handout-sws-en.pdf)</span>
 - **Suseon Philosophy Society Reboot** July 2026, (Sungkyunkwan University)
 - **[2026 KSPS Annual Conference](https://philsci.or.kr/2026conference/)**, July 2026, (Gwacheon National Science Museum)
 
