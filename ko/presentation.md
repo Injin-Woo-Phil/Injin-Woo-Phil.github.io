@@ -6,24 +6,21 @@ layout: default
 
 ## 다가오는 일정
 
-#### Simonelli on Assertibility of pure LLMs
-\([논문](/assets/paper-sws-ko.pdf) · [핸드아웃](/assets/handout-sws-ko.pdf) · [Paper](/assets/paper-sws-en.pdf) · [Handout](/assets/handout-sws-en.pdf)\)
+#### Simonelli on Assertibility of pure LLMs <span class="entry-links">[논문](/assets/paper-sws-ko.pdf) · [핸드아웃](/assets/handout-sws-ko.pdf) · [Paper](/assets/paper-sws-en.pdf) · [Handout](/assets/handout-sws-en.pdf)</span>
 - **Writing Sample Workshop**, 2026년 8월, (연세대학교)
 - **제2회 성균관대-나고야대 철학 교류회**, 2026년 10월, (일본 나고야대학교)
 
-#### Infrastructural Violence in State-Run Dating Apps
+#### Infrastructural Violence in State-Run Dating Apps <span class="entry-links">[초록](/assets/abstract-dating-apps.pdf) · [초고](/assets/draft-dating-apps.pdf)</span>
 - [Global Mobility Humanities Conference](https://www.mobilityhumanities.net), 2026년 10월, (건국대학교)
 
 
 ## 학술 발표
 
-#### *Simonelli on Assertibility of pure LLMs*
-\([논문](/assets/paper-sws-ko.pdf) · [핸드아웃](/assets/handout-sws-ko.pdf)\)
+#### *Simonelli on Assertibility of pure LLMs* <span class="entry-links">[논문](/assets/paper-sws-ko.pdf) · [핸드아웃](/assets/handout-sws-ko.pdf)</span>
 - **수선철학회 Reboot** 2026년 7월, (성균관대학교)
 - **[2026년 과학철학회 정기 학술대회](https://philsci.or.kr/2026conference/)**, 2026년 7월, (국립과천과학관)
 
-#### *환원적 물질주의 하에서 사회적 집단의 지시체에 관하여*
-\([슬라이드](/assets/slides-social-groups-2026.pdf)\)
+#### *환원적 물질주의 하에서 사회적 집단의 지시체에 관하여* <span class="entry-links">[슬라이드](/assets/slides-social-groups-2026.pdf)</span>
 - **"철학과인문교육" 연구소 제25회 논문발표회**, 2026년 8월, (성균관대학교)
 - **[성균관대-나고야대 철학교류회](https://sites.google.com/site/masashikasaki2/イベント/philosophical-interchange-between-sungkyunkwan-and-nagoya-university?authuser=0)**, 2025년 11월, (일본 나고야대학교)
 

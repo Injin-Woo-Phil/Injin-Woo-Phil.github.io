@@ -276,6 +276,28 @@ hr {
   margin: 25px 0 7px;
 }
 
+/* 발표 항목: 자료 링크는 제목 오른편, 행사 목록은 제목 아래로 한 단 들여쓴다 */
+.content h4 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.2em;
+  flex-wrap: wrap;
+}
+.content h4 .entry-links {
+  font-size: 13px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: .8;
+}
+.content h4 + ul {
+  padding-left: 2.6em;
+}
+@media (max-width: 640px) {
+  .content h4 .entry-links { white-space: normal; }
+  .content h4 + ul { padding-left: 1.8em; }
+}
+
 .content p { margin: 0 0 1.15em; }
 .content ul, .content ol { margin: 0 0 1.25em; padding-left: 1.25em; }
 .content li { margin-bottom: .5em; }

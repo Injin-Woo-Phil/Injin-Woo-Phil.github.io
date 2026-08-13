@@ -6,24 +6,21 @@ layout: default
 
 ## Upcoming
 
-#### Simonelli on Assertibility of pure LLMs
-\([Paper](/assets/paper-sws-en.pdf) · [Handout](/assets/handout-sws-en.pdf) · [논문](/assets/paper-sws-ko.pdf) · [핸드아웃](/assets/handout-sws-ko.pdf)\)
+#### Simonelli on Assertibility of pure LLMs <span class="entry-links">[Paper](/assets/paper-sws-en.pdf) · [Handout](/assets/handout-sws-en.pdf) · [논문](/assets/paper-sws-ko.pdf) · [핸드아웃](/assets/handout-sws-ko.pdf)</span>
 - **Writing Sample Workshop**, Aug 2026, (Yonsei University)
 - **2nd Philosophical Interchange between Sungkyunkwan and Nagoya University**, Oct 2026, (Nagoya University)
 
-#### Infrastructural Violence in State-Run Dating Apps
+#### Infrastructural Violence in State-Run Dating Apps <span class="entry-links">[Abstract](/assets/abstract-dating-apps.pdf) · [Draft](/assets/draft-dating-apps.pdf)</span>
 - [Global Mobility Humanities Conference](https://www.mobilityhumanities.net), Oct 2026, (Konkuk University)
 
 
 ## Talks
 
-#### *Simonelli on Assertibility of pure LLMs*
-\([Paper](/assets/paper-sws-en.pdf) · [Handout](/assets/handout-sws-en.pdf)\)
+#### *Simonelli on Assertibility of pure LLMs* <span class="entry-links">[Paper](/assets/paper-sws-en.pdf) · [Handout](/assets/handout-sws-en.pdf)</span>
 - **Suseon Philosophy Society Reboot** July 2026, (Sungkyunkwan University)
 - **[2026 KSPS Annual Conference](https://philsci.or.kr/2026conference/)**, July 2026, (Gwacheon National Science Museum)
 
-#### *On the Reference of Social Groups under Reductive Materialism*
-\([Slides](/assets/slides-social-groups-2026.pdf)\)
+#### *On the Reference of Social Groups under Reductive Materialism* <span class="entry-links">[Slides](/assets/slides-social-groups-2026.pdf)</span>
 - **25th Colloquium of the Institute for Philosophy and Liberal Arts Education**, Aug 2026, (Sungkyunkwan University)
 - **[Philosophical Interchange between Sungkyunkwan and Nagoya University](https://sites.google.com/site/masashikasaki2/イベント/philosophical-interchange-between-sungkyunkwan-and-nagoya-university?authuser=0)**, Nov 2025, (Nagoya University, Japan)
 
