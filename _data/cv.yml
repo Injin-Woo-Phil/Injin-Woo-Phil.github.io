@@ -52,16 +52,19 @@ publications:
     issue: "25"
 
 presentations:
-  - title: { en: "All you zombies", ko: "All you zombies" }
+  - title: { en: "Simonelli on Assertibility of pure LLMs", ko: "Simonelli on Assertibility of pure LLMs" }
     venues:
-      - place: { en: "Suseon Philosophy Society Reboot, Sungkyunkwan University", ko: "수선철학회 Reboot, 성균관대학교" }
+      - place: { en: "2nd Philosophical Interchange between Sungkyunkwan and Nagoya University, Nagoya University", ko: "제2회 성균관대-나고야대 철학 교류회, 나고야대학교" }
+        country: { en: "Japan", ko: "일본" }
+        date: { en: "Oct 2026", ko: "2026년 10월" }
+      - place: { en: "Writing Sample Workshop, Yonsei University", ko: "Writing Sample Workshop, 연세대학교" }
         country: { en: "South Korea", ko: "대한민국" }
-        date: { en: "July 2026", ko: "2026년 7월" }
+        date: { en: "Aug 2026", ko: "2026년 8월" }
       - place: { en: "2026 KSPS Annual Conference, Gwacheon National Science Museum", ko: "2026년 과학철학회 정기 학술대회, 국립과천과학관" }
         country: { en: "South Korea", ko: "대한민국" }
         url: "https://philsci.or.kr/2026conference/"
         date: { en: "July 2026", ko: "2026년 7월" }
-      - place: { en: "AI, Epistemic Methods, Language & Logic, Yonsei University (flash talk)", ko: "AI, EPISTEMIC METHODS, LANGUAGE & LOGIC, 연세대학교 (flash talk)" }
+      - place: { en: "Suseon Philosophy Society Reboot, Sungkyunkwan University", ko: "수선철학회 Reboot, 성균관대학교" }
         country: { en: "South Korea", ko: "대한민국" }
         date: { en: "July 2026", ko: "2026년 7월" }
   - title: { en: "Infrastructural Violence in State-Run Dating Apps", ko: "Infrastructural Violence in State-Run Dating Apps" }
@@ -79,7 +82,7 @@ presentations:
         country: { en: "Japan", ko: "일본" }
         url: "https://sites.google.com/site/masashikasaki2/イベント/philosophical-interchange-between-sungkyunkwan-and-nagoya-university?authuser=0"
         date: { en: "Nov 2025", ko: "2025년 11월" }
-  - title: { en: "Augemented Intellect: AI as Extended Cognition in Scientific Understanding", ko: "Augemented Intellect: AI as Extended Cognition in Scientific Understanding" }
+  - title: { en: "Augmented Intellect: AI as Extended Cognition in Scientific Understanding", ko: "Augmented Intellect: AI as Extended Cognition in Scientific Understanding" }
     venues:
       - place: { en: "2025 Global Mobility Humanities Conference, Konkuk University", ko: "2025 글로벌 모빌리티인문학 컨퍼런스, 건국대학교" }
         country: { en: "South Korea", ko: "대한민국" }
