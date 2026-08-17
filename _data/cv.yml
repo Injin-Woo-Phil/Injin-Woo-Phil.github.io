@@ -141,7 +141,7 @@ service:
     since: "2025 –"
 
 awards:
-  - title: { en: "Samil Scholarship, Doctoral Program (tuition, up to ₩5,000,000 per semester)", ko: "3·1문화재단 장학금, 박사과정 (등록금, 학기당 500만 원 한도)" }
+  - title: { en: "Samil Scholarship (Doctoral Program, Full Tuition)", ko: "3·1문화재단 장학금 (박사과정, 등록금 전액)" }
     org: { en: "The Samil Foundation", ko: "3·1문화재단" }
     year: "2026–2027"
   - title: { en: "Winner’s Scholarship, 2025 Academic Paper Competition for Emerging Scholars", ko: "2025 신진연구자 학술논문 공모전 수상 장학금" }
