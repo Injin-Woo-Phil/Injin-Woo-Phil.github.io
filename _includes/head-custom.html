@@ -6,4 +6,21 @@
 <!-- You can set your favicon here -->
 <!-- link rel="shortcut icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}" -->
 
+<!-- Google Scholar (Highwire Press) tags, emitted only on paper landing pages -->
+{% if page.citation_title %}
+<meta name="citation_title" content="{{ page.citation_title }}"/>
+{% for a in page.citation_author %}<meta name="citation_author" content="{{ a }}"/>
+{% endfor %}<meta name="citation_publication_date" content="{{ page.citation_publication_date }}"/>
+<meta name="citation_journal_title" content="{{ page.citation_journal_title }}"/>
+{% if page.citation_volume %}<meta name="citation_volume" content="{{ page.citation_volume }}"/>{% endif %}
+{% if page.citation_firstpage %}<meta name="citation_firstpage" content="{{ page.citation_firstpage }}"/>{% endif %}
+{% if page.citation_lastpage %}<meta name="citation_lastpage" content="{{ page.citation_lastpage }}"/>{% endif %}
+{% if page.citation_issn %}<meta name="citation_issn" content="{{ page.citation_issn }}"/>{% endif %}
+{% if page.citation_doi %}<meta name="citation_doi" content="{{ page.citation_doi }}"/>{% endif %}
+{% if page.citation_publisher %}<meta name="citation_publisher" content="{{ page.citation_publisher }}"/>{% endif %}
+{% if page.citation_language %}<meta name="citation_language" content="{{ page.citation_language }}"/>{% endif %}
+<meta name="citation_pdf_url" content="https://injin-woo-phil.github.io{{ page.citation_pdf_url }}"/>
+<meta name="citation_abstract_html_url" content="https://injin-woo-phil.github.io{{ page.url }}"/>
+{% endif %}
+
 <!-- end custom head snippets -->

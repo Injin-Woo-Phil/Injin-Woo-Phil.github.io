@@ -5,7 +5,7 @@ layout: default
 # Research
 
 ## Publications
-- (2025.04) ["경험론과 합리론의 대립을 넘어서: 경험적 자세의 철학사적 의의"](http://journal.kstudy.com/service-journal/view.asp?PdfOK=True&clientName=서양근대철학회&sortType=0&langType=KOR&clientKey=2398&curPage=1&pageScale=10&searchType=1&totCate=&totText=&pubKey=31185&pubYear=2025&pubVN=25@0&detailKEYN=4168320) 근대철학, 25.
+- (2025.04) ["경험론과 합리론의 대립을 넘어서: 경험적 자세의 철학사적 의의"](/papers/woo2025-empirical-stance/) 근대철학, 25, 113–143. [[Author manuscript PDF](/assets/woo2025-empirical-stance-preprint.pdf)]
 	- Beyond the Opposition of Empiricism and Rationalism: The Historical Significance of the Empirical Stance
 
 ## Work in Progress
