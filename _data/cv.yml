@@ -141,6 +141,9 @@ service:
     since: "2025 –"
 
 awards:
+  - title: { en: "Samil Scholarship (Doctoral Program, Full Tuition)", ko: "3·1문화재단 장학금 (박사과정, 등록금 전액)" }
+    org: { en: "The Samil Foundation", ko: "3·1문화재단" }
+    year: "2026–2027"
   - title: { en: "Winner’s Scholarship, 2025 Academic Paper Competition for Emerging Scholars", ko: "2025 신진연구자 학술논문 공모전 수상 장학금" }
     org: { en: "Sookmyung Institute of Humanities", ko: "숙명인문학연구소" }
     year: "2025"
