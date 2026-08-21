@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;900&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&family=Noto+Sans+KR:wght@400;500;700;900&family=Fira+Code:wght@450;600&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/tools/tableau/assets/index-Dnw9swfq.js"></script>
+  <script type="module" crossorigin src="/tools/tableau/assets/index-BnQ2eJHZ.js"></script>
   <link rel="stylesheet" crossorigin href="/tools/tableau/assets/index-DvMCMAaC.css">
 </head>
 <body>
@@ -35,11 +35,28 @@
     <!-- 왼쪽 조작 패널 -->
     <section class="control-sidebar">
       <div class="glass-panel">
+        <div class="form-group" style="margin-bottom: 0.9rem;">
+          <label for="textbook-select">교과서 표기 (Textbook Notation)</label>
+          <select id="textbook-select">
+            <option value="priest" selected>Priest — An Introduction to Non-Classical Logic</option>
+            <option value="garson">Garson — Modal Logic for Philosophers</option>
+            <option value="olp">Open Logic Project — Boxes and Diamonds</option>
+          </select>
+        </div>
+
         <div class="form-group">
           <label for="logic-select" id="i18n-logic-label">논리 체계 선택</label>
           <select id="logic-select">
             <option value="classical" selected>고전 명제 논리 (Classical Propositional Logic)</option>
             <option value="modal-k">기본 양상 논리 K (Basic Modal Logic K)</option>
+            <option value="ipc">직관주의 논리 (Intuitionistic Logic)</option>
+            <optgroup label="다치논리 (Priest Ch. 7–8)">
+              <option value="k3">K3 — 강한 클레이니 (gap)</option>
+              <option value="lp">LP — 역설의 논리 (glut)</option>
+              <option value="l3">Ł3 — 우카시에비치</option>
+              <option value="rm3">RM3</option>
+              <option value="fde">FDE — 1차 함의 (gap+glut)</option>
+            </optgroup>
           </select>
           <div id="frame-conditions" style="display: none; margin-top: 0.6rem; border: 1px solid var(--rule); padding: 0.6rem 0.8rem;">
             <div style="font-size: 0.78rem; font-weight: 700; margin-bottom: 0.35rem;">접근성 관계 조건 (Priest §3.2.3)</div>
