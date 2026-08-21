@@ -7,8 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;900&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&family=Noto+Sans+KR:wght@400;500;700;900&family=Fira+Code:wght@450;600&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/tools/tableau/assets/index-BnQ2eJHZ.js"></script>
-  <link rel="stylesheet" crossorigin href="/tools/tableau/assets/index-DvMCMAaC.css">
+  <script type="module" crossorigin src="/tools/tableau/assets/index-C3By7P7A.js"></script>
+  <link rel="stylesheet" crossorigin href="/tools/tableau/assets/index-TzOx0ovh.css">
 </head>
 <body>
   <header>
@@ -47,8 +47,12 @@
         <div class="form-group">
           <label for="logic-select" id="i18n-logic-label">논리 체계 선택</label>
           <select id="logic-select">
-            <option value="classical" selected>고전 명제 논리 (Classical Propositional Logic)</option>
+            <option value="classical" selected>고전 논리 — 명제 + 1차 (Classical, propositional + first-order)</option>
             <option value="modal-k">기본 양상 논리 K (Basic Modal Logic K)</option>
+            <option value="modal-n">비정상 양상 논리 N / S2 / S3 (Non-normal, Priest Ch. 4)</option>
+            <option value="modal-l">L / S0.5 (Lemmon non-normal, Priest §4.4a)</option>
+            <option value="cond-c">조건문 논리 C (Conditional Logic C, Priest Ch. 5)</option>
+            <option value="cond-c+">조건문 논리 C+ (Conditional Logic C+)</option>
             <option value="ipc">직관주의 논리 (Intuitionistic Logic)</option>
             <optgroup label="다치논리 (Priest Ch. 7–8)">
               <option value="k3">K3 — 강한 클레이니 (gap)</option>
@@ -95,7 +99,8 @@
 
       <div class="glass-panel">
         <label style="margin-bottom: 0.75rem; display: block;" id="i18n-presets-header">예제 프리셋</label>
-        <div id="presets-mount"></div>
+        <div style="font-size:0.78rem; color: var(--rule-strong); margin: 0.2rem 0 0.5rem;">풀어본 문제 <span id="solved-count">0</span> <button type="button" id="solved-reset-btn" class="tool-btn" style="font-size:0.7rem; padding:0.1rem 0.4rem;">[ 초기화 ]</button></div>
+          <div id="presets-mount"></div>
       </div>
     </section>
 
@@ -132,6 +137,7 @@
               <button id="pb-all-btn" class="tool-btn" title="전체 표시">[ 전체 ]</button>
               <button id="notation-toggle-btn" class="tool-btn" title="타블로 보기 전환: 세계 박스형 ⇄ Priest 선형">[ 보기: 박스형 ]</button>
               <button id="practice-toggle-btn" class="tool-btn highlight" title="다음 규칙 맞히기 연습">[ 연습 모드 ]</button>
+              <button id="nd-practice-btn" class="tool-btn" title="자연연역 빈칸 채우기 — 가려진 규칙을 맞히기 (Fitch 탭)">[ ND 빈칸 ]</button>
             </div>
             <button id="download-svg-btn" class="tool-btn highlight" title="SVG 이미지 다운로드">[ SVG 저장 ]</button>
           </div>
