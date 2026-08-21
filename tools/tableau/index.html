@@ -7,8 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;900&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&family=Noto+Sans+KR:wght@400;500;700;900&family=Fira+Code:wght@450;600&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/tools/tableau/assets/index-Ht83U36o.js"></script>
-  <link rel="stylesheet" crossorigin href="/tools/tableau/assets/index-D5WiuHso.css">
+  <script type="module" crossorigin src="/tools/tableau/assets/index-C9W4rgyN.js"></script>
+  <link rel="stylesheet" crossorigin href="/tools/tableau/assets/index-ZT4rp9el.css">
 </head>
 <body>
   <header>
@@ -130,6 +130,8 @@
       <div class="glass-panel">
         <label style="margin-bottom: 0.75rem; display: block;" id="i18n-presets-header">예제 프리셋</label>
         <div style="font-size:0.78rem; color: var(--rule-strong); margin: 0.2rem 0 0.5rem;">풀어본 문제 <span id="solved-count">0</span> <button type="button" id="solved-reset-btn" class="tool-btn" style="font-size:0.7rem; padding:0.1rem 0.4rem;">[ 초기화 ]</button></div>
+          <div style="margin: 0.2rem 0 0.5rem;"><button type="button" id="problem-set-btn" class="tool-btn highlight" title="장별 연습문제를 순서대로 풀고 채점">[ 문제집 모드 ]</button> <span id="problem-set-score" style="font-size:0.78rem; color: var(--rule-strong);"></span></div>
+          <div id="problem-panel" class="glass-panel" style="display:none; padding:0.9rem; margin-bottom:0.6rem;"></div>
           <div id="presets-mount"></div>
       </div>
     </section>
@@ -149,6 +151,7 @@
             <button id="tab-latex" class="tab-btn">LaTeX</button>
             <button id="tab-trace" class="tab-btn">단계 추적</button>
             <button id="tab-rules" class="tab-btn">규칙 참조</button>
+            <button id="tab-manual" class="tab-btn">수동 구성</button>
           </div>
         </div>
 
@@ -168,6 +171,7 @@
               <button id="notation-toggle-btn" class="tool-btn" title="타블로 보기 전환: 세계 박스형 ⇄ Priest 선형">[ 보기: 박스형 ]</button>
               <button id="practice-toggle-btn" class="tool-btn highlight" title="다음 규칙 맞히기 연습">[ 연습 모드 ]</button>
               <button id="nd-practice-btn" class="tool-btn" title="자연연역 빈칸 채우기 — 가려진 규칙을 맞히기 (Fitch 탭)">[ ND 빈칸 ]</button>
+              <button id="print-btn" class="tool-btn" title="현재 화면(타블로·증명·반례)을 인쇄/PDF 저장">[ 인쇄·PDF ]</button>
             </div>
             <button id="download-svg-btn" class="tool-btn highlight" title="SVG 이미지 다운로드">[ SVG 저장 ]</button>
           </div>
@@ -204,6 +208,7 @@
         </div>
 
         <!-- 규칙 참조 뷰 -->
+        <div id="manual-container" class="tab-content" style="margin-top: 1rem; display: none;"></div>
         <div id="rules-container" class="tab-content" style="margin-top: 1rem; display: none;">
           <!-- Rule reference rendered here -->
         </div>
