@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;900&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&family=Noto+Sans+KR:wght@400;500;700;900&family=Fira+Code:wght@450;600&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/tools/tableau/assets/index-B34aqpPw.js"></script>
+  <script type="module" crossorigin src="/tools/tableau/assets/index-Ht83U36o.js"></script>
   <link rel="stylesheet" crossorigin href="/tools/tableau/assets/index-D5WiuHso.css">
 </head>
 <body>
@@ -51,8 +51,13 @@
             <option value="modal-k">기본 양상 논리 K (Basic Modal Logic K)</option>
             <option value="modal-n">비정상 양상 논리 N / S2 / S3 (Non-normal, Priest Ch. 4)</option>
             <option value="modal-l">L / S0.5 (Lemmon non-normal, Priest §4.4a)</option>
+            <option value="ck">양화 양상 CK — 상수 영역 (Priest Ch. 14, Barcan)</option>
+            <option value="vk">양화 양상 VK — 가변 영역, 존재 술어 E! (Priest Ch. 15)</option>
             <option value="cond-c">조건문 논리 C (Conditional Logic C, Priest Ch. 5)</option>
             <option value="cond-c+">조건문 논리 C+ (Conditional Logic C+)</option>
+            <option value="cond-s">조건문 논리 S — Lewis 구 모형 (의미론 검사기)</option>
+            <option value="cond-c1">조건문 논리 C1 — S + 강한 중심화 (Lewis)</option>
+            <option value="cond-c2">조건문 논리 C2 — S + 유일성 (Stalnaker, CEM)</option>
             <option value="ipc">직관주의 논리 (Intuitionistic Logic)</option>
             <optgroup label="간극·과잉·세계 / 관련성 (Priest Ch. 9–10)">
               <option value="k4">K4 — FDE + 세계</option>
@@ -77,6 +82,24 @@
             <label style="display:block; font-size:0.85rem;"><input type="checkbox" id="frame-eta"> η 연장성 — D: □A→◇A</label>
             <label style="display:block; font-size:0.85rem;"><input type="checkbox" id="frame-upsilon"> υ 보편성 — S5</label>
             <div id="frame-name" style="margin-top: 0.45rem; font-family: var(--font-code); font-weight: 700;"></div>
+          </div>
+          <div id="rel-systems" style="display: none; margin-top: 0.6rem; border: 1px solid var(--rule); padding: 0.6rem 0.8rem;">
+            <div style="font-size: 0.78rem; font-weight: 700; margin-bottom: 0.35rem;">관련성 체계 (Priest §10.4a.12 — 프레임 제약 C8–C16)</div>
+            <select id="rel-system-select" style="width:100%;">
+              <option value="B" selected>B — 제약 없음</option>
+              <option value="BX">BX = B + C13 (배중률)</option>
+              <option value="DW">DW = B + C8</option>
+              <option value="DWX">DWX = DW + C13</option>
+              <option value="TW">TW = DW + C9 + C10</option>
+              <option value="TWX">TWX = TW + C13</option>
+              <option value="T">T = TW + C11 + C14</option>
+              <option value="RW">RW = TW + C12</option>
+              <option value="R">R = RW + C11 (결정 불능)</option>
+              <option value="RWK">RWK = RW + C15</option>
+              <option value="RM">RM = R + C16</option>
+            </select>
+            <label style="display:block; font-size:0.85rem; margin-top:0.4rem;"><input type="checkbox" id="rel-rwww"> Rwww (모든 세계, 문제 3)</label>
+            <div style="font-size:0.75rem; color: var(--rule-strong); margin-top:0.3rem;">T9–T12 는 새 세계를 만들어 R 계열은 종료 보장이 없다 — 반복 심화 + 4초 예산, 부당성은 Sugihara 행렬·RM3 로 보조 판정.</div>
           </div>
           <div id="logic-info-box" class="logic-info-card"></div>
         </div>
