@@ -7,8 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;900&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&family=Noto+Sans+KR:wght@400;500;700;900&family=Fira+Code:wght@450;600&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/tools/tableau/assets/index-Dnw9swfq.js"></script>
-  <link rel="stylesheet" crossorigin href="/tools/tableau/assets/index-DvMCMAaC.css">
+  <script type="module" crossorigin src="/tools/tableau/assets/index-hyj2tf1J.js"></script>
+  <link rel="stylesheet" crossorigin href="/tools/tableau/assets/index-XH98O-Qi.css">
 </head>
 <body>
   <header>
@@ -35,11 +35,53 @@
     <!-- 왼쪽 조작 패널 -->
     <section class="control-sidebar">
       <div class="glass-panel">
+        <div class="form-group" style="margin-bottom: 0.9rem;">
+          <label for="textbook-select">교과서 표기 (Textbook Notation)</label>
+          <select id="textbook-select">
+            <option value="priest" selected>Priest — An Introduction to Non-Classical Logic</option>
+            <option value="garson">Garson — Modal Logic for Philosophers</option>
+            <option value="olp">Open Logic Project — Boxes and Diamonds</option>
+          </select>
+        </div>
+
         <div class="form-group">
           <label for="logic-select" id="i18n-logic-label">논리 체계 선택</label>
           <select id="logic-select">
-            <option value="classical" selected>고전 명제 논리 (Classical Propositional Logic)</option>
+            <option value="classical" selected>고전 논리 — 명제 + 1차 (Classical, propositional + first-order)</option>
             <option value="modal-k">기본 양상 논리 K (Basic Modal Logic K)</option>
+            <option value="modal-n">비정상 양상 논리 N / S2 / S3 (Non-normal, Priest Ch. 4)</option>
+            <option value="modal-l">L / S0.5 (Lemmon non-normal, Priest §4.4a)</option>
+            <option value="free">자유 논리 — 내부 영역 E, 존재 술어 E! (Priest Ch. 13)</option>
+            <option value="ck">양화 양상 CK — 상수 영역 (Priest Ch. 14, Barcan)</option>
+            <option value="tense">시제 논리 Kᵗ / CKᵗ — [F] [P] ⟨F⟩ ⟨P⟩ (Priest §3.6a, §14.6)</option>
+            <option value="cl">양화 비정상 CL — 상수 영역 L (Priest Ch. 18)</option>
+            <option value="cn">양화 비정상 CN — 상수 영역 N (Priest §18.5)</option>
+            <option value="vl">양화 비정상 VL — 가변 영역 L (Priest §18.5)</option>
+            <option value="vn">양화 비정상 VN — 가변 영역 N (Priest §18.5)</option>
+            <option value="vk">양화 양상 VK — 가변 영역, 존재 술어 E! (Priest Ch. 15)</option>
+            <option value="fuzzy-l">퍼지 논리 Łℵ — 연속값 (Priest Ch. 11, 검사기)</option>
+            <option value="fuzzy-g">퍼지 논리 L(Gödel) — t-norm Min (Priest §11.7a)</option>
+            <option value="fuzzy-p">퍼지 논리 L(Product) — t-norm 곱 (Priest §11.7a)</option>
+            <option value="cond-c">조건문 논리 C (Conditional Logic C, Priest Ch. 5)</option>
+            <option value="cond-c+">조건문 논리 C+ (Conditional Logic C+)</option>
+            <option value="cond-s">조건문 논리 S — Lewis 구 모형 (의미론 검사기)</option>
+            <option value="cond-c1">조건문 논리 C1 — S + 강한 중심화 (Lewis)</option>
+            <option value="cond-c2">조건문 논리 C2 — S + 유일성 (Stalnaker, CEM)</option>
+            <option value="ipc">직관주의 논리 (Intuitionistic Logic)</option>
+            <optgroup label="간극·과잉·세계 / 관련성 (Priest Ch. 9–10)">
+              <option value="k4">K4 — FDE + 세계</option>
+              <option value="n4">N4 — K4 + 비정상 세계</option>
+              <option value="k-star">K* — Routley star</option>
+              <option value="n-star">N* — star + 비정상 세계</option>
+              <option value="rel-b">B — 관련성 논리 (3항 관계)</option>
+            </optgroup>
+            <optgroup label="다치논리 (Priest Ch. 7–8)">
+              <option value="k3">K3 — 강한 클레이니 (gap)</option>
+              <option value="lp">LP — 역설의 논리 (glut)</option>
+              <option value="l3">Ł3 — 우카시에비치</option>
+              <option value="rm3">RM3</option>
+              <option value="fde">FDE — 1차 함의 (gap+glut)</option>
+            </optgroup>
           </select>
           <div id="frame-conditions" style="display: none; margin-top: 0.6rem; border: 1px solid var(--rule); padding: 0.6rem 0.8rem;">
             <div style="font-size: 0.78rem; font-weight: 700; margin-bottom: 0.35rem;">접근성 관계 조건 (Priest §3.2.3)</div>
@@ -48,7 +90,28 @@
             <label style="display:block; font-size:0.85rem;"><input type="checkbox" id="frame-tau"> τ 추이성 — 4: □A→□□A</label>
             <label style="display:block; font-size:0.85rem;"><input type="checkbox" id="frame-eta"> η 연장성 — D: □A→◇A</label>
             <label style="display:block; font-size:0.85rem;"><input type="checkbox" id="frame-upsilon"> υ 보편성 — S5</label>
+            <label id="frame-ncr-label" style="display:none; font-size:0.85rem;"><input type="checkbox" id="frame-ncr"> NC 부정성 제약 — 참 원자문장의 항은 존재 (Priest §16.3, VK·CKᵗ)</label>
+            <label id="frame-ci-label" style="display:none; font-size:0.85rem;"><input type="checkbox" id="frame-ci"> CI 우연적 동일성 — IIR 없음, 아바타 의미론 (Priest §17.2)</label>
+            <label id="frame-free-label" style="display:none; font-size:0.85rem;"><input type="checkbox" id="frame-free"> 자유 양화 — 내부 영역 E 위에서 양화, 존재 술어 E! (Priest §22.4)</label>
             <div id="frame-name" style="margin-top: 0.45rem; font-family: var(--font-code); font-weight: 700;"></div>
+          </div>
+          <div id="rel-systems" style="display: none; margin-top: 0.6rem; border: 1px solid var(--rule); padding: 0.6rem 0.8rem;">
+            <div style="font-size: 0.78rem; font-weight: 700; margin-bottom: 0.35rem;">관련성 체계 (Priest §10.4a.12 — 프레임 제약 C8–C16)</div>
+            <select id="rel-system-select" style="width:100%;">
+              <option value="B" selected>B — 제약 없음</option>
+              <option value="BX">BX = B + C13 (배중률)</option>
+              <option value="DW">DW = B + C8</option>
+              <option value="DWX">DWX = DW + C13</option>
+              <option value="TW">TW = DW + C9 + C10</option>
+              <option value="TWX">TWX = TW + C13</option>
+              <option value="T">T = TW + C11 + C14</option>
+              <option value="RW">RW = TW + C12</option>
+              <option value="R">R = RW + C11 (결정 불능)</option>
+              <option value="RWK">RWK = RW + C15</option>
+              <option value="RM">RM = R + C16</option>
+            </select>
+            <label style="display:block; font-size:0.85rem; margin-top:0.4rem;"><input type="checkbox" id="rel-rwww"> Rwww (모든 세계, 문제 3)</label>
+            <div style="font-size:0.75rem; color: var(--rule-strong); margin-top:0.3rem;">T9–T12 는 새 세계를 만들어 R 계열은 종료 보장이 없다 — 반복 심화 + 4초 예산, 부당성은 Sugihara 행렬·RM3 로 보조 판정.</div>
           </div>
           <div id="logic-info-box" class="logic-info-card"></div>
         </div>
@@ -78,7 +141,10 @@
 
       <div class="glass-panel">
         <label style="margin-bottom: 0.75rem; display: block;" id="i18n-presets-header">예제 프리셋</label>
-        <div id="presets-mount"></div>
+        <div style="font-size:0.78rem; color: var(--rule-strong); margin: 0.2rem 0 0.5rem;">풀어본 문제 <span id="solved-count">0</span> <button type="button" id="solved-reset-btn" class="tool-btn" style="font-size:0.7rem; padding:0.1rem 0.4rem;">[ 초기화 ]</button></div>
+          <div style="margin: 0.2rem 0 0.5rem;"><button type="button" id="problem-set-btn" class="tool-btn highlight" title="장별 연습문제를 순서대로 풀고 채점">[ 문제집 모드 ]</button> <span id="problem-set-score" style="font-size:0.78rem; color: var(--rule-strong);"></span></div>
+          <div id="problem-panel" class="glass-panel" style="display:none; padding:0.9rem; margin-bottom:0.6rem;"></div>
+          <div id="presets-mount"></div>
       </div>
     </section>
 
@@ -88,7 +154,8 @@
       <div class="glass-panel">
         <div class="results-header">
           <div class="result-status-hero">
-            <div id="status-badge" class="status-badge empty">대기 중 (Ready)</div>
+            <div id="status-badge" class="status-badge empty" role="status" aria-live="polite">대기 중 (Ready)</div>
+            <div id="evidence-badge" class="evidence-badge" style="font-size:0.78rem; margin-top:0.3rem; color: var(--rule-strong);"></div>
           </div>
           <div class="tab-buttons">
             <button id="tab-svg" class="tab-btn active" aria-selected="true">타블로 트리</button>
@@ -97,6 +164,8 @@
             <button id="tab-latex" class="tab-btn">LaTeX</button>
             <button id="tab-trace" class="tab-btn">단계 추적</button>
             <button id="tab-rules" class="tab-btn">규칙 참조</button>
+            <button id="tab-manual" class="tab-btn">수동 구성</button>
+            <button id="tab-model" class="tab-btn">반례 구성</button>
           </div>
         </div>
 
@@ -115,6 +184,11 @@
               <button id="pb-all-btn" class="tool-btn" title="전체 표시">[ 전체 ]</button>
               <button id="notation-toggle-btn" class="tool-btn" title="타블로 보기 전환: 세계 박스형 ⇄ Priest 선형">[ 보기: 박스형 ]</button>
               <button id="practice-toggle-btn" class="tool-btn highlight" title="다음 규칙 맞히기 연습">[ 연습 모드 ]</button>
+              <button id="nd-practice-btn" class="tool-btn" title="자연연역 빈칸 채우기 — 가려진 규칙을 맞히기 (Fitch 탭)">[ ND 빈칸 ]</button>
+              <button id="nd-write-btn" class="tool-btn" title="자연연역 직접 작성 — 내가 쓴 Fitch 증명을 코어 검증기로 검사 (Fitch 탭)">[ ND 작성 ]</button>
+              <button id="print-btn" class="tool-btn" title="현재 화면(타블로·증명·반례)을 인쇄/PDF 저장">[ 인쇄·PDF ]</button>
+              <button id="cert-btn" class="tool-btn" title="판정·근거 등급·증명·반례를 JSON 인증서로 저장 (tests/verify-certificate.ts 로 독립 검사)">[ 인증서 JSON ]</button>
+              <button id="tptp-btn" class="tool-btn" title="TPTP FOF 형식으로 내보내기 / 가져오기 (명제·1차 고전 논리)">[ TPTP ]</button>
             </div>
             <button id="download-svg-btn" class="tool-btn highlight" title="SVG 이미지 다운로드">[ SVG 저장 ]</button>
           </div>
@@ -127,6 +201,25 @@
         <!-- 자연연역 (Fitch Style) 뷰 -->
         <div id="fitch-container-mount" class="tab-content" style="margin-top: 1rem; display: none;">
           <!-- Fitch Natural Deduction rendered here -->
+        </div>
+        <div id="tptp-panel" class="glass-panel" style="display: none; margin-top: 1rem;">
+          <div style="font-size: 0.85rem; margin-bottom: 0.3rem;" id="tptp-help"></div>
+          <textarea id="tptp-text" spellcheck="false" style="width: 100%; min-height: 7rem; font-family: var(--mono, monospace); font-size: 0.9rem; padding: 0.5rem;"></textarea>
+          <div style="display: flex; gap: 0.5rem; margin-top: 0.4rem; flex-wrap: wrap; align-items: center;">
+            <button id="tptp-import" class="tool-btn highlight">[ 가져오기 → 판정 ]</button>
+            <button id="tptp-copy" class="tool-btn">[ 복사 ]</button>
+            <span id="tptp-result" style="font-size: 0.85rem;"></span>
+          </div>
+        </div>
+        <div id="nd-write-panel" class="glass-panel" style="display: none; margin-top: 1rem;">
+          <div style="font-size: 0.85rem; margin-bottom: 0.4rem;" id="nd-write-help"></div>
+          <textarea id="nd-write-text" spellcheck="false" style="width: 100%; min-height: 12rem; font-family: var(--mono, monospace); font-size: 0.95rem; padding: 0.5rem;"></textarea>
+          <div style="display: flex; gap: 0.5rem; margin-top: 0.4rem; flex-wrap: wrap; align-items: center;">
+            <button id="nd-write-check" class="tool-btn highlight">[ 검사 ]</button>
+            <button id="nd-write-template" class="tool-btn">[ 전제 채우기 ]</button>
+            <button id="nd-write-show" class="tool-btn">[ 엔진 증명 보기 ]</button>
+            <span id="nd-write-result" style="font-size: 0.9rem;"></span>
+          </div>
         </div>
 
         <!-- ASCII 텍스트 트리 뷰 -->
@@ -151,6 +244,8 @@
         </div>
 
         <!-- 규칙 참조 뷰 -->
+        <div id="manual-container" class="tab-content" style="margin-top: 1rem; display: none;"></div>
+        <div id="model-container" class="tab-content" style="margin-top: 1rem; display: none;"></div>
         <div id="rules-container" class="tab-content" style="margin-top: 1rem; display: none;">
           <!-- Rule reference rendered here -->
         </div>
