@@ -7,8 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;900&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&family=Noto+Sans+KR:wght@400;500;700;900&family=Fira+Code:wght@450;600&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/tools/tableau/assets/index-iPjPNoVY.js"></script>
-  <link rel="stylesheet" crossorigin href="/tools/tableau/assets/index-ZT4rp9el.css">
+  <script type="module" crossorigin src="/tools/tableau/assets/index-DCTmrs_1.js"></script>
+  <link rel="stylesheet" crossorigin href="/tools/tableau/assets/index-o6twAxk9.css">
 </head>
 <body>
   <header>
@@ -51,7 +51,9 @@
             <option value="modal-k">기본 양상 논리 K (Basic Modal Logic K)</option>
             <option value="modal-n">비정상 양상 논리 N / S2 / S3 (Non-normal, Priest Ch. 4)</option>
             <option value="modal-l">L / S0.5 (Lemmon non-normal, Priest §4.4a)</option>
+            <option value="free">자유 논리 — 내부 영역 E, 존재 술어 E! (Priest Ch. 13)</option>
             <option value="ck">양화 양상 CK — 상수 영역 (Priest Ch. 14, Barcan)</option>
+            <option value="tense">시제 논리 Kᵗ / CKᵗ — [F] [P] ⟨F⟩ ⟨P⟩ (Priest §3.6a, §14.6)</option>
             <option value="vk">양화 양상 VK — 가변 영역, 존재 술어 E! (Priest Ch. 15)</option>
             <option value="cond-c">조건문 논리 C (Conditional Logic C, Priest Ch. 5)</option>
             <option value="cond-c+">조건문 논리 C+ (Conditional Logic C+)</option>
@@ -143,6 +145,7 @@
         <div class="results-header">
           <div class="result-status-hero">
             <div id="status-badge" class="status-badge empty">대기 중 (Ready)</div>
+            <div id="evidence-badge" class="evidence-badge" style="font-size:0.78rem; margin-top:0.3rem; color: var(--rule-strong);"></div>
           </div>
           <div class="tab-buttons">
             <button id="tab-svg" class="tab-btn active" aria-selected="true">타블로 트리</button>
@@ -152,6 +155,7 @@
             <button id="tab-trace" class="tab-btn">단계 추적</button>
             <button id="tab-rules" class="tab-btn">규칙 참조</button>
             <button id="tab-manual" class="tab-btn">수동 구성</button>
+            <button id="tab-model" class="tab-btn">반례 구성</button>
           </div>
         </div>
 
@@ -172,6 +176,7 @@
               <button id="practice-toggle-btn" class="tool-btn highlight" title="다음 규칙 맞히기 연습">[ 연습 모드 ]</button>
               <button id="nd-practice-btn" class="tool-btn" title="자연연역 빈칸 채우기 — 가려진 규칙을 맞히기 (Fitch 탭)">[ ND 빈칸 ]</button>
               <button id="print-btn" class="tool-btn" title="현재 화면(타블로·증명·반례)을 인쇄/PDF 저장">[ 인쇄·PDF ]</button>
+              <button id="cert-btn" class="tool-btn" title="판정·근거 등급·증명·반례를 JSON 인증서로 저장 (tests/verify-certificate.ts 로 독립 검사)">[ 인증서 JSON ]</button>
             </div>
             <button id="download-svg-btn" class="tool-btn highlight" title="SVG 이미지 다운로드">[ SVG 저장 ]</button>
           </div>
@@ -209,6 +214,7 @@
 
         <!-- 규칙 참조 뷰 -->
         <div id="manual-container" class="tab-content" style="margin-top: 1rem; display: none;"></div>
+        <div id="model-container" class="tab-content" style="margin-top: 1rem; display: none;"></div>
         <div id="rules-container" class="tab-content" style="margin-top: 1rem; display: none;">
           <!-- Rule reference rendered here -->
         </div>
