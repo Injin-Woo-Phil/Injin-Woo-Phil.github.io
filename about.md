@@ -24,7 +24,7 @@ SungKyunKwan University, South Korea, 2026.
 # Professional Service
 - 2025– Institute for Philosophy and Liberal Arts Education, Sungkyunkwan University, Research Assistant
 - 2025– The Academy of Mobility Humanities, Konkuk University, HK Researcher
-- 2025– Korean Association for Logic, Administrative Assistant
+- 2025– Korean Association for Logic, Secretary
 
 
 <dl>

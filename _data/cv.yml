@@ -131,13 +131,13 @@ teaching:
 
 service:
   - org: { en: "Institute for Philosophy and Liberal Arts Education, Sungkyunkwan University", ko: "성균관대학교 철학과 인문교육 연구소" }
-    role: { en: "Administrative Assistant", ko: "간사" }
+    role: { en: "Research Assistant", ko: "간사" }
     since: "2025 –"
   - org: { en: "The Academy of Mobility Humanities, Konkuk University", ko: "건국대학교 모빌리티인문학 연구원" }
     role: { en: "HK researcher", ko: "HK 연구원" }
     since: "2025 –"
   - org: { en: "Korean Association for Logic", ko: "한국논리학회" }
-    role: { en: "Administrative Assistant", ko: "총무간사" }
+    role: { en: "Secretary", ko: "총무간사" }
     since: "2025 –"
 
 awards:
