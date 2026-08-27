@@ -1,44 +1,37 @@
 ---
 layout: default
 ---
+{% assign lang = "ko" -%}
+{% assign cv = site.data.cv -%}
+{% assign today = site.time | date: "%Y%m%d" | plus: 0 -%}
+<!-- 내용은 _data/cv.yml 한 곳에서 관리. 여기 말고 거기서 고칠 것.
+     Upcoming / Talks split on each venue's `ymd` vs the build date. -->
 
 # 발표
 
 ## 다가오는 일정
-
-#### Simonelli on Assertibility of pure LLMs <span class="entry-links">[핸드아웃](/assets/handout-sws-ko.pdf) · [Handout](/assets/handout-sws-en.pdf)</span>
-- **Writing Sample Workshop**, 2026년 8월, (연세대학교)
-- **제2회 성균관대-나고야대 철학 교류회**, 2026년 10월, (일본 나고야대학교)
-
-#### Infrastructural Violence in State-Run Dating Apps <span class="entry-links">[초록](/assets/abstract-dating-apps.pdf)</span>
-- [Global Mobility Humanities Conference](https://www.mobilityhumanities.net), 2026년 10월, (건국대학교)
-
-
+{% for t in cv.presentations -%}
+{% assign n = 0 %}{% for v in t.venues %}{% if v.ymd >= today %}{% assign n = n | plus: 1 %}{% endif %}{% endfor -%}
+{% if n > 0 -%}
+#### {{ t.title[lang] }}{% if t.links %} <span class="entry-links">{% for l in t.links %}[{{ l.label[lang] }}]({{ l.url }}){% unless forloop.last %} · {% endunless %}{% endfor %}</span>{% endif %}
+{% assign sorted = t.venues | sort: "ymd" -%}
+{% for v in sorted %}{% if v.ymd >= today -%}
+- **{% if v.url %}[{{ v.place[lang] }}]({{ v.url }}){% else %}{{ v.place[lang] }}{% endif %}**{% if v.country.en != "South Korea" %}, {{ v.country[lang] }}{% endif %}, {{ v.date[lang] }}
+{% endif %}{% endfor %}
+{% endif -%}
+{% endfor %}
 ## 학술 발표
-
-#### *Simonelli on Assertibility of pure LLMs* <span class="entry-links">[핸드아웃](/assets/handout-sws-ko.pdf)</span>
-- **수선철학회 Reboot** 2026년 7월, (성균관대학교)
-- **[2026년 과학철학회 정기 학술대회](https://philsci.or.kr/2026conference/)**, 2026년 7월, (국립과천과학관)
-
-#### *환원적 물질주의 하에서 사회적 집단의 지시체에 관하여* <span class="entry-links">[슬라이드](/assets/slides-social-groups-2026.pdf)</span>
-- **"철학과인문교육" 연구소 제25회 논문발표회**, 2026년 8월, (성균관대학교)
-- **[성균관대-나고야대 철학교류회](https://sites.google.com/site/masashikasaki2/イベント/philosophical-interchange-between-sungkyunkwan-and-nagoya-university?authuser=0)**, 2025년 11월, (일본 나고야대학교)
-
-#### *Augmented Intellect: AI as Extended Cognition in Scientific Understanding*
-\([초록](https://drive.google.com/file/d/1Vru5FGh3DHx4KqBMCOX6K1_e1LhPamBz/view?usp=sharing)\)
-- **[2025 서울 머신러닝철학 워크숍](https://25swpml.wordpress.com)**, 2025년 2월, (서울대학교)
-- **[2025 글로벌 모빌리티인문학 컨퍼런스](https://www.mobilityhumanities.net/conference-programme)**, 2025년 12월, (건국대학교)
-
-#### *Frenemies in the Same Boat: A Critical Assessment of Explanatory Voluntarism and Its Implications for the DRK view of Scientific Understanding*
-\([초록](https://drive.google.com/file/d/1iG0_6UtSLpMvS_fOW4S5rD6et64_VZ8f/view?usp=sharing)\)
-- **[APPSA-LMPST 대만 2025](https://appsa2025taiwan.mystrikingly.com)**, 2025년 6월 (대만 국립양명교통대학교)
-- **[2025 한국과학철학회 정기학술대회](https://philsci.or.kr/2025년-정기학술대회-발표자-모집/)**, 2025년 7월 (서울대학교)
-
-#### *'절름발이'는 왜 부도덕한 표현인가?*
-\([초고](https://drive.google.com/file/d/1r705D42EDAfv6ttxX9B6qoSm49suYt_F/view?usp=share_link)\)
-- **[2025년 숙명인문학연구소 제12회 정기학술대회](http://www.srih.kr/bbs/board.php?tbl=bbs41)** \<신체적 소수자와의 공감과 공존\>, 2025년 6월, (숙명여자대학교)
-- **[제21회 한국분석철학회 대학원생분과 워크숍](https://sites.google.com/view/ksap-grad-division/biannual-workshop/past-workshops?authuser=0#h.p_RrJtpHCw5k5v)**, 2025년 8월, (서울대학교)
-
+{% for t in cv.presentations -%}
+{% assign n = 0 %}{% for v in t.venues %}{% if v.ymd < today %}{% assign n = n | plus: 1 %}{% endif %}{% endfor -%}
+{% if n > 0 -%}
+#### *{{ t.title[lang] }}*{% if t.links %} <span class="entry-links">{% for l in t.links %}[{{ l.label[lang] }}]({{ l.url }}){% unless forloop.last %} · {% endunless %}{% endfor %}</span>{% endif %}
+{% for v in t.venues %}{% if v.ymd < today -%}
+- **{% if v.url %}[{{ v.place[lang] }}]({{ v.url }}){% else %}{{ v.place[lang] }}{% endif %}**{% if v.country.en != "South Korea" %}, {{ v.country[lang] }}{% endif %}, {{ v.date[lang] }}
+{% endif %}{% endfor %}
+{% endif -%}
+{% endfor %}
 ## 코멘트
-- Annalisa Coliva, _Social and Applied Hinge Epistemology_ 에 대한 코멘트
-	- **AI 인식론 세미나**, 2025년 2월 (연세대학교)
+{% for c in cv.comments -%}
+- {{ c.topic[lang] }}
+	- **{{ c.place[lang] }}**, {{ c.date[lang] }}
+{% endfor %}

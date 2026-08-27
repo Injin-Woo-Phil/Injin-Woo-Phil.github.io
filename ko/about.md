@@ -1,6 +1,8 @@
 ---
 layout: default
 ---
+{% assign lang = "ko" -%}
+{% assign cv = site.data.cv -%}
 
 # 소개
 
@@ -13,23 +15,13 @@ layout: default
 사회존재론, 사회언어철학, 과학적 이해, 피론주의, 실학.
 
 # 학력
-
-철학 학사
-한문학 학사
-
-성균관대학교, 대한민국, 2024.
-
-철학 석사
-성균관대학교, 대한민국, 2026.
-
-철학 박사과정
-성균관대학교, 대한민국, 2026–.
-
+{% for e in cv.education -%}
+- {{ e.degree[lang] }}, {{ e.school[lang] }}, {{ e.year }}.
+{% endfor %}
 # 학술 봉사
-- 2025– 성균관대학교 철학과 인문교육 연구소, 간사
-- 2025– 건국대학교 모빌리티인문학 연구원, HK 연구원
-- 2025– 한국논리학회, 총무간사
-
+{% for s in cv.service -%}
+- {{ s.since }} {{ s.org[lang] }}, {{ s.role[lang] }}.
+{% endfor %}
 <dl>
 <dt>이름</dt>
 <dd>우인진, 禹仁眞, Injin Woo.</dd>

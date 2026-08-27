@@ -1,5 +1,6 @@
-# Single source for the CV. Feeds both the web page (cv.md / ko/cv.md via
-# Liquid) and the downloadable PDF (bin/build_cv.rb -> XeLaTeX). Edit here only.
+# Single source for the CV and every list on the site: cv.md, research.md,
+# presentation.md, about.md (and their ko/ twins, via Liquid) plus the
+# downloadable PDF (bin/build_cv.rb -> XeLaTeX). Edit here only.
 
 name: { en: "Injin Woo", ko: "우인진" }
 email: "jaegoi@skku.edu"
@@ -54,68 +55,114 @@ publications:
     gloss_en: "Beyond the Opposition of Empiricism and Rationalism: The Historical Significance of the Empirical Stance"
     journal: { en: "Modern Philosophy", ko: "근대철학" }
     issue: "25"
+    pages: "113–143"
+    page: "/papers/woo2025-empirical-stance/"
+    preprint: "/assets/woo2025-empirical-stance-preprint.pdf"
 
+# Work in progress (research page only). Markdown allowed.
+wip:
+  - { en: "A paper on **Materialism in Social Ontology**.", ko: "**사회존재론에서의 유물론**에 관한 논문." }
+  - { en: "A paper on **AI and Inferentialism**.", ko: "**AI와 추론주의**에 관한 논문." }
+  - { en: "A paper on **Scientific Understanding**.", ko: "**과학적 이해**에 관한 논문." }
+  - { en: "A paper on **Stance Voluntarism applied to the History of Philosophy**.", ko: "**철학사에 적용된 입장 자발주의(Stance Voluntarism)**에 관한 논문." }
+
+# Each venue carries `ymd` (YYYYMMDD as an integer; day 01 when unknown).
+# The presentation page splits Upcoming / Talks by comparing it with the
+# build date, so the split is only as fresh as the last GitHub Pages build.
+# `links` (handout, slides, abstract) show on the presentation page only.
 presentations:
   - title: { en: "Simonelli on Assertibility of pure LLMs", ko: "Simonelli on Assertibility of pure LLMs" }
+    links:
+      - { label: { en: "Handout", ko: "Handout" }, url: "/assets/handout-sws-en.pdf" }
+      - { label: { en: "핸드아웃", ko: "핸드아웃" }, url: "/assets/handout-sws-ko.pdf" }
     venues:
       - place: { en: "2nd Philosophical Interchange between Sungkyunkwan and Nagoya University, Nagoya University", ko: "제2회 성균관대-나고야대 철학 교류회, 나고야대학교" }
         country: { en: "Japan", ko: "일본" }
         date: { en: "Oct 2026", ko: "2026년 10월" }
+        ymd: 20261024
       - place: { en: "Writing Sample Workshop, Yonsei University", ko: "Writing Sample Workshop, 연세대학교" }
         country: { en: "South Korea", ko: "대한민국" }
         date: { en: "Aug 2026", ko: "2026년 8월" }
+        ymd: 20260814
       - place: { en: "2026 KSPS Annual Conference, Gwacheon National Science Museum", ko: "2026년 과학철학회 정기 학술대회, 국립과천과학관" }
         country: { en: "South Korea", ko: "대한민국" }
         url: "https://philsci.or.kr/2026conference/"
         date: { en: "July 2026", ko: "2026년 7월" }
+        ymd: 20260701
       - place: { en: "Suseon Philosophy Society Reboot, Sungkyunkwan University", ko: "수선철학회 Reboot, 성균관대학교" }
         country: { en: "South Korea", ko: "대한민국" }
         date: { en: "July 2026", ko: "2026년 7월" }
+        ymd: 20260701
   - title: { en: "Infrastructural Violence in State-Run Dating Apps", ko: "Infrastructural Violence in State-Run Dating Apps" }
+    links:
+      - { label: { en: "Abstract", ko: "초록" }, url: "/assets/abstract-dating-apps.pdf" }
     venues:
       - place: { en: "Global Mobility Humanities Conference, Konkuk University", ko: "글로벌 모빌리티인문학 컨퍼런스, 건국대학교" }
         country: { en: "South Korea", ko: "대한민국" }
         url: "https://www.mobilityhumanities.net"
         date: { en: "Oct 2026", ko: "2026년 10월" }
+        ymd: 20261029
   - title: { en: "On the Reference of Social Groups under Reductive Materialism", ko: "환원적 물질주의 하에서 사회적 집단의 지시체에 관하여" }
+    links:
+      - { label: { en: "Slides", ko: "슬라이드" }, url: "/assets/slides-social-groups-2026.pdf" }
     venues:
       - place: { en: "25th Colloquium of the Institute for Philosophy and Liberal Arts Education, Sungkyunkwan University", ko: "“철학과인문교육” 연구소 제25회 논문발표회, 성균관대학교" }
         country: { en: "South Korea", ko: "대한민국" }
         date: { en: "Aug 2026", ko: "2026년 8월" }
+        ymd: 20260807
       - place: { en: "Philosophical Interchange between Sungkyunkwan and Nagoya University, Nagoya University", ko: "성균관대-나고야대 철학교류회, 나고야대학교" }
         country: { en: "Japan", ko: "일본" }
         url: "https://sites.google.com/site/masashikasaki2/イベント/philosophical-interchange-between-sungkyunkwan-and-nagoya-university?authuser=0"
         date: { en: "Nov 2025", ko: "2025년 11월" }
+        ymd: 20251101
   - title: { en: "Augmented Intellect: AI as Extended Cognition in Scientific Understanding", ko: "Augmented Intellect: AI as Extended Cognition in Scientific Understanding" }
+    links:
+      - { label: { en: "Abstract", ko: "초록" }, url: "https://drive.google.com/file/d/1Vru5FGh3DHx4KqBMCOX6K1_e1LhPamBz/view?usp=sharing" }
     venues:
       - place: { en: "2025 Global Mobility Humanities Conference, Konkuk University", ko: "2025 글로벌 모빌리티인문학 컨퍼런스, 건국대학교" }
         country: { en: "South Korea", ko: "대한민국" }
         url: "https://www.mobilityhumanities.net/conference-programme"
         date: { en: "Dec 2025", ko: "2025년 12월" }
+        ymd: 20251201
       - place: { en: "2025 Seoul Workshop in Philosophy of Machine Learning, Seoul National University", ko: "2025 서울 머신러닝철학 워크숍, 서울대학교" }
         country: { en: "South Korea", ko: "대한민국" }
         url: "https://25swpml.wordpress.com"
         date: { en: "Feb 2025", ko: "2025년 2월" }
+        ymd: 20250201
   - title: { en: "Frenemies in the Same Boat: A Critical Assessment of Explanatory Voluntarism and Its Implications for the DRK View of Scientific Understanding", ko: "Frenemies in the Same Boat: A Critical Assessment of Explanatory Voluntarism and Its Implications for the DRK view of Scientific Understanding" }
+    links:
+      - { label: { en: "Abstract", ko: "초록" }, url: "https://drive.google.com/file/d/1iG0_6UtSLpMvS_fOW4S5rD6et64_VZ8f/view?usp=sharing" }
     venues:
       - place: { en: "KSPS 2025 Annual Conference, Seoul National University", ko: "2025 한국과학철학회 정기학술대회, 서울대학교" }
         country: { en: "South Korea", ko: "대한민국" }
         url: "https://philsci.or.kr/2025년-정기학술대회-발표자-모집/"
         date: { en: "July 2025", ko: "2025년 7월" }
+        ymd: 20250701
       - place: { en: "APPSA-LMPST Taiwan 2025, National Yang Ming Chiao Tung University", ko: "APPSA-LMPST 대만 2025, 국립양명교통대학교" }
         country: { en: "Taiwan", ko: "대만" }
         url: "https://appsa2025taiwan.mystrikingly.com"
         date: { en: "June 2025", ko: "2025년 6월" }
+        ymd: 20250601
   - title: { en: "‘절름발이’는 왜 부도덕한 표현인가? (Why is the term ‘lame’ considered morally wrong?)", ko: "‘절름발이’는 왜 부도덕한 표현인가?" }
+    links:
+      - { label: { en: "Draft (in Korean)", ko: "초고" }, url: "https://drive.google.com/file/d/1r705D42EDAfv6ttxX9B6qoSm49suYt_F/view?usp=share_link" }
     venues:
       - place: { en: "The 21st KSAP Grad Division Workshop, Seoul National University", ko: "제21회 한국분석철학회 대학원생분과 워크숍, 서울대학교" }
         country: { en: "South Korea", ko: "대한민국" }
         url: "https://sites.google.com/view/ksap-grad-division/biannual-workshop/past-workshops?authuser=0"
         date: { en: "Aug 2025", ko: "2025년 8월" }
+        ymd: 20250801
       - place: { en: "Sookmyung Research Institute of Humanities 12th Conference, Sookmyung Women’s University", ko: "숙명인문학연구소 제12회 정기학술대회, 숙명여자대학교" }
         country: { en: "South Korea", ko: "대한민국" }
         url: "http://www.srih.kr/bbs/board.php?tbl=bbs41"
         date: { en: "June 2025", ko: "2025년 6월" }
+        ymd: 20250601
+
+# Comments / responses (presentation page only).
+comments:
+  - topic: { en: "Comments on Annalisa Coliva, *Social and Applied Hinge Epistemology*", ko: "Annalisa Coliva, *Social and Applied Hinge Epistemology*에 대한 코멘트" }
+    place: { en: "AI Epistemology Seminar, Yonsei University", ko: "AI 인식론 세미나, 연세대학교" }
+    date: { en: "Feb 2025", ko: "2025년 2월" }
 
 teaching:
   ta_header: { en: "Teaching Assistant, Sungkyunkwan University", ko: "조교, 성균관대학교" }

@@ -1,6 +1,8 @@
 ---
 layout: default
 ---
+{% assign lang = "en" -%}
+{% assign cv = site.data.cv -%}
 
 # About Me
 
@@ -13,23 +15,13 @@ You can contact me at jaegoi53@gmail.com
 Social Ontology, Social Philosophy of Language, Scientific Understanding, Pyrrhonism, Silhak.
 
 # Education
-
-B.A. Philosophy
-B.A. Korean Literature in Classical Chinese
-SungKyunKwan University, South Korea, 2024.
-
-M.A. Philosophy
-SungKyunKwan University, South Korea, 2026.
-
-Ph.D. student, Philosophy
-SungKyunKwan University, South Korea, 2026–.
-
+{% for e in cv.education -%}
+- {{ e.degree[lang] }}, {{ e.school[lang] }}, {{ e.location[lang] }}, {{ e.year }}.
+{% endfor %}
 # Professional Service
-- 2025– Institute for Philosophy and Liberal Arts Education, Sungkyunkwan University, Research Assistant
-- 2025– The Academy of Mobility Humanities, Konkuk University, HK Researcher
-- 2025– Korean Association for Logic, Secretary
-
-
+{% for s in cv.service -%}
+- {{ s.since }} {{ s.org[lang] }}, {{ s.role[lang] }}.
+{% endfor %}
 <dl>
 <dt>Name</dt>
 <dd>우인진, 禹仁眞, Injin Woo.</dd>
