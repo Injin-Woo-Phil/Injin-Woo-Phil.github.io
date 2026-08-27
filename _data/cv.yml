@@ -121,12 +121,14 @@ teaching:
     - name: { en: "Academic Writing (학술적 글쓰기)", ko: "학술적 글쓰기" }
       term: { en: "Spring 2024 – Spring 2025", ko: "2024년 봄 – 2025년 봄" }
     - name: { en: "Logical Thinking (논리적 사고)", ko: "논리적 사고" }
-      term: { en: "Fall 2024 – present", ko: "2024년 가을 – 현재" }
+      term: { en: "Fall 2024 – Spring 2025, Spring 2026 – present", ko: "2024년 가을 – 2025년 봄, 2026년 봄 – 현재" }
+    - name: { en: "Formal Logic (형식적 논리학)", ko: "형식적 논리학" }
+      term: { en: "Spring 2026 – present", ko: "2026년 봄 – 현재" }
     - name: { en: "Data Analysis and Situational Judgement (자료해석과 상황판단)", ko: "자료해석과 상황판단" }
       term: { en: "Spring 2024", ko: "2024년 봄" }
   short_course:
     header: { en: "Short Course Instructor", ko: "단기 강좌 강사" }
-    detail: { en: "성균관대 AICOSS & 송파구청 채움교실 (잠신고등학교): AI의 철학적 이해", ko: "성균관대 AICOSS & 송파구청 채움교실 (잠신고등학교): AI의 철학적 이해" }
+    detail: { en: "SKKU AICOSS & Songpa-gu Chaeum Class (Jamsin High School): A Philosophical Understanding of AI", ko: "성균관대 AICOSS & 송파구청 채움교실 (잠신고등학교): AI의 철학적 이해" }
     duration: { en: "5 days", ko: "5일간" }
 
 service:
