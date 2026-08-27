@@ -23,7 +23,7 @@ SECTIONS = {
 
 def esc(s); s.to_s.gsub(/([&%$#_])/) { '\\' + $1 }; end
 def url_esc(u); u.to_s.gsub(/[&%#]/) { |m| '\\' + m }; end
-def wl(u); u ? ' \,\href{' + url_esc(u) + '}{\footnotesize\textcolor{link}{$\nearrow$}}' : ''; end
+def wl(t, u); u ? '\href{' + url_esc(u) + '}{\textcolor{link}{' + t + '}}' : t; end
 def L(h, lang); h.is_a?(Hash) ? h[lang] : h; end
 def e(h, lang); esc(L(h, lang)); end
 def it(s); '\textit{' + s + '}'; end
@@ -69,8 +69,8 @@ def build(lang)
   th_head   = lang == 'ko' ? '석사학위논문' : 'M.A. Thesis'
   advisor   = lang == 'ko' ? '지도교수' : 'Advisor'
   committee = lang == 'ko' ? '심사위원' : 'Committee'
-  adv = e(th['advisor']['name'], lang) + wl(th['advisor']['url'])
-  comm = th['committee'].map { |c| e(c['name'], lang) + wl(c['url']) }.join(', ')
+  adv = wl(e(th['advisor']['name'], lang), th['advisor']['url'])
+  comm = th['committee'].map { |c| wl(e(c['name'], lang), c['url']) }.join(', ')
   out << head(th_head, esc(th['date']))
   out << line(e(th['title'], lang), '')
   out << sub("#{advisor}: #{adv} \\quad #{committee}: #{comm}", '')
@@ -78,7 +78,7 @@ def build(lang)
   # publications
   out << sec(s[:publications])
   d['publications'].each do |p|
-    out << head(esc(p['title']) + wl(p['url']), esc(p['date']))
+    out << head(wl(esc(p['title']), p['url']), esc(p['date']))
     out << line(esc(p['gloss_en']), '') if lang == 'en' && p['gloss_en']
     jr = esc(p['journal']['ko'])
     jr = "#{jr} (#{esc(p['journal']['en'])})" if lang == 'en'
@@ -91,9 +91,8 @@ def build(lang)
     out << GAP if i > 0
     out << head(e(t['title'], lang), '')
     t['venues'].each do |v|
-      place = e(v['place'], lang)
+      place = wl(e(v['place'], lang), v['url'])
       place += ", #{e(v['country'], lang)}" if v['country']
-      place += wl(v['url']) if v['url']
       out << sub(place, e(v['date'], lang))
     end
   end
