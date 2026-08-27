@@ -18,6 +18,10 @@ areas:
     ko: "사회존재론, 과학적 이해, 한국철학사"
 
 education:
+  - degree: { en: "Ph.D. student in Philosophy", ko: "철학 박사과정" }
+    school: { en: "Sungkyunkwan University", ko: "성균관대학교" }
+    location: { en: "Seoul, South Korea", ko: "서울, 대한민국" }
+    year: "2026 –"
   - degree: { en: "M.A. in Philosophy", ko: "철학 석사" }
     school: { en: "Sungkyunkwan University", ko: "성균관대학교" }
     location: { en: "Seoul, South Korea", ko: "서울, 대한민국" }
@@ -129,7 +133,7 @@ teaching:
   short_course:
     header: { en: "Short Course Instructor", ko: "단기 강좌 강사" }
     detail: { en: "SKKU AICOSS & Songpa-gu Chaeum Class (Jamsin High School): A Philosophical Understanding of AI", ko: "성균관대 AICOSS & 송파구청 채움교실 (잠신고등학교): AI의 철학적 이해" }
-    duration: { en: "5 days", ko: "5일간" }
+    duration: { en: "5 days, 2025", ko: "5일간, 2025년" }
 
 service:
   - org: { en: "Institute for Philosophy and Liberal Arts Education, Sungkyunkwan University", ko: "성균관대학교 철학과 인문교육 연구소" }
