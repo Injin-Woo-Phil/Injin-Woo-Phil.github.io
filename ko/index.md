@@ -20,5 +20,5 @@ layout: default
 </div>
 
 <div class="intro">
-  <p class="contact">연락처 — jaegoi53@gmail.com</p>
+  <p class="contact">연락처 — {{ site.data.cv.email }}</p>
 </div>

@@ -17,8 +17,8 @@ navigation:
   - title: Presentation
     title_ko: 발표
     url: /presentation
-  - title: Blog
-    title_ko: 블로그
+  - title: Other Writing
+    title_ko: 기타 글
     url: /blog
   - title: CV
     title_ko: 이력서

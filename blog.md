@@ -2,7 +2,7 @@
 layout: default
 ---
 
-# Blog
+# Other Writing
 
 External contributions and non-academic pieces. Please follow the links.
 

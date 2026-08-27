@@ -21,5 +21,5 @@ layout: default
 </div>
 
 <div class="intro">
-  <p class="contact">Contact — jaegoi53@gmail.com</p>
+  <p class="contact">Contact — {{ site.data.cv.email }}</p>
 </div>
