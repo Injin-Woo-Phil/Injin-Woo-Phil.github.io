@@ -1,12 +1,12 @@
 /* Collapsible past talks on the Presentation page.
-   Finds the "Talks" / "학술 발표" section and turns each talk title (h4)
+   Finds the "Past Talks" / "지난 발표" section and turns each talk title (h4)
    into a toggle that shows/hides the venue list beneath it.
    Markdown stays untouched — this is progressive enhancement. */
 (function () {
   var content = document.querySelector('.content');
   if (!content) return;
 
-  var SECTION_TITLES = /^(talks|학술 발표)$/i;
+  var SECTION_TITLES = /^(past talks|지난 발표)$/i;
 
   var heads = content.querySelectorAll('h2');
   var section = null;

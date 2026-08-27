@@ -7,7 +7,7 @@ layout: default
 <!-- Content lives in _data/cv.yml (single source). Edit there, not here.
      Upcoming / Talks split on each venue's `ymd` vs the build date. -->
 
-# Presentation
+# Talks
 
 ## Upcoming
 {% for t in cv.presentations -%}
@@ -20,7 +20,7 @@ layout: default
 {% endif %}{% endfor %}
 {% endif -%}
 {% endfor %}
-## Talks
+## Past Talks
 {% for t in cv.presentations -%}
 {% assign n = 0 %}{% for v in t.venues %}{% if v.ymd < today %}{% assign n = n | plus: 1 %}{% endif %}{% endfor -%}
 {% if n > 0 -%}

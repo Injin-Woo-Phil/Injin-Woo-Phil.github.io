@@ -20,7 +20,7 @@ layout: default
 {% endif %}{% endfor %}
 {% endif -%}
 {% endfor %}
-## 학술 발표
+## 지난 발표
 {% for t in cv.presentations -%}
 {% assign n = 0 %}{% for v in t.venues %}{% if v.ymd < today %}{% assign n = n | plus: 1 %}{% endif %}{% endfor -%}
 {% if n > 0 -%}
