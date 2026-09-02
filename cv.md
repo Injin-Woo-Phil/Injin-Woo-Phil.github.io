@@ -10,6 +10,8 @@ layout: default
 
 [Download PDF](/assets/cv.pdf)
 
+*{{ cv.updated[lang] }}*
+
 ## Areas
 - **Areas of Specialisation** — {{ cv.areas.aos[lang] }}
 - **Areas of Competence** — {{ cv.areas.aoc[lang] }}

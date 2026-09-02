@@ -48,6 +48,7 @@ def build(lang)
   out << '\href{https://' << d['website'] << '}{' << d['website'] << '} \;\textbar\; '
   out << '\href{' << d['orcid'] << '}{ORCID}}\\\\[1mm]' << "\n"
   out << '  {\small ' << e(d['affiliation'], lang) << '}' << "\n"
+  out << '  \\\\[0.8mm]{\footnotesize ' << e(d['updated'], lang) << '}' << "\n" if d['updated']
   out << '\end{center}' << "\n\\vspace{1mm}\n"
 
   # areas (AoS / AoC)

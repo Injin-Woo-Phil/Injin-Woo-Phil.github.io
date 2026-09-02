@@ -10,6 +10,8 @@ layout: default
 
 [PDF 다운로드](/assets/cv-ko.pdf)
 
+*{{ cv.updated[lang] }}*
+
 ## 연구 분야
 - **전문 분야** — {{ cv.areas.aos[lang] }}
 - **관심 분야** — {{ cv.areas.aoc[lang] }}
