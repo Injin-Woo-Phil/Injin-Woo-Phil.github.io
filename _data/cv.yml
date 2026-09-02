@@ -188,7 +188,7 @@ service:
     since: "2025 –"
   - org: { en: "The Academy of Mobility Humanities, Konkuk University", ko: "건국대학교 모빌리티인문학 연구원" }
     role: { en: "HK researcher", ko: "HK 연구원" }
-    since: "2025 –"
+    since: "2025–2026, 2026 –"
   - org: { en: "Korean Association for Logic", ko: "한국논리학회" }
     role: { en: "Secretary", ko: "총무간사" }
     since: "2025 –"
@@ -197,6 +197,9 @@ awards:
   - title: { en: "Samil Scholarship (Doctoral Program, Full Tuition)", ko: "3·1문화재단 장학금 (박사과정, 등록금 전액)" }
     org: { en: "The Samil Foundation", ko: "3·1문화재단" }
     year: "2026–2027"
+  - title: { en: "Black Talker 2026, Young Critic of Traditional Performing Arts", ko: "2026 젊은 전통공연예술 평론가 블랙토커" }
+    org: { en: "Korean Traditional Performing Arts Foundation", ko: "전통공연예술진흥재단" }
+    year: "2026"
   - title: { en: "Winner’s Scholarship, 2025 Academic Paper Competition for Emerging Scholars", ko: "2025 신진연구자 학술논문 공모전 수상 장학금" }
     org: { en: "Sookmyung Institute of Humanities", ko: "숙명인문학연구소" }
     year: "2025"
@@ -209,3 +212,87 @@ awards:
     year: "2024–2025"
   - title: { en: "Simsan Scholarship", ko: "심산 장학금" }
     year: "2024"
+
+coursework:
+  - program: { en: "Ph.D., Sungkyunkwan University", ko: "박사과정, 성균관대학교" }
+    terms:
+      - term: { en: "Fall 2026", ko: "2026년 2학기" }
+        courses:
+          - title: { en: "Study of Analytic Philosophy (분석철학연구): Induction, IBE, and Scientific Realism", ko: "분석철학연구: 귀납, 최선의 설명으로의 추론, 과학적 실재론" }
+            by: { en: "Byeongdeok Lee", ko: "이병덕" }
+          - title: { en: "Topics in Contemporary Philosophy of Mind (현대심리철학특강): Generics", ko: "현대심리철학특강: 총칭문" }
+            by: { en: "Seongsoo Park", ko: "박성수" }
+          - title: { en: "Mathematics for Artificial Intelligence (인공지능을위한수학, Dept. of Artificial Intelligence)", ko: "인공지능을위한수학 (인공지능학과)" }
+            by: { en: "Insik Yoon", ko: "윤인식" }
+          - title: { en: "Introduction to Digital Humanities (디지털인문학입문, Dept. of English)", ko: "디지털인문학입문 (영어영문학과)" }
+            by: { en: "Ji Eun Lee", ko: "이지은" }
+          - title: { en: "Korean Literature and Network Analysis Research (한국문학텍스트와네트워크분석연구, Dept. of Korean Literature)*", ko: "한국문학텍스트와네트워크분석연구 (국어국문학과)*" }
+            by: { en: "Byungjun Kim", ko: "김병준" }
+  - program: { en: "M.A., Sungkyunkwan University", ko: "석사과정, 성균관대학교" }
+    terms:
+      - term: { en: "Spring 2026", ko: "2026년 1학기" }
+        courses:
+          - title: { en: "Topics in Analytic Philosophy (분석철학특강): Sellars*", ko: "분석철학특강: 셀라스*" }
+            by: { en: "Byeongdeok Lee", ko: "이병덕" }
+          - title: { en: "Topics in Contemporary Philosophy of Mathematics (현대수리철학특강): AI and Ethics, AI and Philosophy of Language*", ko: "현대수리철학특강: AI와 윤리학, AI와 언어철학*" }
+            by: { en: "Seongsoo Park", ko: "박성수" }
+      - term: { en: "Fall 2025", ko: "2025년 2학기" }
+        courses:
+          - title: { en: "Topics in Analytic Philosophy (분석철학특강): Ethical Justification, a Kantian Approach*", ko: "분석철학특강: 윤리적 정당화, 칸트 윤리학적 접근*" }
+            by: { en: "Byeongdeok Lee", ko: "이병덕" }
+          - title: { en: "Study on Ontology of Culture (문화존재론연구): Philosophy of Fiction*", ko: "문화존재론연구: 허구의 철학*" }
+            by: { en: "Jeonggyu Lee", ko: "이정규" }
+      - term: { en: "Spring 2025", ko: "2025년 1학기" }
+        courses:
+          - title: { en: "Topics in Philosophy of Science (과학철학특강): Lying, Gaslighting, and Hearer’s Understanding", ko: "과학철학특강: 거짓말, 가스라이팅, 청자의 이해" }
+            by: { en: "Seongsoo Park", ko: "박성수" }
+          - title: { en: "Topics in Ontology (존재론특강): Metaontology and Anti-Metaphysicalism", ko: "존재론특강: 메타존재론과 반형이상학주의" }
+            by: { en: "Jeonggyu Lee", ko: "이정규" }
+      - term: { en: "Fall 2024", ko: "2024년 2학기" }
+        courses:
+          - title: { en: "Topics in Contemporary British and American Philosophy (현대영미철학특강): Material Composition", ko: "현대영미철학특강: 물질적 구성" }
+            by: { en: "Seongsoo Park", ko: "박성수" }
+          - title: { en: "Topics in Main Currents of Contemporary Philosophy (현대철학사조특강): Scientific Realism and Stances", ko: "현대철학사조특강: 과학적 실재론과 자세" }
+            by: { en: "Chanwoo Lee", ko: "이찬우" }
+          - title: { en: "Studies in Epistemology (인식론연구): Scientific Understanding", ko: "인식론연구: 과학적 이해" }
+            by: { en: "Jaeho Lee", ko: "이재호" }
+          - title: { en: "Topics in Metaphysics (형이상학특강, Hankuk Univ. of Foreign Studies): Mereology*", ko: "형이상학특강 (한국외국어대학교): 부분전체론*" }
+            by: { en: "Seungil Lee", ko: "이승일" }
+      - term: { en: "Spring 2024", ko: "2024년 1학기" }
+        courses:
+          - title: { en: "Topics in Metaphysics (형이상학특강): Social Ontology", ko: "형이상학특강: 사회존재론" }
+            by: { en: "Jeonggyu Lee", ko: "이정규" }
+          - title: { en: "Topics in Epistemology (인식론특강): Imaginative Resistance", ko: "인식론특강: 상상적 저항" }
+            by: { en: "Seongsoo Park", ko: "박성수" }
+          - title: { en: "Study on Aristotle’s Philosophy of Culture (아리스토텔레스의문화철학연구)", ko: "아리스토텔레스의문화철학연구" }
+            by: { en: "Daehyeon Song", ko: "송대현" }
+          - title: { en: "Studies in Ontology (존재론연구): Three- and Four-Dimensionalism, Metaontology*", ko: "존재론연구: 3차원주의와 4차원주의, 메타존재론*" }
+            by: { en: "Jaeho Lee", ko: "이재호" }
+      - term: { en: "Fall 2023", ko: "2023년 2학기" }
+        courses:
+          - title: { en: "Exercise of Analytic Philosophy (분석철학연습): Fictional Entities", ko: "분석철학연습: 허구적 존재자" }
+            by: { en: "Byeongdeok Lee", ko: "이병덕" }
+          - title: { en: "Exercise of Ancient and Medieval Western Philosophy (고중세철학연습): Pyrrhonian Skepticism", ko: "고중세철학연습: 퓌론주의 회의주의" }
+            by: { en: "Daehyeon Song", ko: "송대현" }
+          - title: { en: "General Outline of Studies of Confucius Classics (경학통론, Dept. of Korean Literature in Classical Chinese)", ko: "경학통론 (한문학과)" }
+            by: { en: "Gyeongcheon Kim", ko: "김경천" }
+      - term: { en: "Spring 2023", ko: "2023년 1학기" }
+        courses:
+          - title: { en: "Special Lecture on the History of Cultural Exchange between the East and the West (동서문화교류사특강, Dept. of History)*", ko: "동서문화교류사특강 (사학과)*" }
+            by: { en: "Seongsan Cho", ko: "조성산" }
+
+coursework_note: { en: "* audited", ko: "* 청강" }
+
+public_writing:
+  - title: "모든 결합이 도약인 것은 아니다: 크로스오버라는 이상한 덧셈"
+    gloss_en: "Not Every Combination Is a Leap: The Strange Arithmetic of Crossover"
+    url: "https://webzine.kotpa.org/vol27_black?uid=9622&mod=document&pageid=1"
+    outlet: { en: "Gongjindan Black", ko: "공진단 블랙" }
+    issue: "27"
+    date: "2026.05"
+  - title: "우리 핏줄에는 국악이 흐르지 않는다: 가족으로서의 국악 팬덤"
+    gloss_en: "Gugak Does Not Run in Our Blood: Gugak Fandom as Family"
+    url: "https://webzine.kotpa.org/vol26_black?uid=9366&mod=document&pageid=1"
+    outlet: { en: "Gongjindan Black", ko: "공진단 블랙" }
+    issue: "26"
+    date: "2026.04"

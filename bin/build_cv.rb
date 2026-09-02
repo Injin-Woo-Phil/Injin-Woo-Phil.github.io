@@ -15,10 +15,12 @@ SECTIONS = {
   'en' => { areas: 'Areas', education: 'Education', thesis: 'Thesis',
             publications: 'Publications', presentations: 'Presentations',
             teaching: 'Teaching Experience', service: 'Professional Service',
-            awards: 'Grants \\& Awards' },
+            awards: 'Grants \\& Awards', coursework: 'Graduate Coursework',
+            public_writing: 'Public Writing' },
   'ko' => { areas: '연구 분야', education: '학력', thesis: '학위논문',
             publications: '논문', presentations: '발표', teaching: '교육 경험',
-            service: '학술 봉사', awards: '수상 및 장학' },
+            service: '학술 봉사', awards: '수상 및 장학',
+            coursework: '대학원 수강 과목', public_writing: '기고' },
 }
 
 def esc(s); s.to_s.gsub(/([&%$#_])/) { '\\' + $1 }; end
@@ -125,6 +127,32 @@ def build(lang)
     if aw['note']
       out << sub("#{it(e(aw['note']['talk'], lang))}, #{e(aw['note']['venue'], lang)}", '')
     end
+  end
+
+  # public writing
+  if d['public_writing']
+    out << sec(s[:public_writing])
+    d['public_writing'].each do |w|
+      out << head(wl(esc(w['title']), w['url']), esc(w['date']))
+      out << line(esc(w['gloss_en']), '') if lang == 'en' && w['gloss_en']
+      ot = esc(L(w['outlet'], 'ko'))
+      ot = "#{ot} (#{esc(L(w['outlet'], 'en'))})" if lang == 'en'
+      out << sub("#{it(ot)}, #{esc(w['issue'])}", '')
+    end
+  end
+
+  # graduate coursework
+  if d['coursework']
+    out << sec(s[:coursework])
+    d['coursework'].each_with_index do |pg, i|
+      out << GAP if i > 0
+      out << head(e(pg['program'], lang), '')
+      pg['terms'].each do |tm|
+        out << line(e(tm['term'], lang), '')
+        tm['courses'].each { |c| out << sub(e(c['title'], lang), e(c['by'], lang)) }
+      end
+    end
+    out << line(e(d['coursework_note'], lang), '') if d['coursework_note']
   end
 
   (PRE.sub('%%CJK%%', CJK)) + "\n\\begin{document}\n" + out + "\n\\end{document}\n"

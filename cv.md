@@ -44,3 +44,15 @@ layout: default
 	- *{{ a.note.talk[lang] }}*, {{ a.note.venue[lang] }}
 {% else %}- {{ a.year }}: {{ a.title[lang] }}{% if a.org %}, {{ a.org[lang] }}{% endif %}.
 {% endif %}{% endfor %}
+
+## Public Writing
+{% for w in cv.public_writing -%}
+- ({{ w.date }}) [{{ w.title }}]({{ w.url }}) ({{ w.gloss_en }}), *{{ w.outlet.ko }} ({{ w.outlet.en }})*, {{ w.issue }}.
+{% endfor %}
+## Graduate Coursework
+{% for pg in cv.coursework -%}
+- **{{ pg.program[lang] }}**
+{% for t in pg.terms %}	- *{{ t.term[lang] }}*
+{% for c in t.courses %}		- {{ c.title[lang] }} ({{ c.by[lang] }})
+{% endfor %}{% endfor %}{% endfor %}
+{{ cv.coursework_note[lang] }}
