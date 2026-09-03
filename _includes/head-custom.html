@@ -3,6 +3,12 @@
 <!-- Setup Google Analytics -->
 {% include head-custom-google-analytics.html %}
 
+<!-- GoatCounter (쿠키 없음, 방문수/유입경로) -->
+{% if site.goatcounter %}
+<script data-goatcounter="https://{{ site.goatcounter }}.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+{% endif %}
+
 <!-- You can set your favicon here -->
 <!-- link rel="shortcut icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}" -->
 
