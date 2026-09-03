@@ -29,6 +29,9 @@ google_analytics:
 # GoatCounter 사이트 코드 (https://<코드>.goatcounter.com 의 <코드> 부분)
 goatcounter: injinwoo
 theme: jekyll-theme-minimal
+url: https://injin-woo-phil.github.io
+plugins:
+  - jekyll-sitemap
 
 collections:
   blog:
