@@ -99,7 +99,7 @@ presentations:
       - { label: { en: "Abstract", ko: "초록" }, url: "/assets/abstract-dating-apps.pdf" }
     venues:
       - place: { en: "2027 APA Eastern Division Meeting, Papers in Progress Workshop Sessions", ko: "2027 미국철학회 동부분과 연례회의, Papers in Progress 워크숍 세션" }
-        country: { en: "United States", ko: "미국" }
+        country: { en: "Boston, MA", ko: "Boston, MA" }
         url: "https://www.apaonline.org/mpage/2027eastern"
         date: { en: "Jan 2027", ko: "2027년 1월" }
         ymd: 20270113
