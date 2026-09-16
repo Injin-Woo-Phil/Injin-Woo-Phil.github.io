@@ -51,10 +51,3 @@ layout: default
 {% for w in cv.public_writing -%}
 - ({{ w.date }}) [{{ w.title }}]({{ w.url }}) *{{ w.outlet.ko }}*, {{ w.issue }}.
 {% endfor %}
-## 대학원 수강 과목
-{% for pg in cv.coursework -%}
-- **{{ pg.program[lang] }}**
-{% for t in pg.terms %}	- *{{ t.term[lang] }}*
-{% for c in t.courses %}		- {{ c.title[lang] }} ({{ c.by[lang] }})
-{% endfor %}{% endfor %}{% endfor %}
-{{ cv.coursework_note[lang] }}
