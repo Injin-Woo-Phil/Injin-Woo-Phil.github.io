@@ -215,7 +215,7 @@ awards:
       talk: { en: "Frenemies in the Same Boat: A Critical Assessment of Explanatory Voluntarism and Its Implications for the DRK view of Scientific Understanding", ko: "Frenemies in the Same Boat: A Critical Assessment of Explanatory Voluntarism and Its Implications for the DRK view of Scientific Understanding" }
       venue: { en: "APPSA-LMPST 2025. Taipei, Taiwan.", ko: "APPSA-LMPST 2025. 타이베이, 대만." }
   - title: { en: "TA Scholarship", ko: "TA 장학금" }
-    year: "2024–2025"
+    year: { en: "2024–present", ko: "2024–현재" }
   - title: { en: "Simsan Scholarship", ko: "심산 장학금" }
     year: "2024"
 

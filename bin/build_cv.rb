@@ -122,7 +122,7 @@ def build(lang)
   out << sec(s[:awards])
   d['awards'].each_with_index do |aw, i|
     out << GAP if i > 0
-    right = aw['by'] ? e(aw['by'], lang) : esc(aw['year'])
+    right = aw['by'] ? e(aw['by'], lang) : e(aw['year'], lang)
     out << head(e(aw['title'], lang), right)
     out << line(e(aw['org'], lang), '') if aw['org']
     if aw['note']

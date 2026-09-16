@@ -44,7 +44,7 @@ layout: default
 {% for a in cv.awards -%}
 {% if a.by %}- {{ a.title[lang] }}, {{ a.by[lang] }}.
 	- *{{ a.note.talk[lang] }}*, {{ a.note.venue[lang] }}
-{% else %}- {{ a.year }}: {{ a.title[lang] }}{% if a.org %}, {{ a.org[lang] }}{% endif %}.
+{% else %}- {% if a.year.en %}{{ a.year[lang] }}{% else %}{{ a.year }}{% endif %}: {{ a.title[lang] }}{% if a.org %}, {{ a.org[lang] }}{% endif %}.
 {% endif %}{% endfor %}
 
 ## 기고
