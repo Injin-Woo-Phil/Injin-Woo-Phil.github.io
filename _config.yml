@@ -23,6 +23,9 @@ navigation:
   - title: CV
     title_ko: 이력서
     url: /cv
+  - title: Logic Checker
+    title_ko: 논리 검산기
+    url: /logic
 
 show_downloads: false
 google_analytics:
