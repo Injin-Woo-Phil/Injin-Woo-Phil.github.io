@@ -1,5 +1,6 @@
 ---
 layout: default
+alt_url: /
 ---
 
 # 코어 논리학 보조도구

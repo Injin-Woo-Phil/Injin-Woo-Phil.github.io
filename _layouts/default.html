@@ -46,12 +46,14 @@
         <nav aria-label="{% if page_lang == 'ko' %}주 메뉴{% else %}Main menu{% endif %}">
           <ul>
             {% for item in site.navigation %}
+              {% if item.lang == nil or item.lang == page_lang %}
               {% if item.url == "/" %}
                 {% assign target = nav_prefix | append: "/" %}
               {% else %}
                 {% assign target = nav_prefix | append: item.url %}
               {% endif %}
               <li><a href="{{ target | relative_url }}"{% if clean_url == target %} aria-current="page"{% endif %}>{% if page_lang == "ko" %}{{ item.title_ko | default: item.title }}{% else %}{{ item.title }}{% endif %}</a></li>
+              {% endif %}
             {% endfor %}
           </ul>
         </nav>
