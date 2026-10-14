@@ -11,6 +11,8 @@ const samples = {
 let rows = [blankRow()];
 let activeField = $('premises');
 for (const id of ['premises', 'conclusion']) $(id).addEventListener('focus', () => { activeField = $(id); });
+for (const id of ['premises', 'conclusion']) $(id).addEventListener('input', () => { $('result').hidden = true; });
+$('basicOnly').addEventListener('change', () => { $('result').hidden = true; });
 
 for (const rule of RULES) {
   const row = document.createElement('tr');

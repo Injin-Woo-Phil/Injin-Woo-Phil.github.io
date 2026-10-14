@@ -18,6 +18,7 @@ function scopes(rows) {
   const open = [];
   return rows.map((row, i) => {
     const assumption = row.rule.replace(/\s+/g, '') === '가정';
+    if (!Number.isInteger(row.depth) || row.depth < 0 || (assumption && row.depth === 0)) throw Error(`${i + 1}행: 가정은 한 단계 안쪽에서 시작하세요. 행 번호 옆의 ›로 깊이를 조정할 수 있습니다.`);
     while (open.length > row.depth || (assumption && open.length >= row.depth)) open.pop();
     if (assumption) open.push(i);
     return [...open];
