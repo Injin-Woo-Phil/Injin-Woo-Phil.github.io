@@ -2,7 +2,7 @@
 layout: default
 ---
 
-# Logic Proof Checker
+# Core Logic Study Tools
 
 Check your derivations line by line.
 

@@ -23,8 +23,8 @@ navigation:
   - title: CV
     title_ko: 이력서
     url: /cv
-  - title: Logic Checker
-    title_ko: 논리 검산기
+  - title: Core Logic Study Tools
+    title_ko: 코어 논리학 보조도구
     url: /logic
 
 show_downloads: false
