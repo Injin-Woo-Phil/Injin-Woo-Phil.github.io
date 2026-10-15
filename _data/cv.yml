@@ -9,7 +9,7 @@ orcid: "https://orcid.org/0009-0009-2118-0016"
 affiliation:
   en: "Department of Philosophy, Sungkyunkwan University, Seoul, South Korea"
   ko: "성균관대학교 철학과, 서울, 대한민국"
-updated: { en: "Last updated: Sep 2026", ko: "최종 수정: 2026년 9월" }
+updated: { en: "Last updated: Oct 2026", ko: "최종 수정: 2026년 10월" }
 
 areas:
   aos:
@@ -72,10 +72,17 @@ wip:
 # build date, so the split is only as fresh as the last GitHub Pages build.
 # `links` (handout, slides, abstract) show on the presentation page only.
 presentations:
+  - title: { en: "All you zombies: Knowing Other Minds in an Age of Generative AI", ko: "All you zombies: Knowing Other Minds in an Age of Generative AI" }
+    abstract: |-
+      Can technological change undermine knowledge that a textual interlocutor is conscious? I argue that it can, even when the interlocutor remains a conscious human genuinely expressing their experiences. Research on online misinformation, fake persons, and digital fake barns shows how the introduction of fakes threatens knowledge acquired from genuine sources (Harris 2022, 2023; Matthews 2023). This paper extends that argument to knowledge of another’s phenomenal consciousness.
+
+      The argument compares two environments. In the first, a subject knows that an interlocutor is conscious on the basis of their conversational performance. In the second, non-conscious systems enter the same channel of communication and reproduce the performances the subject treats as evidence of consciousness. These systems are not merely conceivable alternatives: the subject could easily encounter them, and the available evidence and tests do not distinguish them from human interlocutors. Although the actual interlocutor’s consciousness, the content of the conversation, and the subject’s interpretive abilities remain unchanged, the same method of attributing consciousness could now easily yield a false belief. The subject’s success has come to depend on the luck of encountering a conscious interlocutor. Since knowledge excludes this kind of environmental epistemic luck, even a true attribution to an actual human no longer constitutes knowledge.
+    venues:
+      - place: { en: "Peking University", ko: "북경대학교" }
+        country: { en: "China", ko: "중국" }
+        date: { en: "Dec 2026", ko: "2026년 12월" }
+        ymd: 20261231 # Day unknown; keep upcoming through December.
   - title: { en: "Simonelli on Assertibility of pure LLMs", ko: "Simonelli on Assertibility of pure LLMs" }
-    links:
-      - { label: { en: "Handout", ko: "Handout" }, url: "/assets/handout-sws-en.pdf" }
-      - { label: { en: "핸드아웃", ko: "핸드아웃" }, url: "/assets/handout-sws-ko.pdf" }
     venues:
       - place: { en: "2nd Philosophical Interchange between Sungkyunkwan and Nagoya University, Nagoya University", ko: "제2회 성균관대-나고야대 철학 교류회, 나고야대학교" }
         country: { en: "Japan", ko: "일본" }
