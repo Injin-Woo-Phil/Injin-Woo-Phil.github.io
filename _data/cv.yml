@@ -73,10 +73,6 @@ wip:
 # `links` (handout, slides, abstract) show on the presentation page only.
 presentations:
   - title: { en: "All you zombies: Knowing Other Minds in an Age of Generative AI", ko: "All you zombies: Knowing Other Minds in an Age of Generative AI" }
-    abstract: |-
-      Can technological change undermine knowledge that a textual interlocutor is conscious? I argue that it can, even when the interlocutor remains a conscious human genuinely expressing their experiences. Research on online misinformation, fake persons, and digital fake barns shows how the introduction of fakes threatens knowledge acquired from genuine sources (Harris 2022, 2023; Matthews 2023). This paper extends that argument to knowledge of another’s phenomenal consciousness.
-
-      The argument compares two environments. In the first, a subject knows that an interlocutor is conscious on the basis of their conversational performance. In the second, non-conscious systems enter the same channel of communication and reproduce the performances the subject treats as evidence of consciousness. These systems are not merely conceivable alternatives: the subject could easily encounter them, and the available evidence and tests do not distinguish them from human interlocutors. Although the actual interlocutor’s consciousness, the content of the conversation, and the subject’s interpretive abilities remain unchanged, the same method of attributing consciousness could now easily yield a false belief. The subject’s success has come to depend on the luck of encountering a conscious interlocutor. Since knowledge excludes this kind of environmental epistemic luck, even a true attribution to an actual human no longer constitutes knowledge.
     venues:
       - place: { en: "Peking University", ko: "북경대학교" }
         country: { en: "China", ko: "중국" }

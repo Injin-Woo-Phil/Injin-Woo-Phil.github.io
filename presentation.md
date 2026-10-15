@@ -18,9 +18,6 @@ layout: default
 {% for v in sorted %}{% if v.ymd >= today -%}
 - **{% if v.url %}[{{ v.place[lang] }}]({{ v.url }}){% else %}{{ v.place[lang] }}{% endif %}**{% if v.country.en != "South Korea" %}, {{ v.country[lang] }}{% endif %}, {{ v.date[lang] }}
 {% endif %}{% endfor %}
-{% if t.abstract %}
-**Abstract.** {{ t.abstract }}
-{% endif %}
 {% endif -%}
 {% endfor %}
 ## Past Talks
@@ -31,9 +28,6 @@ layout: default
 {% for v in t.venues %}{% if v.ymd < today -%}
 - **{% if v.url %}[{{ v.place[lang] }}]({{ v.url }}){% else %}{{ v.place[lang] }}{% endif %}**{% if v.country.en != "South Korea" %}, {{ v.country[lang] }}{% endif %}, {{ v.date[lang] }}
 {% endif %}{% endfor %}
-{% if t.abstract %}
-**Abstract.** {{ t.abstract }}
-{% endif %}
 {% endif -%}
 {% endfor %}
 ## Comments
