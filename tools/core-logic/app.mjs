@@ -11,8 +11,8 @@ const samples = {
 let rows = [blankRow()];
 let activeField = $('premises');
 for (const id of ['premises', 'conclusion']) $(id).addEventListener('focus', () => { activeField = $(id); });
-for (const id of ['premises', 'conclusion']) $(id).addEventListener('input', () => { $('result').hidden = true; });
-$('basicOnly').addEventListener('change', () => { $('result').hidden = true; });
+for (const id of ['premises', 'conclusion']) $(id).addEventListener('input', clearValidation);
+$('basicOnly').addEventListener('change', clearValidation);
 
 for (const rule of RULES) {
   const row = document.createElement('tr');
@@ -24,8 +24,17 @@ for (const rule of RULES) {
   const option = document.createElement('option'); option.value = rule.inputs[0]; option.label = rule.name; $('ruleOptions').append(option);
 }
 
-function showResult(r) {
+function clearValidation() {
+  $('result').hidden = true;
   document.querySelectorAll('.proof-table tr.row-error').forEach(row => row.classList.remove('row-error'));
+  document.querySelectorAll('.derived-badge').forEach(badge => { badge.hidden = true; badge.title = ''; });
+}
+function showResult(r) {
+  clearValidation();
+  for (const derived of r.derivedLines || []) {
+    const badge = $('proofRows').children[derived.line - 1]?.querySelector('.derived-badge');
+    if (badge) { badge.hidden = false; badge.title = derived.detail; }
+  }
   if (r.line) $('proofRows').children[r.line - 1]?.classList.add('row-error');
   $('result').hidden = false;
   $('result').className = `result ${r.ok ? 'success' : 'error'}`;
@@ -59,14 +68,19 @@ function renderRows(focusIndex = null) {
         guides.setAttribute('aria-label', `보조증명 ${row.depth}단계`); td.append(guides); input.style.width = `calc(100% - ${row.depth * 10}px)`;
       }
       input.addEventListener('focus', () => { activeField = input; });
-      input.addEventListener('input', () => { row[key] = input.value; $('result').hidden = true; });
+      input.addEventListener('input', () => { row[key] = input.value; clearValidation(); });
       input.addEventListener('keydown', event => {
         if (event.key !== 'Enter') return; event.preventDefault();
         if (fieldIndex < 2) tr.querySelectorAll('input')[fieldIndex + 1].focus();
         else if (i + 1 < rows.length) $('proofRows').children[i + 1].querySelector('input').focus();
         else { rows.push(blankRow(row.depth)); renderRows(rows.length - 1); }
       });
-      td.append(input); tr.append(td);
+      td.append(input);
+      if (key === 'rule') {
+        const badge = document.createElement('span'); badge.className = 'derived-badge'; badge.textContent = '파생규칙'; badge.hidden = true;
+        td.append(badge);
+      }
+      tr.append(td);
     });
     $('proofRows').append(tr);
   });

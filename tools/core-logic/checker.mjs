@@ -15,10 +15,11 @@ const hint = {
   '&E':'X&Y에서 X 또는 Y를 얻습니다.',
   '&I':'X와 Y 두 행에서 X&Y를 얻습니다.',
   '↔I':'X→Y와 Y→X 두 행에서 X↔Y를 얻습니다.',
-  '↔E':'X↔Y에서 X→Y 또는 Y→X를 얻습니다.',
+  '↔E':'X↔Y에서 X→Y 또는 Y→X를 얻습니다. 파생규칙으로 X↔Y와 X에서 Y, 또는 Y에서 X를 얻습니다.',
   '~E':'~~X에서 X를 얻습니다.',
   '→I':'X 가정으로 시작해 Y로 끝나는 보조증명 a-b를 인용해 X→Y를 얻습니다.',
   '~I':'X 가정으로 시작해 모순쌍을 얻은 보조증명 a-b를 인용해 ~X를 얻습니다.',
+  'RAA':'~X 가정에서 모순쌍을 얻은 보조증명 a-b를 인용해 X를 얻습니다.',
   'DNI':'X에서 ~~X를 얻습니다.', 'MT':'X→Y와 ~Y에서 ~X를 얻습니다.',
   'HS':'X→Y와 Y→Z에서 X→Z를 얻습니다.', 'CP':'X→Y와 ~Y→~X를 양방향으로 바꿉니다. 이중 부정은 정리할 수 있습니다.',
   'W':'Y에서 X→Y를 얻습니다.',
@@ -60,16 +61,17 @@ export const RULES = [
   { id:'전제', group:'basic', name:'전제', inputs:['전제'], cite:'인용 없음' },
   { id:'가정', group:'basic', name:'가정', inputs:['가정'], cite:'인용 없음 · |로 시작' },
   { id:'반복', group:'basic', name:'반복', inputs:['반복','reit'], cite:'1' },
-  { id:'→E', group:'basic', name:'조건 기호 제거', inputs:['-> 제거','->E','MP'], cite:'1,2' },
-  { id:'→I', group:'basic', name:'조건 기호 도입', inputs:['-> 도입','->I'], cite:'3-5' },
-  { id:'∨E', group:'basic', name:'선언 기호 제거', inputs:['V 제거','VE'], cite:'1,2' },
-  { id:'∨I', group:'basic', name:'선언 기호 도입', inputs:['V 도입','VI'], cite:'1' },
-  { id:'&E', group:'basic', name:'연언 기호 제거', inputs:['& 제거','&E'], cite:'1' },
-  { id:'&I', group:'basic', name:'연언 기호 도입', inputs:['& 도입','&I'], cite:'1,2' },
-  { id:'↔E', group:'basic', name:'쌍조건 기호 제거', inputs:['<-> 제거','<->E'], cite:'1' },
-  { id:'↔I', group:'basic', name:'쌍조건 기호 도입', inputs:['<-> 도입','<->I'], cite:'1,2' },
-  { id:'~E', group:'basic', name:'부정 기호 제거', inputs:['~ 제거','~E'], cite:'1' },
-  { id:'~I', group:'basic', name:'부정 기호 도입', inputs:['~ 도입','~I'], cite:'3-5' },
+  { id:'→E', group:'basic', name:'조건 기호 제거', inputs:['-> 제거','조건 제거','조건문 제거','->E','MP'], cite:'1,2' },
+  { id:'→I', group:'basic', name:'조건 기호 도입', inputs:['-> 도입','조건 도입','조건문 도입','->I'], cite:'3-5' },
+  { id:'∨E', group:'basic', name:'선언 기호 제거', inputs:['V 제거','선언 제거','VE'], cite:'1,2' },
+  { id:'∨I', group:'basic', name:'선언 기호 도입', inputs:['V 도입','선언 도입','VI'], cite:'1' },
+  { id:'&E', group:'basic', name:'연언 기호 제거', inputs:['& 제거','연언 제거','&E'], cite:'1' },
+  { id:'&I', group:'basic', name:'연언 기호 도입', inputs:['& 도입','연언 도입','&I'], cite:'1,2' },
+  { id:'↔E', group:'basic', name:'쌍조건 기호 제거', inputs:['<-> 제거','쌍조건 제거','쌍조건문 제거','<->E'], cite:'1 또는 1,2 (파생)' },
+  { id:'↔I', group:'basic', name:'쌍조건 기호 도입', inputs:['<-> 도입','쌍조건 도입','쌍조건문 도입','<->I'], cite:'1,2' },
+  { id:'~E', group:'basic', name:'부정 기호 제거', inputs:['~ 제거','부정 제거','~E'], cite:'1' },
+  { id:'~I', group:'basic', name:'부정 기호 도입', inputs:['~ 도입','부정 도입','~I'], cite:'3-5' },
+  { id:'RAA', group:'derived', name:'부정 도입·제거 약식', inputs:['~ 도입, ~ 제거','부정 도입, 부정 제거','~I, ~E'], cite:'3-5' },
   { id:'DNI', group:'derived', name:'이중 부정 도입', inputs:['이중 부정 도입'], cite:'1' },
   { id:'MT', group:'derived', name:'후건 부정', inputs:['후건 부정'], cite:'1,2' },
   { id:'HS', group:'derived', name:'연쇄 논법', inputs:['연쇄 논법'], cite:'1,2' },
@@ -180,7 +182,8 @@ export function checkProof(premiseText, conclusionText, proofText, basicOnly = f
     goal = parseFormula(conclusionText);
     lines = parseProof(proofText);
   } catch (e) { return { ok: false, line: null, message: e.message }; }
-  const fail = (l, msg) => ({ ok: false, line: l.n, message: `${l.n}행: ${msg}` });
+  const derivedLines = [];
+  const fail = (l, msg) => ({ ok: false, line: l.n, derivedLines: [...derivedLines], message: `${l.n}행: ${msg}` });
   const open = [];
   const scopeAt = [];
   for (let i = 0; i < lines.length; i++) {
@@ -209,21 +212,35 @@ export function checkProof(premiseText, conclusionText, proofText, basicOnly = f
       return [ref(a).f, ref(b).f, a, b];
     };
     let valid = false;
+    let derived = RULES.find(rule => rule.id === l.rule).group === 'derived';
+    let derivedDetail = derived ? RULES.find(rule => rule.id === l.rule).name : '';
     if (l.rule === '전제') valid = l.depth === 0 && exact(0) && premises.some(p => same(p, f));
     else if (l.rule === '가정') valid = exact(0);
     else if (l.rule === '반복') valid = exact(1) && same(f, fs[0]);
     else if (l.rule === '→E') valid = exact(2) && pair((x, y) => is(x, '→') && same(x[1], y) && same(x[2], f));
-    else if (l.rule === '∨E') valid = exact(2) && pair((x, y) => is(x, '∨') && ((contradictory(x[1], y) && same(x[2], f)) || (contradictory(x[2], y) && same(x[1], f))));
+    else if (l.rule === '∨E') {
+      const basic = exact(2) && pair((x, y) => is(x, '∨') && ((same(neg(x[1]), y) && same(x[2], f)) || (same(neg(x[2]), y) && same(x[1], f))));
+      valid = basic || (exact(2) && pair((x, y) => is(x, '∨') && ((contradictory(x[1], y) && same(x[2], f)) || (contradictory(x[2], y) && same(x[1], f)))));
+      derived = valid && !basic;
+      derivedDetail = '선언 제거 약식 · 이중 부정 도입 생략';
+    }
     else if (l.rule === '∨I') valid = exact(1) && is(f, '∨') && (same(f[1], fs[0]) || same(f[2], fs[0]));
     else if (l.rule === '&E') valid = exact(1) && is(fs[0], '&') && (same(f, fs[0][1]) || same(f, fs[0][2]));
     else if (l.rule === '&I') valid = exact(2) && is(f, '&') && ((same(f[1], fs[0]) && same(f[2], fs[1])) || (same(f[1], fs[1]) && same(f[2], fs[0])));
     else if (l.rule === '↔I') valid = exact(2) && is(f, '↔') && fs.some(x => same(x, bin('→', f[1], f[2]))) && fs.some(x => same(x, bin('→', f[2], f[1])));
-    else if (l.rule === '↔E') valid = exact(1) && is(fs[0], '↔') && (same(f, bin('→', fs[0][1], fs[0][2])) || same(f, bin('→', fs[0][2], fs[0][1])));
+    else if (l.rule === '↔E') {
+      valid = exact(1) && is(fs[0], '↔') && (same(f, bin('→', fs[0][1], fs[0][2])) || same(f, bin('→', fs[0][2], fs[0][1])));
+      if (exact(2)) {
+        valid = pair((x, y) => is(x, '↔') && ((same(x[1], y) && same(x[2], f)) || (same(x[2], y) && same(x[1], f))));
+        derived = valid;
+        derivedDetail = '쌍조건 제거 약식 · 조건 기호 제거를 함께 적용';
+      }
+    }
     else if (l.rule === '~E') valid = exact(1) && is(fs[0], '~') && is(fs[0][1], '~') && same(f, fs[0][1][1]);
     else if (l.rule === '→I') { const s = subproof(); valid = !!s && same(f, bin('→', s[0], s[1])); }
-    else if (l.rule === '~I') {
+    else if (l.rule === '~I' || l.rule === 'RAA') {
       const s = subproof();
-      if (s && same(f, neg(s[0]))) {
+      if (s && (l.rule === '~I' ? same(f, neg(s[0])) : same(s[0], neg(f)))) {
         const inside = lines.slice(s[2] - 1, s[3]).filter(x => scopeAt[x.n - 1].every((a, k) => scopeAt[s[3] - 1][k] === a));
         valid = inside.some(x => inside.some(y => same(x.f, neg(y.f))));
       }
@@ -244,10 +261,12 @@ export function checkProof(premiseText, conclusionText, proofText, basicOnly = f
       }
       else if (['COMM','ASSOC','DIST','DM','COND'].includes(l.rule)) valid = exact(1) && schematic(fs[0], f, l.rule);
     }
-    if (!valid) return fail(l, basicOnly && !['전제','가정','반복','→E','∨E','∨I','&E','&I','↔I','↔E','~E','→I','~I'].includes(l.rule) ? '이 문제는 기본 규칙만 허용합니다.' : `규칙의 형식, 인용번호, 가정 해제를 확인하세요. ${hint[l.rule].replaceAll('→', ' -> ').replaceAll('∨', ' V ')}`);
+    if (basicOnly && derived) return fail(l, '이 적용은 파생규칙입니다. 기본 규칙만 허용하는 경우에는 생략한 단계를 풀어 쓰세요.');
+    if (!valid) return fail(l, `규칙의 형식, 인용번호, 가정 해제를 확인하세요. ${hint[l.rule].replaceAll('→', ' -> ').replaceAll('∨', ' V ')}`);
+    if (derived) derivedLines.push({ line: l.n, rule: l.rule, detail: derivedDetail });
   }
   const last = lines.at(-1);
   if (last.depth !== 0) return fail(last, '마지막 보조증명이 닫히지 않았습니다.');
   if (!same(last.f, goal)) return fail(last, '마지막 행이 목표 결론과 다릅니다.');
-  return { ok: true, line: null, message: `${lines.length}개 행을 검사했습니다. 각 행의 규칙 적용과 가정 해제가 맞습니다.` };
+  return { ok: true, line: null, derivedLines, message: `${lines.length}개 행을 검사했습니다. 각 행의 규칙 적용과 가정 해제가 맞습니다.` };
 }
