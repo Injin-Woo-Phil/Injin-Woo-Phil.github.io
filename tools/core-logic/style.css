@@ -5,3 +5,7 @@
 .result[hidden]{display:none}
 
 .derived-badge{display:inline-block;margin-top:5px;padding:1px 7px;border:1px solid #b8d8c9;border-radius:5px;background:#edf6ef;color:#286b52;font-size:11px;font-weight:700;white-space:nowrap}.derived-badge[hidden]{display:none}
+
+.result.warning{background:#fff8df;color:#805f15}
+
+.proof-table .row-warning{background:#fff8df}

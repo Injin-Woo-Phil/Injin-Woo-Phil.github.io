@@ -31,6 +31,7 @@ const hint = {
 };
 
 export function parseFormula(input) {
+  if (/[∀∃=]|\b(?:forall|exists)\b/i.test(input)) throw inputError('양화사·동일성이 있는 식은 아직 검사하지 않습니다.', 'unsupported');
   const src = input.replace(/\s+/g, '').replace(/¬/g, '~').replace(/∧/g, '&').replace(/\|/g, '∨').replace(/<->|⇔/g, '↔').replace(/->|⇒/g, '→').replace(/[vV]/g, '∨');
   const tokens = src.match(/↔|→|∨|&|~|\(|\)|[A-Z][A-Z0-9_]*/g) || [];
   if (tokens.join('') !== src || !src) throw Error('문장 형식을 읽을 수 없습니다. 명제문자는 A, B처럼 대문자로 쓰세요.');
@@ -86,7 +87,14 @@ export const RULES = [
 ];
 const ruleKey = raw => raw.replace(/\s+/g, '').replace(/¬/g, '~').replace(/∧/g, '&').replace(/<->/g, '↔').replace(/->/g, '→').replace(/^[vV]/, '∨').toLowerCase();
 const ruleNames = new Map(RULES.flatMap(rule => [rule.name, ...rule.inputs].map(input => [ruleKey(input), rule.id])));
-const normalizeRule = raw => ruleNames.get(ruleKey(raw)) || null;
+const unaryRules = new Set(['반복','&E','↔E','~E','DNI','CP','COMM','ASSOC','DIST','DM','COND']);
+const normalizeRule = raw => {
+  const named = ruleNames.get(ruleKey(raw));
+  if (named) return named;
+  const parts = raw.split(/[,·+]/).map(x => ruleNames.get(ruleKey(x)));
+  return parts.length >= 2 && parts.length <= 4 && parts.every(x => unaryRules.has(x)) ? parts.join('+') : null;
+};
+const inputError = (message, status = 'input', line = null) => Object.assign(Error(message), { status, line });
 
 export function parseProof(text) {
   const rows = text.split('\n').map(s => s.trim()).filter(Boolean);
@@ -102,7 +110,7 @@ export function parseProof(text) {
       const leading = m[4].trim().match(/^(\d+(?:\s*-\s*\d+)?(?:\s*,\s*\d+(?:\s*-\s*\d+)?)*)\s*,?\s*(.+)$/);
       if (leading) { rule = normalizeRule(leading[2]); citationText = leading[1]; }
     }
-    if (!rule) throw Error(`${i + 1}행: 규칙 이름을 확인하세요.`);
+    if (!rule) throw inputError(`${i + 1}행: 등록된 규칙 이름 또는 지원하는 복합 규칙인지 확인하세요. 규칙을 각각 한 행씩 풀어 쓰면 검사할 수 있습니다.`, 'unsupported', i + 1);
     const refs = citationText.replace(/\s+/g, '').split(',').filter(Boolean).map(s => {
       const r = s.match(/^(\d+)(?:-(\d+))?$/);
       if (!r) throw Error(`${i + 1}행: 인용은 1,2 또는 3-5처럼 쓰세요.`);
@@ -162,17 +170,84 @@ function localVariants(a, kind) {
   if (kind === 'COND' && is(a, '∨')) variants.push(bin('→', opposite(a[1]), a[2]));
   if (kind === 'COND' && is(a, '~') && is(a[1], '→')) variants.push(bin('&', a[1][1], opposite(a[1][2])));
   if (kind === 'COND' && is(a, '&')) variants.push(neg(bin('→', a[1], opposite(a[2]))));
-  return variants.map(simplifyNegations);
+  return kind === 'COND' ? variants.map(simplifyNegations) : variants;
 }
 
 function schematic(source, target, kind) {
-  const a = simplifyNegations(source), b = simplifyNegations(target);
+  const simplify = ['CP','DM','COND'].includes(kind) ? simplifyNegations : x => x;
+  const a = simplify(source), b = simplify(target);
   if (kind === 'CP') return contains(a, x => x[0] === '→') && same(algebraicKey(a, kind), algebraicKey(b, kind));
-  if (kind === 'COMM' || kind === 'ASSOC') return same(algebraicKey(a, kind), algebraicKey(b, kind));
+  if (kind === 'COMM' || kind === 'ASSOC') return contains(a, x => x[0] === '&' || x[0] === '∨') && same(algebraicKey(a, kind), algebraicKey(b, kind));
   if (kind === 'DM') return (contains(a, x => x[0] === '~' && (is(x[1], '&') || is(x[1], '∨'))) || contains(b, x => x[0] === '~' && (is(x[1], '&') || is(x[1], '∨')))) && same(deMorganKey(a), deMorganKey(b));
   if (same(a, b)) return true;
   const childrenMatch = (x, y) => Array.isArray(x) && Array.isArray(y) && x[0] === y[0] && x.length === y.length && x.slice(1).every((part, i) => schematic(part, y[i + 1], kind));
   return childrenMatch(a, b) || localVariants(a, kind).some(v => same(v, b) || childrenMatch(v, b)) || localVariants(b, kind).some(v => same(a, v) || childrenMatch(a, v));
+}
+
+// 복합 규칙은 적힌 순서대로 중간식을 구성한다. 의미적 동치만으로 통과시키지 않는다.
+function unaryMatches(a, b, rule) {
+  if (rule === '반복') return same(a, b);
+  if (rule === '&E') return is(a, '&') && (same(a[1], b) || same(a[2], b));
+  if (rule === '↔E') return is(a, '↔') && (same(bin('→', a[1], a[2]), b) || same(bin('→', a[2], a[1]), b));
+  if (rule === '~E') return is(a, '~') && is(a[1], '~') && same(a[1][1], b);
+  if (rule === 'DNI') return same(neg(neg(a)), b);
+  // 재귀 검사 안에서는 불변 부분을 허용하지만 전체 적용에는 해당 형식이 있어야 한다.
+  if (rule === 'DIST' && !contains(a, x => localVariants(x, rule).length) && !contains(b, x => localVariants(x, rule).length)) return false;
+  if (rule === 'COND' && !contains(a, x => is(x, '→') || is(x, '∨') || is(x, '&')) && !contains(b, x => is(x, '→') || is(x, '∨') || is(x, '&'))) return false;
+  return schematic(a, b, rule);
+}
+function unaryVariants(a, rule) {
+  if (rule === '반복') return [a];
+  if (rule === '&E') return is(a, '&') ? a.slice(1) : [];
+  if (rule === '↔E') return is(a, '↔') ? [bin('→', a[1], a[2]), bin('→', a[2], a[1])] : [];
+  if (rule === '~E') return is(a, '~') && is(a[1], '~') ? [a[1][1]] : [];
+  if (rule === 'DNI') return [neg(neg(a))];
+  if (!Array.isArray(a)) return [];
+  const out = [];
+  if (rule === 'CP' && is(a, '→')) out.push(simplifyNegations(bin('→', neg(a[2]), neg(a[1]))));
+  if (rule === 'COMM' && ['&','∨'].includes(a[0])) out.push(bin(a[0], a[2], a[1]));
+  if (rule === 'ASSOC' && ['&','∨'].includes(a[0])) {
+    if (is(a[1], a[0])) out.push(bin(a[0], a[1][1], bin(a[0], a[1][2], a[2])));
+    if (is(a[2], a[0])) out.push(bin(a[0], bin(a[0], a[1], a[2][1]), a[2][2]));
+  }
+  if (rule === 'DM') {
+    if (is(a, '~') && (is(a[1], '&') || is(a[1], '∨'))) out.push(bin(a[1][0] === '&' ? '∨' : '&', neg(a[1][1]), neg(a[1][2])));
+    if ((is(a, '&') || is(a, '∨')) && is(a[1], '~') && is(a[2], '~')) out.push(neg(bin(a[0] === '&' ? '∨' : '&', a[1][1], a[2][1])));
+  }
+  if (rule === 'DIST' || rule === 'COND') out.push(...localVariants(a, rule));
+  for (let i = 1; i < a.length; i++) for (const next of unaryVariants(a[i], rule)) {
+    const changed = [...a]; changed[i] = next; out.push(changed);
+    if (out.length > 256) throw inputError('복합 규칙의 중간식이 너무 많습니다. 규칙을 각각 한 행씩 풀어 쓰세요.', 'unsupported');
+  }
+  return out;
+}
+function compoundMatches(source, target, rules) {
+  let candidates = [source];
+  for (const rule of rules.slice(0, -1)) {
+    candidates = [...new Map(candidates.flatMap(a => unaryVariants(a, rule)).map(a => [JSON.stringify(a), a])).values()];
+    if (candidates.length > 256) throw inputError('복합 규칙의 중간식이 너무 많습니다. 규칙을 각각 한 행씩 풀어 쓰세요.', 'unsupported');
+  }
+  return candidates.some(a => unaryMatches(a, target, rules.at(-1)));
+}
+const flattenAnd = f => is(f, '&') ? [...flattenAnd(f[1]), ...flattenAnd(f[2])] : [f];
+
+// 실패한 일반 추론에만 제한된 진리표를 사용한다. 통과 판정을 대신하지 않는다.
+function counterexample(premises, conclusion) {
+  const atoms = f => Array.isArray(f) ? f.slice(1).flatMap(atoms) : [f];
+  const names = [...new Set([...premises.flatMap(atoms), ...atoms(conclusion)])];
+  if (names.length > 10) return null;
+  const evaluate = (f, env) => {
+    if (!Array.isArray(f)) return env[f];
+    const a = evaluate(f[1], env);
+    if (f[0] === '~') return !a;
+    const b = evaluate(f[2], env);
+    return f[0] === '&' ? a && b : f[0] === '∨' ? a || b : f[0] === '→' ? !a || b : a === b;
+  };
+  for (let bits = 0; bits < 2 ** names.length; bits++) {
+    const env = Object.fromEntries(names.map((name, i) => [name, !!(bits & (1 << i))]));
+    if (premises.every(f => evaluate(f, env)) && !evaluate(conclusion, env)) return env;
+  }
+  return null;
 }
 
 export function checkProof(premiseText, conclusionText, proofText, basicOnly = false) {
@@ -181,9 +256,9 @@ export function checkProof(premiseText, conclusionText, proofText, basicOnly = f
     premises = premiseText.split('\n').map(s => s.trim()).filter(Boolean).map(parseFormula);
     goal = parseFormula(conclusionText);
     lines = parseProof(proofText);
-  } catch (e) { return { ok: false, line: null, message: e.message }; }
+  } catch (e) { return { ok: false, status: e.status || 'input', line: e.line || null, message: e.message }; }
   const derivedLines = [];
-  const fail = (l, msg) => ({ ok: false, line: l.n, derivedLines: [...derivedLines], message: `${l.n}행: ${msg}` });
+  const fail = (l, msg, status = 'invalid') => ({ ok: false, status, line: l.n, derivedLines: [...derivedLines], message: `${l.n}행: ${msg}` });
   const open = [];
   const scopeAt = [];
   for (let i = 0; i < lines.length; i++) {
@@ -203,17 +278,21 @@ export function checkProof(premiseText, conclusionText, proofText, basicOnly = f
     if (l.refs.some(x => typeof x === 'number' && !accessible(x))) return fail(l, '닫힌 보조증명이나 미래 행을 인용했습니다.');
     const fs = nums.map(n => ref(n).f), f = l.f;
     const pair = pred => fs.length === 2 && (pred(fs[0], fs[1]) || pred(fs[1], fs[0]));
+    const closedRange = ([a, b]) => a >= 1 && a <= b && b < l.n &&
+      ref(a).rule === '가정' && ref(a).depth === l.depth + 1 && ref(b).depth === l.depth + 1 &&
+      scopeAt[a - 1].slice(0, -1).every((v, k) => scopeAt[i][k] === v) &&
+      scopeAt[b - 1][l.depth] === a && scopeAt[b]?.[l.depth] !== a;
+    if (ranges.some(range => !closedRange(range))) return fail(l, '인용 범위는 같은 바깥 가정 아래에서 완전히 끝난 보조증명이어야 합니다. 시작·끝 행과 가정선을 확인하세요.');
     const subproof = () => {
       if (!exact(0, 1)) return null;
       const [a, b] = ranges[0];
-      if (a < 1 || b >= l.n || a > b || l.depth + 1 !== ref(a).depth || ref(a).rule !== '가정' || ref(b).depth !== l.depth + 1 || (prev && b !== prev.n)) return null;
-      if (scopeAt[a - 1].slice(0, -1).some((v, k) => v !== scopeAt[i][k])) return null;
-      if (scopeAt[b - 1][l.depth] !== a) return null;
       return [ref(a).f, ref(b).f, a, b];
     };
     let valid = false;
-    let derived = RULES.find(rule => rule.id === l.rule).group === 'derived';
-    let derivedDetail = derived ? RULES.find(rule => rule.id === l.rule).name : '';
+    const ruleInfo = RULES.find(rule => rule.id === l.rule);
+    const compound = l.rule.includes('+');
+    let derived = compound || ruleInfo.group === 'derived';
+    let derivedDetail = compound ? l.rule.split('+').map(id => RULES.find(r => r.id === id).name).join(' · ') : derived ? ruleInfo.name : '';
     if (l.rule === '전제') valid = l.depth === 0 && exact(0) && premises.some(p => same(p, f));
     else if (l.rule === '가정') valid = exact(0);
     else if (l.rule === '반복') valid = exact(1) && same(f, fs[0]);
@@ -226,7 +305,12 @@ export function checkProof(premiseText, conclusionText, proofText, basicOnly = f
     }
     else if (l.rule === '∨I') valid = exact(1) && is(f, '∨') && (same(f[1], fs[0]) || same(f[2], fs[0]));
     else if (l.rule === '&E') valid = exact(1) && is(fs[0], '&') && (same(f, fs[0][1]) || same(f, fs[0][2]));
-    else if (l.rule === '&I') valid = exact(2) && is(f, '&') && ((same(f[1], fs[0]) && same(f[2], fs[1])) || (same(f[1], fs[1]) && same(f[2], fs[0])));
+    else if (l.rule === '&I') {
+      valid = exact(2) && is(f, '&') && pair((x, y) => same(f, bin('&', x, y)));
+      if (!valid && exact(2) && is(f, '&') && pair((x, y) => same(flattenAnd(f), [...flattenAnd(x), ...flattenAnd(y)]))) {
+        valid = true; derived = true; derivedDetail = '연언 도입·결합 약식 · 연속 연언의 괄호 묶음 조정';
+      }
+    }
     else if (l.rule === '↔I') valid = exact(2) && is(f, '↔') && fs.some(x => same(x, bin('→', f[1], f[2]))) && fs.some(x => same(x, bin('→', f[2], f[1])));
     else if (l.rule === '↔E') {
       valid = exact(1) && is(fs[0], '↔') && (same(f, bin('→', fs[0][1], fs[0][2])) || same(f, bin('→', fs[0][2], fs[0][1])));
@@ -246,7 +330,11 @@ export function checkProof(premiseText, conclusionText, proofText, basicOnly = f
       }
     }
     else if (!basicOnly) {
-      if (l.rule === 'DNI') valid = exact(1) && same(f, neg(neg(fs[0])));
+      if (compound && exact(1)) {
+        try { valid = compoundMatches(fs[0], f, l.rule.split('+')); }
+        catch (error) { return fail(l, error.message, error.status || 'unverified'); }
+      }
+      else if (l.rule === 'DNI') valid = exact(1) && same(f, neg(neg(fs[0])));
       else if (l.rule === 'MT') valid = exact(2) && pair((x, y) => is(x, '→') && ((same(y, neg(x[2])) && same(f, neg(x[1]))) || (is(x[2], '~') && same(y, x[2][1]) && same(f, neg(x[1])))));
       else if (l.rule === 'HS') valid = exact(2) && is(f, '→') && pair((x, y) => is(x, '→') && is(y, '→') && same(x[1], f[1]) && same(x[2], y[1]) && same(y[2], f[2]));
       else if (l.rule === 'CP') valid = exact(1) && schematic(fs[0], f, 'CP');
@@ -254,19 +342,26 @@ export function checkProof(premiseText, conclusionText, proofText, basicOnly = f
       else if (l.rule === 'CASES') {
         valid = exact(3) && fs.some(x => is(x, '∨') && fs.some(y => same(y, bin('→', x[1], f))) && fs.some(y => same(y, bin('→', x[2], f))));
         if (!valid && exact(1, 2) && is(fs[0], '∨')) {
-          const branch = ([a, b], assumption) => a > 0 && b < l.n && a <= b && ref(a).rule === '가정' && ref(a).depth === l.depth + 1 && ref(b).depth === l.depth + 1 && same(ref(a).f, assumption) && same(ref(b).f, f) && scopeAt[b - 1][l.depth] === a && scopeAt[a - 1].slice(0, -1).every((v, k) => v === scopeAt[i][k]);
+          const branch = ([a, b], assumption) => same(ref(a).f, assumption) && same(ref(b).f, f);
           const [r1, r2] = [...ranges].sort((a, b) => a[0] - b[0]);
-          valid = r1[1] < r2[0] && r2[1] === prev.n && ((branch(r1, fs[0][1]) && branch(r2, fs[0][2])) || (branch(r1, fs[0][2]) && branch(r2, fs[0][1])));
+          valid = r1[1] < r2[0] && ((branch(r1, fs[0][1]) && branch(r2, fs[0][2])) || (branch(r1, fs[0][2]) && branch(r2, fs[0][1])));
         }
       }
-      else if (['COMM','ASSOC','DIST','DM','COND'].includes(l.rule)) valid = exact(1) && schematic(fs[0], f, l.rule);
+      else if (['COMM','ASSOC','DIST','DM','COND'].includes(l.rule)) valid = exact(1) && unaryMatches(fs[0], f, l.rule);
     }
     if (basicOnly && derived) return fail(l, '이 적용은 파생규칙입니다. 기본 규칙만 허용하는 경우에는 생략한 단계를 풀어 쓰세요.');
-    if (!valid) return fail(l, `규칙의 형식, 인용번호, 가정 해제를 확인하세요. ${hint[l.rule].replaceAll('→', ' -> ').replaceAll('∨', ' V ')}`);
+    if (!valid) {
+      if (l.rule === '전제') return fail(l, hint['전제']);
+      if (l.rule === '가정') return fail(l, '가정에는 인용번호를 쓰지 않습니다.');
+      const witness = !ranges.length && fs.length ? counterexample(fs, f) : null;
+      if (witness) return { ...fail(l, '인용한 식들이 모두 참인데 이 행의 식은 거짓인 경우가 있습니다. ' + Object.entries(witness).map(([name, truth]) => `${name}=${truth ? '참' : '거짓'}`).join(', ')), counterexample: witness };
+      const help = (hint[l.rule] || '복합 규칙은 적힌 순서대로 적용합니다. 각 단계를 나누어 입력해 보세요.').replaceAll('→', ' -> ').replaceAll('∨', ' V ');
+      return fail(l, `입력한 규칙과 인용으로 이 단계를 확인하지 못했습니다. 풀이 전체가 틀렸다는 뜻은 아닙니다. ${help}`, 'unverified');
+    }
     if (derived) derivedLines.push({ line: l.n, rule: l.rule, detail: derivedDetail });
   }
   const last = lines.at(-1);
   if (last.depth !== 0) return fail(last, '마지막 보조증명이 닫히지 않았습니다.');
   if (!same(last.f, goal)) return fail(last, '마지막 행이 목표 결론과 다릅니다.');
-  return { ok: true, line: null, derivedLines, message: `${lines.length}개 행을 검사했습니다. 각 행의 규칙 적용과 가정 해제가 맞습니다.` };
+  return { ok: true, status: 'valid', line: null, derivedLines, message: `${lines.length}개 행을 검사했습니다. 각 행의 규칙 적용과 가정 해제가 맞습니다.` };
 }

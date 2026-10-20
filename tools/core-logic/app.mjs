@@ -26,7 +26,7 @@ for (const rule of RULES) {
 
 function clearValidation() {
   $('result').hidden = true;
-  document.querySelectorAll('.proof-table tr.row-error').forEach(row => row.classList.remove('row-error'));
+  document.querySelectorAll('.proof-table tr.row-error, .proof-table tr.row-warning').forEach(row => row.classList.remove('row-error', 'row-warning'));
   document.querySelectorAll('.derived-badge').forEach(badge => { badge.hidden = true; badge.title = ''; });
 }
 function showResult(r) {
@@ -35,11 +35,13 @@ function showResult(r) {
     const badge = $('proofRows').children[derived.line - 1]?.querySelector('.derived-badge');
     if (badge) { badge.hidden = false; badge.title = derived.detail; }
   }
-  if (r.line) $('proofRows').children[r.line - 1]?.classList.add('row-error');
+  const warning = ['unsupported', 'unverified'].includes(r.status);
+  if (r.line) $('proofRows').children[r.line - 1]?.classList.add(warning ? 'row-warning' : 'row-error');
   $('result').hidden = false;
-  $('result').className = `result ${r.ok ? 'success' : 'error'}`;
+  $('result').className = `result ${r.ok ? 'success' : warning ? 'warning' : 'error'}`;
   $('resultIcon').textContent = r.ok ? '✓' : '!';
-  $('resultTitle').textContent = r.ok ? '검산 통과' : r.line ? `${r.line}행을 확인하세요` : '입력을 확인하세요';
+  const title = r.status === 'unsupported' ? '지원 범위 확인 필요' : r.status === 'unverified' ? '규칙 적용 확인 필요' : r.status === 'invalid' ? '증명 오류' : '입력 형식 확인';
+  $('resultTitle').textContent = r.ok ? '검산 통과' : `${r.line ? r.line + '행 · ' : ''}${title}`;
   $('resultMessage').textContent = r.message;
   $('result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
