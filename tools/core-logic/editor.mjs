@@ -1,4 +1,4 @@
-import { parseFormula } from './checker.mjs?v=quantifier-e-20261021';
+import { parseFormula } from './checker.mjs?v=quantifier-ae-20261021';
 export const blankRow = (depth = 0, rule = '') => ({ formula: '', rule, citations: '', depth });
 const isBlank = row => !row.formula.trim() && !row.rule.trim() && !row.citations.trim();
 export function trimTrailing(rows) {

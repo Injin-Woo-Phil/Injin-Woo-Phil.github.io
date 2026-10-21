@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="『코어 논리학』 문장·양화 논리 자연연역 풀이의 규칙 적용과 가정 해제를 확인하는 도구">
   <title>코어 논리학 자연연역 검산기</title>
-  <link rel="stylesheet" href="style.css?v=quantifier-e-20261021">
+  <link rel="stylesheet" href="style.css?v=quantifier-ae-20261021">
 </head>
 <body>
   <main class="shell">
@@ -33,8 +33,8 @@
       <div class="proof-grid"><table class="proof-table"><thead><tr><th scope="col">번호</th><th scope="col">수식</th><th scope="col">규칙</th><th scope="col">인용번호</th></tr></thead><tbody id="proofRows"></tbody></table></div>
       <datalist id="ruleOptions"></datalist>
       <div class="proof-tools"><button type="button" id="startParameter" hidden>임의 이름 시작 ↳</button><button type="button" id="closeUniversal" hidden>∀로 이름 상자 닫기</button><button type="button" id="closeExistential" hidden>∃로 가정 닫기</button><button type="button" id="addRow">+ 행 추가</button><button type="button" id="startAssumption">가정 시작 ↳</button><button type="button" id="nextCase">다음 경우</button><button type="button" id="closeConditional">-&gt;로 가정 닫기</button><button type="button" id="closeNegation">~로 가정 닫기</button><button type="button" id="closeCases">두 경우 결론</button></div>
-      <p id="quantifiedHelp" class="help" hidden>양화사는 <code>forall x</code> / <code>E x</code> 또는 <code>∀x</code> / <code>∃x</code>로 씁니다. 예: <code>forall x (Px -&gt; Qx)</code>, <code>E x R(x,a)</code>. 술어는 <code>Pa</code>와 <code>P(a)</code> 둘 다 가능합니다. 존재 양화사는 <code>E x Px</code>, <code>ExPx</code>, <code>(Ex)Px</code>처럼 입력해도 됩니다. 기존 <code>exists</code>·<code>∃</code>도 사용할 수 있습니다. 술어 E는 <code>E(a)</code>처럼 논항을 괄호로 감싸세요. 양화사의 범위가 복합식이면 괄호로 감싸세요.</p>
-      <div class="symbols" aria-label="기호 입력"><span>기호 입력</span><button type="button" data-symbol="∀" class="quant-symbol" hidden>∀</button><button type="button" data-symbol="E " class="quant-symbol" hidden>E</button><button type="button" data-symbol="=" class="quant-symbol" hidden>=</button><button type="button" data-symbol="~">~</button><button type="button" data-symbol="&amp;">&amp;</button><button type="button" data-symbol="V">V</button><button type="button" data-symbol="-&gt;">-&gt;</button><button type="button" data-symbol="&lt;-&gt;">&lt;-&gt;</button><button type="button" data-symbol="|">|</button></div>
+      <p id="quantifiedHelp" class="help" hidden>양화사는 <code>Ax</code> / <code>E x</code> 또는 <code>∀x</code> / <code>∃x</code>로 씁니다. 예: <code>Ax (Px -&gt; Qx)</code>, <code>E x R(x,a)</code>. 술어는 <code>Pa</code>와 <code>P(a)</code> 둘 다 가능합니다. 보편 양화사는 <code>A x Px</code>, <code>AxPx</code>, <code>(Ax)Px</code>처럼 입력해도 됩니다. 존재 양화사는 <code>E x Px</code>, <code>ExPx</code>, <code>(Ex)Px</code>처럼 입력해도 됩니다. 기존 <code>forall</code>·<code>exists</code>·<code>∀</code>·<code>∃</code>도 사용할 수 있습니다. 술어 A·E는 <code>A(a)</code>·<code>E(a)</code>처럼 논항을 괄호로 감싸세요. 양화사의 범위가 복합식이면 괄호로 감싸세요.</p>
+      <div class="symbols" aria-label="기호 입력"><span>기호 입력</span><button type="button" data-symbol="A" class="quant-symbol" hidden>A</button><button type="button" data-symbol="E " class="quant-symbol" hidden>E</button><button type="button" data-symbol="=" class="quant-symbol" hidden>=</button><button type="button" data-symbol="~">~</button><button type="button" data-symbol="&amp;">&amp;</button><button type="button" data-symbol="V">V</button><button type="button" data-symbol="-&gt;">-&gt;</button><button type="button" data-symbol="&lt;-&gt;">&lt;-&gt;</button><button type="button" data-symbol="|">|</button></div>
       <div class="actions"><button class="primary" type="button" id="check">풀이 검산하기 <span>→</span></button><button class="secondary" type="button" id="clear">입력 지우기</button></div>
       <section class="result" id="result" hidden aria-live="polite"><div class="result-icon" id="resultIcon"></div><div><strong id="resultTitle"></strong><p id="resultMessage"></p></div></section>
     </section>
@@ -44,7 +44,7 @@
       <div><h3>보조증명이 여러 개라면</h3><p><strong>가정 시작</strong>을 누르면 한 단계 안쪽에서 새 가정을 시작합니다. <strong>행 추가</strong>는 그 깊이를 유지하고, <strong>다음 경우</strong>는 같은 깊이에서 다른 가정을 시작합니다. 수식 왼쪽의 세로선으로 깊이를 확인하세요.</p><p><strong>-&gt;로 가정 닫기</strong> 또는 <strong>~로 가정 닫기</strong>를 누르면 결론 행과 보조증명 범위가 자동으로 채워집니다. 두 경우를 마쳤다면 <strong>두 경우 결론</strong>을 누르세요. 행 번호 옆의 ‹·›로 깊이를 조정할 수도 있습니다. 삭제된 행을 인용하던 번호는 <code>?</code>로 표시됩니다.</p></div>
     </section>
     <section id="quantifiedGuide" class="guide" hidden>
-      <div><h3>보편 도입 · 임의 이름 상자</h3><p><strong>임의 이름 시작</strong>을 누르고 수식 칸에 <code>u</code>처럼 새 이름 하나를 쓰세요. 그 안에서 필요한 식을 얻은 뒤 <strong>∀로 이름 상자 닫기</strong>를 누르고 결론에 <code>forall x Px</code>처럼 일반화한 식을 입력하세요. 인용 범위는 자동으로 채워집니다. 상자 없이 마지막 행 하나를 인용하는 방식도 허용합니다.</p><p>일반화하는 이름은 전제·열린 가정에 없어야 합니다. <code>∃ 제거</code>로 고른 임시 이름이나 그 선택에 의존하는 이름은 임의로 일반화할 수 없습니다.</p></div>
+      <div><h3>보편 도입 · 임의 이름 상자</h3><p><strong>임의 이름 시작</strong>을 누르고 수식 칸에 <code>u</code>처럼 새 이름 하나를 쓰세요. 그 안에서 필요한 식을 얻은 뒤 <strong>∀로 이름 상자 닫기</strong>를 누르고 결론에 <code>Ax Px</code>처럼 일반화한 식을 입력하세요. 인용 범위는 자동으로 채워집니다. 상자 없이 마지막 행 하나를 인용하는 방식도 허용합니다.</p><p>일반화하는 이름은 전제·열린 가정에 없어야 합니다. <code>∃ 제거</code>로 고른 임시 이름이나 그 선택에 의존하는 이름은 임의로 일반화할 수 없습니다.</p></div>
       <div><h3>존재 제거 · 세 가지 입력 방식</h3><p>교재 약식은 존재문 한 행을 인용하고 새 이름으로 대입한 식을 적습니다. 예: <code>∃x Px</code>에서 <code>Pa</code>. 이 임시 이름은 앞선 행·전제·목표 결론에 없어야 합니다.</p><p>보조증명을 쓰려면 <strong>가정 시작</strong>으로 <code>Pa</code>를 가정하고, 이름 <code>a</code>가 남지 않은 결론을 얻은 뒤 <strong>∃로 가정 닫기</strong>를 누르세요. 인용의 <code>?</code>를 존재문 행 번호로 바꾸세요. 존재문과 <code>∀x(Px -&gt; C)</code>를 함께 인용하는 교재의 엄밀한 형식도 가능합니다.</p><p><code>보편 제거</code>·<code>보편제거</code>·<code>전칭 제거</code>·<code>전칭제거</code>는 같습니다. 소문자 <code>v</code>는 변항, 대문자 <code>V</code>는 선언입니다. 이름·변항은 소문자 한 글자(숫자 첨자 가능), 술어는 대문자 한 글자로 씁니다.</p></div>
     </section>
     <section class="rule-reference" aria-labelledby="rule-title">
@@ -59,6 +59,6 @@
     </section>
     <footer><span>CORE LOGIC · PROOF CHECKER</span></footer>
   </main>
-  <script type="module" src="app.mjs?v=quantifier-e-20261021"></script>
+  <script type="module" src="app.mjs?v=quantifier-ae-20261021"></script>
 </body>
 </html>

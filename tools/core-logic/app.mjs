@@ -1,6 +1,6 @@
-import { checkQuantifiedProof, parseQuantifiedProof, parseQuantifiedFormula, ALL_RULES } from './quantifier.mjs?v=quantifier-e-20261021';
-import { checkProof, parseProof, parseFormula, RULES } from './checker.mjs?v=quantifier-e-20261021';
-import { blankRow, trimTrailing, proofText, startAssumption, closeAssumption, closeCases, deleteRow, startParameter, closeQuantifier } from './editor.mjs?v=quantifier-e-20261021';
+import { checkQuantifiedProof, parseQuantifiedProof, parseQuantifiedFormula, ALL_RULES } from './quantifier.mjs?v=quantifier-ae-20261021';
+import { checkProof, parseProof, parseFormula, RULES } from './checker.mjs?v=quantifier-ae-20261021';
+import { blankRow, trimTrailing, proofText, startAssumption, closeAssumption, closeCases, deleteRow, startParameter, closeQuantifier } from './editor.mjs?v=quantifier-ae-20261021';
 
 const $ = id => document.getElementById(id);
 const propositionalSamples = {
@@ -10,11 +10,11 @@ const propositionalSamples = {
   contraposition: { premises: '~A -> B\nB -> ~C', conclusion: 'C -> A', proof: '1. ~A -> B ; 전제\n2. B -> ~C ; 전제\n3. ~A -> ~C ; 연쇄 논법 1,2\n4. C -> A ; 대우 규칙 3' }
 };
 const quantifiedSamples = {
-  universal: {label:'보편 제거와 존재 도입',premises:'forall x (Px -> Qx)\nPa',conclusion:'E x Qx',proof:'forall x (Px -> Qx);전제\nPa;전제\nPa -> Qa;전칭제거 1\nQa;-> 제거 2,3\nE x Qx;존재도입 4'},
-  generalize: {label:'임의 이름 상자 · 보편 도입',premises:'forall x (Px & Qx)',conclusion:'forall x Px',proof:'forall x (Px & Qx);전제\n|u;임의 이름\n|Pu & Qu;∀ 제거 1\n|Pu;& 제거 3\nforall x Px;∀ 도입 2-4'},
+  universal: {label:'보편 제거와 존재 도입',premises:'Ax (Px -> Qx)\nPa',conclusion:'E x Qx',proof:'Ax (Px -> Qx);전제\nPa;전제\nPa -> Qa;전칭제거 1\nQa;-> 제거 2,3\nE x Qx;존재도입 4'},
+  generalize: {label:'임의 이름 상자 · 보편 도입',premises:'Ax (Px & Qx)',conclusion:'Ax Px',proof:'Ax (Px & Qx);전제\n|u;임의 이름\n|Pu & Qu;∀ 제거 1\n|Pu;& 제거 3\nAx Px;∀ 도입 2-4'},
   witness: {label:'교재 약식 · 존재 제거',premises:'E x (Px & Qx)',conclusion:'E x Px & E x Qx',proof:'E x (Px & Qx);전제\nPa & Qa;∃ 제거 1\nPa;& 제거 2\nQa;& 제거 2\nE x Px;∃ 도입 3\nE x Qx;∃ 도입 4\nE x Px & E x Qx;& 도입 6,5'},
-  existsBox: {label:'보조증명 · 존재 제거',premises:'E x Px\nforall x (Px -> Qx)',conclusion:'E x Qx',proof:'E x Px;전제\nforall x (Px -> Qx);전제\n|Pa;가정\n|Pa -> Qa;∀ 제거 2\n|Qa;-> 제거 3,4\n|E x Qx;∃ 도입 5\nE x Qx;∃ 제거 3-6,1'},
-  negation: {label:'양화사 부정 · 파생규칙',premises:'~forall x Px',conclusion:'E x ~Px',proof:'~forall x Px;전제\nE x ~Px;양화사 부정 1'},
+  existsBox: {label:'보조증명 · 존재 제거',premises:'E x Px\nAx (Px -> Qx)',conclusion:'E x Qx',proof:'E x Px;전제\nAx (Px -> Qx);전제\n|Pa;가정\n|Pa -> Qa;∀ 제거 2\n|Qa;-> 제거 3,4\n|E x Qx;∃ 도입 5\nE x Qx;∃ 제거 3-6,1'},
+  negation: {label:'양화사 부정 · 파생규칙',premises:'~Ax Px',conclusion:'E x ~Px',proof:'~Ax Px;전제\nE x ~Px;양화사 부정 1'},
   identity: {label:'동일성 · 부분 대입',premises:'a=b\nRaa',conclusion:'Rab',proof:'a=b;전제\nRaa;전제\nRab;동일성 제거 2,1'}
 };
 let mode = 'propositional', samples = propositionalSamples, rules = RULES;
@@ -77,7 +77,7 @@ function renderRows(focusIndex = null) {
     ['formula', 'rule', 'citations'].forEach((key, fieldIndex) => {
       const td = document.createElement('td');
       const input = document.createElement('input'); input.type = 'text'; input.value = row[key]; input.spellcheck = false;
-      input.setAttribute('aria-label', `${i + 1}행 ${['수식', '규칙', '인용번호'][fieldIndex]}`); input.placeholder = [mode === 'quantified' ? 'forall x Px / Pa' : 'A -> B', '규칙 선택·입력', '1,2 / 3-5'][fieldIndex];
+      input.setAttribute('aria-label', `${i + 1}행 ${['수식', '규칙', '인용번호'][fieldIndex]}`); input.placeholder = [mode === 'quantified' ? 'Ax Px / Pa' : 'A -> B', '규칙 선택·입력', '1,2 / 3-5'][fieldIndex];
       if (key === 'rule') input.setAttribute('list', 'ruleOptions');
       if (key === 'formula') {
         td.className = 'formula-cell'; const guides = document.createElement('span'); guides.className = 'indent-guides'; guides.style.width = `${row.depth * 10}px`;
@@ -139,7 +139,7 @@ function setMode(next) {
   for (const [id,name] of [['propositionalTab','propositional'],['quantifiedTab','quantified']]) {$(id).classList.toggle('active',mode===name); if (mode===name) $(id).setAttribute('aria-current','page'); else $(id).removeAttribute('aria-current');}
   for (const id of ['quantifiedHelp','quantifiedGuide','startParameter','closeUniversal','closeExistential']) $(id).hidden = !q;
   document.querySelectorAll('.quant-symbol').forEach(button => {button.hidden = !q;});
-  $('premises').placeholder = q ? '전제를 한 줄에 하나씩 입력하세요.\n예: forall x (Px -> Qx)\n    Pa\n전제가 없으면 비워 두세요.' : '전제를 한 줄에 하나씩 입력하세요.\n예: A -> ~B\n    B V C\n전제가 없으면 비워 두세요.';
+  $('premises').placeholder = q ? '전제를 한 줄에 하나씩 입력하세요.\n예: Ax (Px -> Qx)\n    Pa\n전제가 없으면 비워 두세요.' : '전제를 한 줄에 하나씩 입력하세요.\n예: A -> ~B\n    B V C\n전제가 없으면 비워 두세요.';
   $('conclusion').placeholder = q ? '예: E x Qx' : '예: A -> C';
   $('sampleChoice').replaceChildren();
   const labels = {conditional:'조건문 도입',nested:'중첩 보조증명',cases:'경우에 의한 논증',contraposition:'대우 규칙'};
