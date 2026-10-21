@@ -1,5 +1,5 @@
 // 『코어 논리학』 12–13장: 포획 없는 대입과 임시 이름의 의존 관계.
-import { checkProof, parseProof, normalizeRule, RULES, same, formulaKey } from './checker.mjs?v=quantifier-20261021';
+import { checkProof, parseProof, normalizeRule, RULES, same, formulaKey } from './checker.mjs?v=quantifier-e-20261021';
 const is = (f, op) => Array.isArray(f) && f[0] === op;
 const quant = (f, q) => f && !Array.isArray(f) && f.q === q;
 const termPattern = /^[a-z][0-9]*$/;
@@ -11,11 +11,11 @@ export function parseQuantifiedFormula(input, rule) {
     if (!termPattern.test(name)) throw error('임의 이름은 u, v, a1처럼 소문자 한 글자와 선택적인 숫자로 쓰세요.');
     return {parameter: name};
   }
-  const src = input.replace(/forall/gi, '∀').replace(/exists/gi, '∃').replace(/\s+/g, '')
+  const src = input.replace(/forall/gi, '∀').replace(/exists/gi, '∃').replace(/\s+/g, '').replace(/E(?=[a-z])/g, '∃')
     .replace(/¬/g, '~').replace(/∧/g, '&').replace(/<->|⇔/g, '↔').replace(/->|⇒/g, '→').replace(/[V|]/g, '∨')
     .replace(/\(([∀∃])([a-z][0-9]*)\)/g, '$1$2');
   const tokens = src.match(/[∀∃~&∨→↔(),=]|[A-Z][0-9]*|[a-z][0-9]*/g) || [];
-  if (!src || tokens.join('') !== src) throw error('양화식은 forall x Px, exists x (Px & Qx), R(a,b)처럼 입력하세요. 함수기호는 지원하지 않습니다.');
+  if (!src || tokens.join('') !== src) throw error('양화식은 forall x Px, E x (Px & Qx), R(a,b)처럼 입력하세요. 함수기호는 지원하지 않습니다.');
   let pos = 0;
   const term = () => { const t = tokens[pos++]; if (!t || !termPattern.test(t)) throw error('이름·변항은 a, u, x, y처럼 소문자로 쓰세요.'); return t; };
   const precedence = {'↔':1, '→':2, '∨':3, '&':4};
@@ -87,8 +87,8 @@ export const QUANTIFIER_RULES = [
   {id:'PARAM',group:'basic',name:'임의 이름',inputs:['임의 이름','임의이름 선언'],cite:'인용 없음 · 새 보조증명'},
   {id:'∀E',group:'basic',name:'보편 양화사 제거',inputs:['∀ 제거','보편 제거','전칭 제거','보편 양화사 제거','전칭 양화사 제거','∀E','UE'],cite:'1'},
   {id:'∀I',group:'basic',name:'보편 양화사 도입',inputs:['∀ 도입','보편 도입','전칭 도입','보편 양화사 도입','전칭 양화사 도입','∀I','UI'],cite:'1 또는 임의 이름 범위 2-5'},
-  {id:'∃I',group:'basic',name:'존재 양화사 도입',inputs:['∃ 도입','존재 도입','특칭 도입','존재 양화사 도입','특칭 양화사 도입','∃I','EI'],cite:'1'},
-  {id:'∃E',group:'basic',name:'존재 양화사 제거',inputs:['∃ 제거','존재 제거','특칭 제거','존재 양화사 제거','특칭 양화사 제거','∃E','EE'],cite:'1 (새 이름) / 1,2 / 1,2-5'},
+  {id:'∃I',group:'basic',name:'존재 양화사 도입',inputs:['∃ 도입','E 도입','존재 도입','특칭 도입','존재 양화사 도입','특칭 양화사 도입','∃I','EI'],cite:'1'},
+  {id:'∃E',group:'basic',name:'존재 양화사 제거',inputs:['∃ 제거','E 제거','존재 제거','특칭 제거','존재 양화사 제거','특칭 양화사 제거','∃E','EE'],cite:'1 (새 이름) / 1,2 / 1,2-5'},
   {id:'QN',group:'derived',name:'양화사 부정 규칙',inputs:['양화사 부정','양화사 부정 규칙','양화 부정','보편 양화사 부정규칙','존재 양화사 부정규칙','전칭 부정','존재 부정','~∀','~∃','~∀ 규칙','~∃ 규칙','QN'],cite:'1 · 양방향'},
   {id:'=I',group:'basic',name:'동일성 도입',inputs:['= 도입','동일성 도입','=I'],cite:'인용 없음'},
   {id:'=E',group:'basic',name:'동일성 제거',inputs:['= 제거','동일성 제거','=E'],cite:'1,2 · 양방향'}

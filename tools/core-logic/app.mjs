@@ -1,6 +1,6 @@
-import { checkQuantifiedProof, parseQuantifiedProof, parseQuantifiedFormula, ALL_RULES } from './quantifier.mjs?v=quantifier-20261021';
-import { checkProof, parseProof, parseFormula, RULES } from './checker.mjs?v=quantifier-20261021';
-import { blankRow, trimTrailing, proofText, startAssumption, closeAssumption, closeCases, deleteRow, startParameter, closeQuantifier } from './editor.mjs?v=quantifier-20261021';
+import { checkQuantifiedProof, parseQuantifiedProof, parseQuantifiedFormula, ALL_RULES } from './quantifier.mjs?v=quantifier-e-20261021';
+import { checkProof, parseProof, parseFormula, RULES } from './checker.mjs?v=quantifier-e-20261021';
+import { blankRow, trimTrailing, proofText, startAssumption, closeAssumption, closeCases, deleteRow, startParameter, closeQuantifier } from './editor.mjs?v=quantifier-e-20261021';
 
 const $ = id => document.getElementById(id);
 const propositionalSamples = {
@@ -10,11 +10,11 @@ const propositionalSamples = {
   contraposition: { premises: '~A -> B\nB -> ~C', conclusion: 'C -> A', proof: '1. ~A -> B ; 전제\n2. B -> ~C ; 전제\n3. ~A -> ~C ; 연쇄 논법 1,2\n4. C -> A ; 대우 규칙 3' }
 };
 const quantifiedSamples = {
-  universal: {label:'보편 제거와 존재 도입',premises:'forall x (Px -> Qx)\nPa',conclusion:'exists x Qx',proof:'forall x (Px -> Qx);전제\nPa;전제\nPa -> Qa;전칭제거 1\nQa;-> 제거 2,3\nexists x Qx;존재도입 4'},
+  universal: {label:'보편 제거와 존재 도입',premises:'forall x (Px -> Qx)\nPa',conclusion:'E x Qx',proof:'forall x (Px -> Qx);전제\nPa;전제\nPa -> Qa;전칭제거 1\nQa;-> 제거 2,3\nE x Qx;존재도입 4'},
   generalize: {label:'임의 이름 상자 · 보편 도입',premises:'forall x (Px & Qx)',conclusion:'forall x Px',proof:'forall x (Px & Qx);전제\n|u;임의 이름\n|Pu & Qu;∀ 제거 1\n|Pu;& 제거 3\nforall x Px;∀ 도입 2-4'},
-  witness: {label:'교재 약식 · 존재 제거',premises:'exists x (Px & Qx)',conclusion:'exists x Px & exists x Qx',proof:'exists x (Px & Qx);전제\nPa & Qa;∃ 제거 1\nPa;& 제거 2\nQa;& 제거 2\nexists x Px;∃ 도입 3\nexists x Qx;∃ 도입 4\nexists x Px & exists x Qx;& 도입 6,5'},
-  existsBox: {label:'보조증명 · 존재 제거',premises:'exists x Px\nforall x (Px -> Qx)',conclusion:'exists x Qx',proof:'exists x Px;전제\nforall x (Px -> Qx);전제\n|Pa;가정\n|Pa -> Qa;∀ 제거 2\n|Qa;-> 제거 3,4\n|exists x Qx;∃ 도입 5\nexists x Qx;∃ 제거 3-6,1'},
-  negation: {label:'양화사 부정 · 파생규칙',premises:'~forall x Px',conclusion:'exists x ~Px',proof:'~forall x Px;전제\nexists x ~Px;양화사 부정 1'},
+  witness: {label:'교재 약식 · 존재 제거',premises:'E x (Px & Qx)',conclusion:'E x Px & E x Qx',proof:'E x (Px & Qx);전제\nPa & Qa;∃ 제거 1\nPa;& 제거 2\nQa;& 제거 2\nE x Px;∃ 도입 3\nE x Qx;∃ 도입 4\nE x Px & E x Qx;& 도입 6,5'},
+  existsBox: {label:'보조증명 · 존재 제거',premises:'E x Px\nforall x (Px -> Qx)',conclusion:'E x Qx',proof:'E x Px;전제\nforall x (Px -> Qx);전제\n|Pa;가정\n|Pa -> Qa;∀ 제거 2\n|Qa;-> 제거 3,4\n|E x Qx;∃ 도입 5\nE x Qx;∃ 제거 3-6,1'},
+  negation: {label:'양화사 부정 · 파생규칙',premises:'~forall x Px',conclusion:'E x ~Px',proof:'~forall x Px;전제\nE x ~Px;양화사 부정 1'},
   identity: {label:'동일성 · 부분 대입',premises:'a=b\nRaa',conclusion:'Rab',proof:'a=b;전제\nRaa;전제\nRab;동일성 제거 2,1'}
 };
 let mode = 'propositional', samples = propositionalSamples, rules = RULES;
@@ -140,7 +140,7 @@ function setMode(next) {
   for (const id of ['quantifiedHelp','quantifiedGuide','startParameter','closeUniversal','closeExistential']) $(id).hidden = !q;
   document.querySelectorAll('.quant-symbol').forEach(button => {button.hidden = !q;});
   $('premises').placeholder = q ? '전제를 한 줄에 하나씩 입력하세요.\n예: forall x (Px -> Qx)\n    Pa\n전제가 없으면 비워 두세요.' : '전제를 한 줄에 하나씩 입력하세요.\n예: A -> ~B\n    B V C\n전제가 없으면 비워 두세요.';
-  $('conclusion').placeholder = q ? '예: exists x Qx' : '예: A -> C';
+  $('conclusion').placeholder = q ? '예: E x Qx' : '예: A -> C';
   $('sampleChoice').replaceChildren();
   const labels = {conditional:'조건문 도입',nested:'중첩 보조증명',cases:'경우에 의한 논증',contraposition:'대우 규칙'};
   for (const [key,sample] of Object.entries(samples)) {const option = document.createElement('option'); option.value=key; option.textContent=sample.label || labels[key]; $('sampleChoice').append(option);}
