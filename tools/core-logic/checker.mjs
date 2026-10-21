@@ -1,6 +1,14 @@
 // 『코어 논리학』 7–8장 문장 논리. 검사는 문자열이 아니라 구문 나무에 한다.
 const binary = new Set(['&', '∨', '→', '↔']);
-const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+// Bound names compare by binding position; propositional arrays retain their original form.
+export function formulaKey(f, bound = []) {
+  if (Array.isArray(f)) return f.map((x, i) => i === 0 && typeof x === 'string' ? x : formulaKey(x, bound));
+  if (!f || typeof f !== 'object') return f;
+  if (f.q) return [f.q, formulaKey(f.body, [...bound, f.v])];
+  if (f.args) return [f.p, ...f.args.map(t => bound.includes(t) ? ['bound', bound.length - 1 - bound.lastIndexOf(t)] : ['free', t])];
+  return f;
+}
+export const same = (a, b) => JSON.stringify(formulaKey(a)) === JSON.stringify(formulaKey(b));
 const neg = a => ['~', a];
 const contradictory = (a, b) => same(a, neg(b)) || same(b, neg(a));
 const bin = (op, a, b) => [op, a, b];
@@ -31,7 +39,7 @@ const hint = {
 };
 
 export function parseFormula(input) {
-  if (/[∀∃=]|\b(?:forall|exists)\b/i.test(input)) throw inputError('양화사·동일성이 있는 식은 아직 검사하지 않습니다.', 'unsupported');
+  if (/[∀∃=]|\b(?:forall|exists)\b/i.test(input)) throw inputError('양화사·동일성이 있는 식은 위의 양화 논리 탭에서 검사하세요.', 'unsupported');
   const src = input.replace(/\s+/g, '').replace(/¬/g, '~').replace(/∧/g, '&').replace(/\|/g, '∨').replace(/<->|⇔/g, '↔').replace(/->|⇒/g, '→').replace(/[vV]/g, '∨');
   const tokens = src.match(/↔|→|∨|&|~|\(|\)|[A-Z][A-Z0-9_]*/g) || [];
   if (tokens.join('') !== src || !src) throw Error('문장 형식을 읽을 수 없습니다. 명제문자는 A, B처럼 대문자로 쓰세요.');
@@ -88,7 +96,7 @@ export const RULES = [
 const ruleKey = raw => raw.replace(/\s+/g, '').replace(/¬/g, '~').replace(/∧/g, '&').replace(/<->/g, '↔').replace(/->/g, '→').replace(/^[vV]/, '∨').toLowerCase();
 const ruleNames = new Map(RULES.flatMap(rule => [rule.name, ...rule.inputs].map(input => [ruleKey(input), rule.id])));
 const unaryRules = new Set(['반복','&E','↔E','~E','DNI','CP','COMM','ASSOC','DIST','DM','COND']);
-const normalizeRule = raw => {
+export const normalizeRule = raw => {
   const named = ruleNames.get(ruleKey(raw));
   if (named) return named;
   const parts = raw.split(/[,·+]/).map(x => ruleNames.get(ruleKey(x)));
@@ -96,7 +104,9 @@ const normalizeRule = raw => {
 };
 const inputError = (message, status = 'input', line = null) => Object.assign(Error(message), { status, line });
 
-export function parseProof(text) {
+export function parseProof(text, options = {}) {
+  const parse = options.parseFormula || parseFormula;
+  const normalize = options.normalizeRule || normalizeRule;
   const rows = text.split('\n').map(s => s.trim()).filter(Boolean);
   if (!rows.length) throw Error('증명을 입력하세요.');
   return rows.map((row, i) => {
@@ -104,11 +114,11 @@ export function parseProof(text) {
     if (!m) throw Error(`${i + 1}행: ‘수식 ; 규칙 인용번호’ 형태로 입력하세요.`);
     if (m[1] && Number(m[1]) !== i + 1) throw Error(`${i + 1}행: 행 번호가 순서와 다릅니다.`);
     const tail = m[4].trim().match(/^(.*?)(\d[\d,\s-]*)?$/);
-    let rule = tail && normalizeRule(tail[1].replace(/,\s*$/, ''));
+    let rule = tail && normalize(tail[1].replace(/,\s*$/, ''));
     let citationText = tail?.[2] || '';
     if (!rule) {
       const leading = m[4].trim().match(/^(\d+(?:\s*-\s*\d+)?(?:\s*,\s*\d+(?:\s*-\s*\d+)?)*)\s*,?\s*(.+)$/);
-      if (leading) { rule = normalizeRule(leading[2]); citationText = leading[1]; }
+      if (leading) { rule = normalize(leading[2]); citationText = leading[1]; }
     }
     if (!rule) throw inputError(`${i + 1}행: 등록된 규칙 이름 또는 지원하는 복합 규칙인지 확인하세요. 규칙을 각각 한 행씩 풀어 쓰면 검사할 수 있습니다.`, 'unsupported', i + 1);
     const refs = citationText.replace(/\s+/g, '').split(',').filter(Boolean).map(s => {
@@ -116,7 +126,7 @@ export function parseProof(text) {
       if (!r) throw Error(`${i + 1}행: 인용은 1,2 또는 3-5처럼 쓰세요.`);
       return r[2] ? [Number(r[1]), Number(r[2])] : Number(r[1]);
     });
-    return { n: i + 1, depth: (m[2].match(/\|/g) || []).length, formulaText: m[3].trim(), f: parseFormula(m[3]), rule, refs };
+    return { n: i + 1, depth: (m[2].match(/\|/g) || []).length, formulaText: m[3].trim(), f: parse(m[3], rule), rule, refs };
   });
 }
 
@@ -250,12 +260,16 @@ function counterexample(premises, conclusion) {
   return null;
 }
 
-export function checkProof(premiseText, conclusionText, proofText, basicOnly = false) {
+export function checkProof(premiseText, conclusionText, proofText, basicOnly = false, options = {}) {
+  const parse = options.parseFormula || parseFormula;
+  const rules = options.rules || RULES;
+  const opening = l => l.rule === '가정' || options.isOpening?.(l);
   let premises, goal, lines;
   try {
-    premises = premiseText.split('\n').map(s => s.trim()).filter(Boolean).map(parseFormula);
-    goal = parseFormula(conclusionText);
-    lines = parseProof(proofText);
+    premises = premiseText.split('\n').map(s => s.trim()).filter(Boolean).map(x => parse(x));
+    goal = parse(conclusionText);
+    lines = parseProof(proofText, options);
+    options.validateInput?.({premises, goal, lines});
   } catch (e) { return { ok: false, status: e.status || 'input', line: e.line || null, message: e.message }; }
   const derivedLines = [];
   const fail = (l, msg, status = 'invalid') => ({ ok: false, status, line: l.n, derivedLines: [...derivedLines], message: `${l.n}행: ${msg}` });
@@ -264,10 +278,10 @@ export function checkProof(premiseText, conclusionText, proofText, basicOnly = f
   for (let i = 0; i < lines.length; i++) {
     const l = lines[i], prev = lines[i - 1];
     if (l.depth > (prev?.depth || 0) + 1) return fail(l, '보조증명 깊이를 한 번에 한 단계씩 늘리세요.');
-    if (l.depth > (prev?.depth || 0) && l.rule !== '가정') return fail(l, '보조증명은 가정으로 시작해야 합니다.');
-    if (l.rule === '가정' && (l.depth < 1 || l.depth > (prev?.depth || 0) + 1)) return fail(l, '가정은 새 보조증명을 열어야 합니다.');
-    while (open.length > l.depth || (l.rule === '가정' && open.length >= l.depth)) open.pop();
-    if (l.rule === '가정') open.push(l.n);
+    if (l.depth > (prev?.depth || 0) && !opening(l)) return fail(l, '보조증명은 가정으로 시작해야 합니다.');
+    if (opening(l) && (l.depth < 1 || l.depth > (prev?.depth || 0) + 1)) return fail(l, '가정은 새 보조증명을 열어야 합니다.');
+    while (open.length > l.depth || (opening(l) && open.length >= l.depth)) open.pop();
+    if (opening(l)) open.push(l.n);
     if (l.depth !== open.length) return fail(l, '가정선(|)의 깊이가 맞지 않습니다.');
     scopeAt[i] = [...open];
     const ref = n => lines[n - 1];
@@ -279,7 +293,7 @@ export function checkProof(premiseText, conclusionText, proofText, basicOnly = f
     const fs = nums.map(n => ref(n).f), f = l.f;
     const pair = pred => fs.length === 2 && (pred(fs[0], fs[1]) || pred(fs[1], fs[0]));
     const closedRange = ([a, b]) => a >= 1 && a <= b && b < l.n &&
-      ref(a).rule === '가정' && ref(a).depth === l.depth + 1 && ref(b).depth === l.depth + 1 &&
+      (ref(a).rule === '가정' || (l.rule === '∀I' && options.isOpening?.(ref(a)))) && ref(a).depth === l.depth + 1 && ref(b).depth === l.depth + 1 &&
       scopeAt[a - 1].slice(0, -1).every((v, k) => scopeAt[i][k] === v) &&
       scopeAt[b - 1][l.depth] === a && scopeAt[b]?.[l.depth] !== a;
     if (ranges.some(range => !closedRange(range))) return fail(l, '인용 범위는 같은 바깥 가정 아래에서 완전히 끝난 보조증명이어야 합니다. 시작·끝 행과 가정선을 확인하세요.');
@@ -289,11 +303,15 @@ export function checkProof(premiseText, conclusionText, proofText, basicOnly = f
       return [ref(a).f, ref(b).f, a, b];
     };
     let valid = false;
-    const ruleInfo = RULES.find(rule => rule.id === l.rule);
+    const ruleInfo = rules.find(rule => rule.id === l.rule);
     const compound = l.rule.includes('+');
-    let derived = compound || ruleInfo.group === 'derived';
-    let derivedDetail = compound ? l.rule.split('+').map(id => RULES.find(r => r.id === id).name).join(' · ') : derived ? ruleInfo.name : '';
-    if (l.rule === '전제') valid = l.depth === 0 && exact(0) && premises.some(p => same(p, f));
+    let derived = compound || ruleInfo?.group === 'derived';
+    let derivedDetail = compound ? l.rule.split('+').map(id => rules.find(r => r.id === id)?.name || id).join(' · ') : derived ? ruleInfo.name : '';
+    const context = {l, f, fs, nums, ranges, exact, ref, lines, premises, goal, scopeAt, open: [...open], accessible, basicOnly};
+    const extra = options.extraRule?.(context);
+    if (extra?.error) return fail(l, extra.error, extra.status || 'invalid');
+    if (extra) { valid = extra.valid; derived = extra.derived ?? derived; derivedDetail = extra.detail || derivedDetail; }
+    else if (l.rule === '전제') valid = l.depth === 0 && exact(0) && premises.some(p => same(p, f));
     else if (l.rule === '가정') valid = exact(0);
     else if (l.rule === '반복') valid = exact(1) && same(f, fs[0]);
     else if (l.rule === '→E') valid = exact(2) && pair((x, y) => is(x, '→') && same(x[1], y) && same(x[2], f));
@@ -353,11 +371,13 @@ export function checkProof(premiseText, conclusionText, proofText, basicOnly = f
     if (!valid) {
       if (l.rule === '전제') return fail(l, hint['전제']);
       if (l.rule === '가정') return fail(l, '가정에는 인용번호를 쓰지 않습니다.');
-      const witness = !ranges.length && fs.length ? counterexample(fs, f) : null;
+      const witness = !options.disableCounterexample && !ranges.length && fs.length ? counterexample(fs, f) : null;
       if (witness) return { ...fail(l, '인용한 식들이 모두 참인데 이 행의 식은 거짓인 경우가 있습니다. ' + Object.entries(witness).map(([name, truth]) => `${name}=${truth ? '참' : '거짓'}`).join(', ')), counterexample: witness };
-      const help = (hint[l.rule] || '복합 규칙은 적힌 순서대로 적용합니다. 각 단계를 나누어 입력해 보세요.').replaceAll('→', ' -> ').replaceAll('∨', ' V ');
+      const help = (options.hints?.[l.rule] || hint[l.rule] || '복합 규칙은 적힌 순서대로 적용합니다. 각 단계를 나누어 입력해 보세요.').replaceAll('→', ' -> ').replaceAll('∨', ' V ');
       return fail(l, `입력한 규칙과 인용으로 이 단계를 확인하지 못했습니다. 풀이 전체가 틀렸다는 뜻은 아닙니다. ${help}`, 'unverified');
     }
+    const postError = options.afterRow?.(context, extra);
+    if (postError) return fail(l, postError);
     if (derived) derivedLines.push({ line: l.n, rule: l.rule, detail: derivedDetail });
   }
   const last = lines.at(-1);

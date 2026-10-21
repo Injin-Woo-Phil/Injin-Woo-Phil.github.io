@@ -1,4 +1,4 @@
-import { parseFormula } from './checker.mjs';
+import { parseFormula } from './checker.mjs?v=quantifier-20261021';
 export const blankRow = (depth = 0, rule = '') => ({ formula: '', rule, citations: '', depth });
 const isBlank = row => !row.formula.trim() && !row.rule.trim() && !row.citations.trim();
 export function trimTrailing(rows) {
@@ -17,7 +17,7 @@ export function startAssumption(rows, sibling = false) {
 function scopes(rows) {
   const open = [];
   return rows.map((row, i) => {
-    const assumption = row.rule.replace(/\s+/g, '') === '가정';
+    const assumption = ['가정', '임의이름', '임의이름선언'].includes(row.rule.replace(/\s+/g, ''));
     if (!Number.isInteger(row.depth) || row.depth < 0 || (assumption && row.depth === 0)) throw Error(`${i + 1}행: 가정은 한 단계 안쪽에서 시작하세요. 행 번호 옆의 ›로 깊이를 조정할 수 있습니다.`);
     while (open.length > row.depth || (assumption && open.length >= row.depth)) open.pop();
     if (assumption) open.push(i);
@@ -30,10 +30,11 @@ export function closeAssumption(rows, rule) {
   const open = scopes(result).at(-1);
   const start = open[last.depth - 1];
   if (start === undefined || !result[start].formula.trim() || !last.formula.trim()) throw Error('가정과 보조증명의 마지막 수식을 입력하세요.');
+  if (result[start].rule.replace(/\s+/g, '').startsWith('임의이름')) throw Error('임의 이름 상자는 ‘∀로 이름 상자 닫기’를 사용하세요.');
   const formula = rule === '-> 도입' ? `(${result[start].formula}) -> (${last.formula})` : `~(${result[start].formula})`;
   return [...result, { formula, rule, citations: `${start + 1}-${result.length}`, depth: last.depth - 1 }];
 }
-export function closeCases(rows) {
+export function closeCases(rows, parse = parseFormula) {
   const result = trimTrailing(rows), last = result.at(-1), states = scopes(result);
   if (!last?.depth || !last.formula.trim()) throw Error('두 경우의 보조증명을 먼저 입력하세요.');
   const second = states.at(-1)[last.depth - 1], parent = states.at(-1).slice(0, -1);
@@ -45,11 +46,11 @@ export function closeCases(rows) {
   if (first < 0) throw Error('같은 깊이의 두 경우가 필요합니다. 첫 경우를 쓴 뒤 ‘다음 경우’를 누르세요.');
   let premise = '?';
   try {
-    const left = parseFormula(result[first].formula), right = parseFormula(result[second].formula);
+    const left = parse(result[first].formula), right = parse(result[second].formula);
     const eq = (a, b) => JSON.stringify(a) === JSON.stringify(b);
     for (let i = first - 1; i >= 0; i--) {
       if (!states[i].every((v, k) => parent[k] === v)) continue;
-      const f = parseFormula(result[i].formula);
+      const f = parse(result[i].formula);
       if (Array.isArray(f) && f[0] === '∨' && ((eq(f[1], left) && eq(f[2], right)) || (eq(f[1], right) && eq(f[2], left)))) { premise = String(i + 1); break; }
     }
   } catch { /* 입력 중인 수식은 검산할 때 행별로 확인한다. */ }
@@ -60,4 +61,17 @@ export function deleteRow(rows, index) {
     const n = Number(value);
     return n === index + 1 ? '?' : String(n > index + 1 ? n - 1 : n);
   }) }));
+}
+
+export function startParameter(rows) {
+  const result = trimTrailing(rows);
+  return [...result, blankRow((result.at(-1)?.depth || 0) + 1, '임의 이름')];
+}
+export function closeQuantifier(rows, universal) {
+  const result = trimTrailing(rows), last = result.at(-1);
+  if (!last?.depth) throw Error('닫을 보조증명이 없습니다.');
+  const start = scopes(result).at(-1)[last.depth - 1];
+  const parameter = result[start]?.rule.replace(/\s+/g, '').startsWith('임의이름');
+  if (universal !== parameter) throw Error(universal ? '임의 이름으로 시작한 상자 안에서 사용하세요.' : '가정으로 시작한 보조증명 안에서 사용하세요.');
+  return [...result, {formula:universal ? '' : last.formula, rule:universal ? '∀ 도입' : '∃ 제거', citations:`${universal ? '' : '?, '}${start+1}-${result.length}`, depth:last.depth-1}];
 }

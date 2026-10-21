@@ -1,20 +1,33 @@
-import { checkProof, parseProof, RULES } from './checker.mjs';
-import { blankRow, trimTrailing, proofText, startAssumption, closeAssumption, closeCases, deleteRow } from './editor.mjs';
+import { checkQuantifiedProof, parseQuantifiedProof, parseQuantifiedFormula, ALL_RULES } from './quantifier.mjs?v=quantifier-20261021';
+import { checkProof, parseProof, parseFormula, RULES } from './checker.mjs?v=quantifier-20261021';
+import { blankRow, trimTrailing, proofText, startAssumption, closeAssumption, closeCases, deleteRow, startParameter, closeQuantifier } from './editor.mjs?v=quantifier-20261021';
 
 const $ = id => document.getElementById(id);
-const samples = {
+const propositionalSamples = {
   conditional: { premises: 'A -> ~B\nB V C', conclusion: 'A -> C', proof: '1. A -> ~B ; 전제\n2. B V C ; 전제\n3. | A ; 가정\n4. | ~B ; -> 제거 1,3\n5. | C ; V 제거 2,4\n6. A -> C ; -> 도입 3-5' },
   nested: { premises: '', conclusion: 'A -> (B -> A)', proof: '1. | A ; 가정\n2. || B ; 가정\n3. || A ; 반복 1\n4. | B -> A ; -> 도입 2-3\n5. A -> (B -> A) ; -> 도입 1-4' },
   cases: { premises: 'A V B', conclusion: 'B V A', proof: '1. A V B ; 전제\n2. | A ; 가정\n3. | B V A ; V 도입 2\n4. | B ; 가정\n5. | B V A ; V 도입 4\n6. B V A ; 경우에 의한 논증 1,2-3,4-5' },
   contraposition: { premises: '~A -> B\nB -> ~C', conclusion: 'C -> A', proof: '1. ~A -> B ; 전제\n2. B -> ~C ; 전제\n3. ~A -> ~C ; 연쇄 논법 1,2\n4. C -> A ; 대우 규칙 3' }
 };
+const quantifiedSamples = {
+  universal: {label:'보편 제거와 존재 도입',premises:'forall x (Px -> Qx)\nPa',conclusion:'exists x Qx',proof:'forall x (Px -> Qx);전제\nPa;전제\nPa -> Qa;전칭제거 1\nQa;-> 제거 2,3\nexists x Qx;존재도입 4'},
+  generalize: {label:'임의 이름 상자 · 보편 도입',premises:'forall x (Px & Qx)',conclusion:'forall x Px',proof:'forall x (Px & Qx);전제\n|u;임의 이름\n|Pu & Qu;∀ 제거 1\n|Pu;& 제거 3\nforall x Px;∀ 도입 2-4'},
+  witness: {label:'교재 약식 · 존재 제거',premises:'exists x (Px & Qx)',conclusion:'exists x Px & exists x Qx',proof:'exists x (Px & Qx);전제\nPa & Qa;∃ 제거 1\nPa;& 제거 2\nQa;& 제거 2\nexists x Px;∃ 도입 3\nexists x Qx;∃ 도입 4\nexists x Px & exists x Qx;& 도입 6,5'},
+  existsBox: {label:'보조증명 · 존재 제거',premises:'exists x Px\nforall x (Px -> Qx)',conclusion:'exists x Qx',proof:'exists x Px;전제\nforall x (Px -> Qx);전제\n|Pa;가정\n|Pa -> Qa;∀ 제거 2\n|Qa;-> 제거 3,4\n|exists x Qx;∃ 도입 5\nexists x Qx;∃ 제거 3-6,1'},
+  negation: {label:'양화사 부정 · 파생규칙',premises:'~forall x Px',conclusion:'exists x ~Px',proof:'~forall x Px;전제\nexists x ~Px;양화사 부정 1'},
+  identity: {label:'동일성 · 부분 대입',premises:'a=b\nRaa',conclusion:'Rab',proof:'a=b;전제\nRaa;전제\nRab;동일성 제거 2,1'}
+};
+let mode = 'propositional', samples = propositionalSamples, rules = RULES;
+const drafts = {};
 let rows = [blankRow()];
 let activeField = $('premises');
 for (const id of ['premises', 'conclusion']) $(id).addEventListener('focus', () => { activeField = $(id); });
 for (const id of ['premises', 'conclusion']) $(id).addEventListener('input', clearValidation);
 $('basicOnly').addEventListener('change', clearValidation);
 
-for (const rule of RULES) {
+function renderRules() {
+for (const id of ['basicRules','derivedRules','ruleOptions']) $(id).replaceChildren();
+for (const rule of rules) {
   const row = document.createElement('tr');
   const name = document.createElement('td'); name.textContent = rule.name;
   const inputs = document.createElement('td');
@@ -24,6 +37,7 @@ for (const rule of RULES) {
   const option = document.createElement('option'); option.value = rule.inputs[0]; option.label = rule.name; $('ruleOptions').append(option);
 }
 
+}
 function clearValidation() {
   $('result').hidden = true;
   document.querySelectorAll('.proof-table tr.row-error, .proof-table tr.row-warning').forEach(row => row.classList.remove('row-error', 'row-warning'));
@@ -63,7 +77,7 @@ function renderRows(focusIndex = null) {
     ['formula', 'rule', 'citations'].forEach((key, fieldIndex) => {
       const td = document.createElement('td');
       const input = document.createElement('input'); input.type = 'text'; input.value = row[key]; input.spellcheck = false;
-      input.setAttribute('aria-label', `${i + 1}행 ${['수식', '규칙', '인용번호'][fieldIndex]}`); input.placeholder = ['A -> B', '규칙 선택·입력', '1,2 / 3-5'][fieldIndex];
+      input.setAttribute('aria-label', `${i + 1}행 ${['수식', '규칙', '인용번호'][fieldIndex]}`); input.placeholder = [mode === 'quantified' ? 'forall x Px / Pa' : 'A -> B', '규칙 선택·입력', '1,2 / 3-5'][fieldIndex];
       if (key === 'rule') input.setAttribute('list', 'ruleOptions');
       if (key === 'formula') {
         td.className = 'formula-cell'; const guides = document.createElement('span'); guides.className = 'indent-guides'; guides.style.width = `${row.depth * 10}px`;
@@ -98,20 +112,41 @@ $('startAssumption').addEventListener('click', () => applyEdit(rows => startAssu
 $('nextCase').addEventListener('click', () => applyEdit(rows => startAssumption(rows, true)));
 $('closeConditional').addEventListener('click', () => applyEdit(rows => closeAssumption(rows, '-> 도입')));
 $('closeNegation').addEventListener('click', () => applyEdit(rows => closeAssumption(rows, '~ 도입')));
-$('closeCases').addEventListener('click', () => applyEdit(closeCases));
+$('closeCases').addEventListener('click', () => applyEdit(r => closeCases(r, mode === 'quantified' ? parseQuantifiedFormula : parseFormula)));
+$('startParameter').addEventListener('click', () => applyEdit(startParameter));
+$('closeUniversal').addEventListener('click', () => applyEdit(r => closeQuantifier(r,true)));
+$('closeExistential').addEventListener('click', () => applyEdit(r => closeQuantifier(r,false)));
 $('check').addEventListener('click', () => {
   const filled = trimTrailing(rows);
   for (let i = 0; i < filled.length; i++) if (!filled[i].formula.trim() || !filled[i].rule.trim()) { showResult({ ok: false, line: i + 1, message: `${i + 1}행의 수식과 규칙을 모두 입력하세요.` }); return; }
-  showResult(checkProof($('premises').value, $('conclusion').value, proofText(rows), $('basicOnly').checked));
+  showResult((mode === 'quantified' ? checkQuantifiedProof : checkProof)($('premises').value, $('conclusion').value, proofText(rows), $('basicOnly').checked));
 });
 $('sample').addEventListener('click', () => {
   const sample = samples[$('sampleChoice').value]; $('premises').value = sample.premises; $('conclusion').value = sample.conclusion;
-  rows = parseProof(sample.proof).map(line => ({ formula: line.formulaText, rule: RULES.find(rule => rule.id === line.rule).inputs[0], citations: line.refs.map(ref => Array.isArray(ref) ? ref.join('-') : ref).join(','), depth: line.depth }));
-  $('basicOnly').checked = ['conditional', 'nested'].includes($('sampleChoice').value); renderRows();
+  rows = (mode === 'quantified' ? parseQuantifiedProof : parseProof)(sample.proof).map(line => ({ formula: line.formulaText, rule: rules.find(rule => rule.id === line.rule).inputs[0], citations: line.refs.map(ref => Array.isArray(ref) ? ref.join('-') : ref).join(','), depth: line.depth }));
+  $('basicOnly').checked = ['conditional', 'nested', 'universal', 'generalize', 'existsBox', 'identity'].includes($('sampleChoice').value); renderRows();
 });
 $('clear').addEventListener('click', () => { $('premises').value = ''; $('conclusion').value = ''; rows = [blankRow()]; renderRows(); $('premises').focus(); });
 document.querySelectorAll('[data-symbol]').forEach(button => button.addEventListener('click', () => {
   const field = activeField.isConnected ? activeField : $('proofRows').querySelector('input');
   field.setRangeText(button.dataset.symbol, field.selectionStart, field.selectionEnd, 'end'); field.dispatchEvent(new Event('input')); field.focus();
 }));
-renderRows();
+
+function setMode(next) {
+  drafts[mode] = {rows, premises:$('premises').value, conclusion:$('conclusion').value, basic:$('basicOnly').checked, sample:$('sampleChoice').value};
+  mode = next; const q = mode === 'quantified'; samples = q ? quantifiedSamples : propositionalSamples; rules = q ? ALL_RULES : RULES;
+  const draft = drafts[mode]; rows = draft?.rows || [blankRow()]; $('premises').value = draft?.premises || ''; $('conclusion').value = draft?.conclusion || ''; $('basicOnly').checked = draft?.basic || false;
+  for (const [id,name] of [['propositionalTab','propositional'],['quantifiedTab','quantified']]) {$(id).classList.toggle('active',mode===name); if (mode===name) $(id).setAttribute('aria-current','page'); else $(id).removeAttribute('aria-current');}
+  for (const id of ['quantifiedHelp','quantifiedGuide','startParameter','closeUniversal','closeExistential']) $(id).hidden = !q;
+  document.querySelectorAll('.quant-symbol').forEach(button => {button.hidden = !q;});
+  $('premises').placeholder = q ? '전제를 한 줄에 하나씩 입력하세요.\n예: forall x (Px -> Qx)\n    Pa\n전제가 없으면 비워 두세요.' : '전제를 한 줄에 하나씩 입력하세요.\n예: A -> ~B\n    B V C\n전제가 없으면 비워 두세요.';
+  $('conclusion').placeholder = q ? '예: exists x Qx' : '예: A -> C';
+  $('sampleChoice').replaceChildren();
+  const labels = {conditional:'조건문 도입',nested:'중첩 보조증명',cases:'경우에 의한 논증',contraposition:'대우 규칙'};
+  for (const [key,sample] of Object.entries(samples)) {const option = document.createElement('option'); option.value=key; option.textContent=sample.label || labels[key]; $('sampleChoice').append(option);}
+  if (draft?.sample) $('sampleChoice').value = draft.sample;
+  activeField = $('premises'); renderRules(); renderRows();
+}
+$('propositionalTab').addEventListener('click',()=>{if(mode!=='propositional') setMode('propositional');});
+$('quantifiedTab').addEventListener('click',()=>{if(mode!=='quantified') setMode('quantified');});
+renderRules(); renderRows();
