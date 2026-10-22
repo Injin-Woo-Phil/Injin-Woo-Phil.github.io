@@ -79,11 +79,14 @@ presentations:
         date: { en: "Dec 2026", ko: "2026년 12월" }
         ymd: 20261231 # Day unknown; keep upcoming through December.
   - title: { en: "Simonelli on Assertibility of pure LLMs", ko: "Simonelli on Assertibility of pure LLMs" }
+    links:
+      - { label: { en: "Slides (English)", ko: "슬라이드 (영어)" }, url: "/assets/slides-simonelli-2026-en.pdf" }
+      - { label: { en: "Slides (Korean)", ko: "슬라이드 (한국어)" }, url: "/assets/slides-simonelli-2026-ko.pdf" }
     venues:
       - place: { en: "2nd Philosophical Interchange between Sungkyunkwan and Nagoya University, Nagoya University", ko: "제2회 성균관대-나고야대 철학 교류회, 나고야대학교" }
         country: { en: "Japan", ko: "일본" }
-        date: { en: "Oct 2026", ko: "2026년 10월" }
-        ymd: 20261024
+        date: { en: "25 Oct 2026", ko: "2026년 10월 25일" }
+        ymd: 20261025
       - place: { en: "Writing Sample Workshop, Yonsei University", ko: "Writing Sample Workshop, 연세대학교" }
         country: { en: "South Korea", ko: "대한민국" }
         date: { en: "Aug 2026", ko: "2026년 8월" }
