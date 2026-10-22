@@ -81,7 +81,6 @@ presentations:
   - title: { en: "Simonelli on Assertibility of pure LLMs", ko: "Simonelli on Assertibility of pure LLMs" }
     links:
       - { label: { en: "Slides (English)", ko: "슬라이드 (영어)" }, url: "/assets/slides-simonelli-2026-en.pdf" }
-      - { label: { en: "Slides (Korean)", ko: "슬라이드 (한국어)" }, url: "/assets/slides-simonelli-2026-ko.pdf" }
     venues:
       - place: { en: "2nd Philosophical Interchange between Sungkyunkwan and Nagoya University, Nagoya University", ko: "제2회 성균관대-나고야대 철학 교류회, 나고야대학교" }
         country: { en: "Japan", ko: "일본" }
