@@ -101,6 +101,8 @@ presentations:
         date: { en: "July 2026", ko: "2026년 7월" }
         ymd: 20260701
   - title: { en: "When the State Matches: State-Run Dating Apps and Infrastructural Violence", ko: "When the State Matches: State-Run Dating Apps and Infrastructural Violence" }
+    links:
+      - { label: { en: "Slides", ko: "슬라이드" }, url: "/assets/slides-dating-apps-2026.pdf" }
     venues:
       - place: { en: "2027 APA Eastern Division Meeting, Papers in Progress Workshop Sessions", ko: "2027 미국철학회 동부분과 연례회의, Papers in Progress 워크숍 세션" }
         country: { en: "Boston, MA", ko: "Boston, MA" }
