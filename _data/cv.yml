@@ -83,6 +83,7 @@ presentations:
       - { label: { en: "Slides (English)", ko: "슬라이드 (영어)" }, url: "/assets/slides-simonelli-2026-en.pdf" }
     venues:
       - place: { en: "2nd Philosophical Interchange between Sungkyunkwan and Nagoya University, Nagoya University", ko: "제2회 성균관대-나고야대 철학 교류회, 나고야대학교" }
+        url: "https://sites.google.com/site/masashikasaki2/イベント/philosophical-interchange-2-0-between-sungkyunkwan-and-nagoya-university?authuser=0"
         country: { en: "Japan", ko: "일본" }
         date: { en: "25 Oct 2026", ko: "2026년 10월 25일" }
         ymd: 20261025
