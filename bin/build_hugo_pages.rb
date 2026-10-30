@@ -3,8 +3,8 @@ require 'json'
 require 'date'
 
 root = File.expand_path('..', __dir__)
-cv = YAML.load_file(File.join(root, '_data/cv.yml'))
-writing = YAML.load_file(File.join(root, '_data/blog_links.yml'))
+cv = YAML.safe_load(File.read(File.join(root, '_data/cv.yml')), permitted_classes: [Date])
+writing = YAML.safe_load(File.read(File.join(root, '_data/blog_links.yml')), permitted_classes: [Date])
 
 def local(value, lang)
   value.is_a?(Hash) ? value.fetch(lang) : value
