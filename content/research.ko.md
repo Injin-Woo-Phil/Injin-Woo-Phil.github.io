@@ -5,7 +5,7 @@ url: /ko/research/
 
 ## 논문
 
-- (2025.04) [“경험론과 합리론의 대립을 넘어서: 경험적 자세의 철학사적 의의”](/papers/woo2025-empirical-stance/), *근대철학* 25, 113–143. [PDF](/assets/woo2025-empirical-stance-preprint.pdf)
+- (2025.04) [“경험론과 합리론의 대립을 넘어서: 경험적 자세의 철학사적 의의”](/papers/woo2025-empirical-stance/) *근대철학* 25, 113–143. [저자 원고 PDF](/assets/woo2025-empirical-stance-preprint.pdf)
 
 ## 진행 중인 연구
 
@@ -16,5 +16,6 @@ url: /ko/research/
 
 ## 학위논문
 
-- 사회적 집단의 이름과 공점의 문제 (2026.06)
-
+- 석사학위논문 (2026.06): 사회적 집단의 이름과 공점의 문제
+  - 지도교수: [박성수](https://sites.google.com/site/seongsooparkphilosophy/)
+  - 심사위원: [이병덕](https://professor.skku.edu/researcher/professorList.do?mode=view&perId=LZStrOwEwbAQg7gCgggBhAJQBoFcBMAbARgRgEsAzAZzgBU4BeaoA&jojikCode1=3162&categoryId=U), [이정규](https://jeonggyulee.weebly.com)
