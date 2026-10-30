@@ -1,0 +1,20 @@
+# External pieces — link-only index items. These link straight to the
+# original (published in 전통공연예술진흥재단's '공진단 블랙'); no text is reposted.
+# title/title_en/date are taken from each page's og:title + author-date meta.
+- title: "우리 핏줄에는 국악이 흐르지 않는다"
+  title_en: "Gugak (Korean traditional music) Does Not Run in Our Blood"
+  issue: "vol.26"
+  date: 2026-04-15
+  url: "https://webzine.kotpa.org/vol26_black?mod=document&uid=9366"
+
+- title: "우리 소리의 오늘을 묻다 — 블랙토커가 진단한 국악의 현주소"
+  title_en: "Asking After the Present of Our Music — The State of Gugak (Korean traditional music) as Diagnosed by the Blacktalkers"
+  issue: "vol.27"
+  date: 2026-05-18
+  url: "https://webzine.kotpa.org/vol27_black?uid=9596&mod=document&pageid=1"
+
+- title: "모든 결합이 도약인 것은 아니다 — 크로스오버라는 이상한 덧셈"
+  title_en: "Not Every Combination Is a Leap — The Strange Arithmetic of Crossover"
+  issue: "vol.27"
+  date: 2026-05-21
+  url: "https://webzine.kotpa.org/vol27_black?pageid=1&mod=document&uid=9622"

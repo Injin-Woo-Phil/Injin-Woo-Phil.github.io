@@ -4,13 +4,15 @@ This GitHub Pages site uses [Pascal Michaillat's Hugo academic website template]
 
 ## Local preview
 
-Install Hugo Extended, then run `hugo server` from this directory. The GitHub Actions workflow builds and deploys the site from `master`.
+Install Hugo Extended, then run `ruby bin/build_hugo_pages.rb && hugo server` from this directory. The GitHub Actions workflow regenerates the pages, builds them, and deploys from `master`.
 
 ## Content
 
-- English and Korean pages: `content/`
+- About pages and the paper page: `content/`
+- Generated English and Korean CV, research, talks, and writing pages: `content/`
 - Site navigation and home page: `config.yml`
 - Downloadable files and tools: `static/`
-- CV data source and PDF generator: `_data/cv.yml` and `bin/build_cv.rb`
+- CV data and PDF generator: `_data/cv.yml` and `bin/build_cv.rb`
+- External writing links: `_data/blog_links.yml`
 
-The HTML CV, research, and talks pages were migrated from `_data/cv.yml` on 2026-10-30. Update the relevant Markdown pages when changing that data. The existing CV workflow still regenerates the PDF files on changes to `_data/cv.yml`.
+Edit the YAML files, then run `ruby bin/build_hugo_pages.rb` to refresh the generated Markdown pages. The CV workflow regenerates the PDF files when `_data/cv.yml` changes.
