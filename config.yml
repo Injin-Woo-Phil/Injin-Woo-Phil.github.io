@@ -29,10 +29,10 @@ languages:
           - {name: 연구, url: /ko/research/}
           - {name: 발표, url: /ko/presentation/}
           - {name: 이력서, url: /ko/cv/}
+          - {name: 기타 글, url: /ko/blog/}
       socialIcons:
         - {name: email, url: 'mailto:jaegoi@skku.edu'}
         - {name: cv, url: /cv-ko.pdf}
-        - {name: writing, title: 기타 글, url: /ko/blog/}
     menu:
       main:
         - {name: 소개, url: /ko/about/, weight: 1}
@@ -64,10 +64,10 @@ params:
       - {name: Research, url: /research/}
       - {name: Talks, url: /presentation/}
       - {name: CV, url: /cv/}
+      - {name: Other Writings, url: /blog/}
   socialIcons:
     - {name: email, url: 'mailto:jaegoi@skku.edu'}
     - {name: cv, url: /cv.pdf}
-    - {name: writing, title: Other Writings, url: /blog/}
 markup:
   goldmark:
     renderer:
