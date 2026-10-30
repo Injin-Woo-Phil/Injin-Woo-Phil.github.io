@@ -1,0 +1,67 @@
+baseURL: https://injin-woo-phil.github.io/
+title: Injin Woo
+theme: PaperMod
+defaultContentLanguage: en
+languages:
+  en:
+    label: English
+    weight: 1
+    menu:
+      main:
+        - {name: About, url: /about/, weight: 1}
+        - {name: Research, url: /research/, weight: 2}
+        - {name: Talks, url: /presentation/, weight: 3}
+        - {name: Other Writing, url: /blog/, weight: 4}
+        - {name: CV, url: /cv/, weight: 5}
+  ko:
+    label: 한국어
+    weight: 2
+    params:
+      profileMode:
+        enabled: true
+        title: 우인진
+        subtitle: 성균관대학교 철학과 박사과정. 언어철학과 인공지능철학을 연구합니다.
+        imageUrl: /portrait.jpg
+        imageWidth: 160
+        imageHeight: 160
+        buttons:
+          - {name: 연구, url: /ko/research/}
+          - {name: 발표, url: /ko/presentation/}
+          - {name: 이력서, url: /ko/cv/}
+    menu:
+      main:
+        - {name: 소개, url: /ko/about/, weight: 1}
+        - {name: 연구, url: /ko/research/, weight: 2}
+        - {name: 발표, url: /ko/presentation/, weight: 3}
+        - {name: 기타 글, url: /ko/blog/, weight: 4}
+        - {name: 이력서, url: /ko/cv/, weight: 5}
+        - {name: 코어 논리학 보조도구, url: /ko/logic/, weight: 6}
+params:
+  description: Injin Woo's research, publications, talks, and curriculum vitae.
+  author: Injin Woo
+  defaultTheme: light
+  disableThemeToggle: true
+  ShowShareButtons: false
+  ShowReadingTime: false
+  disableSpecial1stPost: true
+  ShowPostNavLinks: false
+  ShowBreadCrumbs: false
+  ShowToc: false
+  profileMode:
+    enabled: true
+    title: Injin Woo
+    subtitle: Philosophy PhD student at Sungkyunkwan University. Philosophy of language and philosophy of AI.
+    imageUrl: /portrait.jpg
+    imageWidth: 160
+    imageHeight: 160
+    buttons:
+      - {name: Research, url: /research/}
+      - {name: Talks, url: /presentation/}
+      - {name: CV, url: /cv/}
+  socialIcons:
+    - {name: email, url: 'mailto:jaegoi@skku.edu'}
+    - {name: cv, url: /cv.pdf}
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
