@@ -20,7 +20,8 @@ languages:
       profileMode:
         enabled: true
         title: 우인진
-        subtitle: 성균관대학교 철학과 박사과정. 언어철학과 인공지능철학을 연구합니다.
+        subtitle: >-
+          성균관대학교에서 철학과 한문학(고전 한문학)으로 학사 학위를 받고, 역시 성균관대학교에서 철학으로 석사 학위를 받았습니다. 인식론과 언어철학, 특히 이해의 인식론과 의미론적 추론주의에 가장 관심이 많습니다. 이 주제들을 AI에 적용하려고 노력중입니다. 철학사에서는 회의주의와 신유학에도 관심이 있습니다. 철학 이외에는 18세기 한국 문학과 송대 문학을 읽고 암송하는 것을 좋아합니다. 현대 재즈, 80년대 헤비메탈, 국악을 즐겨 듣습니다. 시간이 남으면 기타나 피리(국악기)를 연주합니다.
         imageUrl: /portrait.jpg
         imageWidth: 160
         imageHeight: 160
@@ -28,6 +29,10 @@ languages:
           - {name: 연구, url: /ko/research/}
           - {name: 발표, url: /ko/presentation/}
           - {name: 이력서, url: /ko/cv/}
+      socialIcons:
+        - {name: email, url: 'mailto:jaegoi@skku.edu'}
+        - {name: cv, url: /cv-ko.pdf}
+        - {name: writing, title: 기타 글, url: /ko/blog/}
     menu:
       main:
         - {name: 소개, url: /ko/about/, weight: 1}
@@ -50,7 +55,8 @@ params:
   profileMode:
     enabled: true
     title: Injin Woo
-    subtitle: Philosophy PhD student at Sungkyunkwan University. Philosophy of language and philosophy of AI.
+    subtitle: >-
+      I received a B.A. in Philosophy and Korean Literature in Classical Chinese, and an M.A. in Philosophy, both from Sungkyunkwan University. I’m most interested in epistemology and the philosophy of language — especially the epistemology of understanding and semantic inferentialism — and I try to apply these to AI. In the history of philosophy I’m also drawn to Skepticism and Neo-Confucianism. Outside philosophy, I enjoy reading and memorizing 18th-century Korean literature and Song dynasty literature. I love listening to contemporary jazz, 80s heavy metal, and Korean traditional music. I play Guitar/Piri (a Korean traditional instrument) if there is time left.
     imageUrl: /portrait.jpg
     imageWidth: 160
     imageHeight: 160
@@ -61,6 +67,7 @@ params:
   socialIcons:
     - {name: email, url: 'mailto:jaegoi@skku.edu'}
     - {name: cv, url: /cv.pdf}
+    - {name: writing, title: Other Writings, url: /blog/}
 markup:
   goldmark:
     renderer:
