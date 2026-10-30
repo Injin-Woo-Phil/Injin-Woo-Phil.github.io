@@ -35,3 +35,5 @@ layout: default
 - {{ c.topic[lang] }}
 	- **{{ c.place[lang] }}**, {{ c.date[lang] }}
 {% endfor %}
+
+<p style="font-size: 0.78em; opacity: 0.75; margin-top: 2.5em;">Course presentation · Youngchae's Voice in <em>Mujeong</em> (2026) · <a href="{{ '/assets/slides-youngchae-voice-2026.pdf' | relative_url }}">Slides PDF</a></p>

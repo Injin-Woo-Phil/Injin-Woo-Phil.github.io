@@ -35,3 +35,5 @@ layout: default
 - {{ c.topic[lang] }}
 	- **{{ c.place[lang] }}**, {{ c.date[lang] }}
 {% endfor %}
+
+<p style="font-size: 0.78em; opacity: 0.75; margin-top: 2.5em;">수업 발표 · 『무정』의 영채 목소리 (2026) · <a href="{{ '/assets/slides-youngchae-voice-2026.pdf' | relative_url }}">슬라이드 PDF</a></p>
